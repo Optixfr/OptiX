@@ -1,0 +1,28 @@
+.container {
+    display: grid;
+    grid-template-columns: 300px 1fr; 
+    grid-template-rows: auto 1fr;
+    min-height: 100vh;
+    justify-content: center;
+}
+
+
+.container-form {
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+
+}
+
+.button { 
+    background-color: var(--green-color);
+    width: 246px;
+    height: 44px;
+
+    background: #32DE8A;
+    border-radius: 16px;
+}
+
+
+
+

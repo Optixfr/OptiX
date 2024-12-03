@@ -9,9 +9,7 @@
     --spacing-unit: 16px;
 }
 
-/* styles.css */
 
-/* Réinitialisation de tous les styles par défaut à 0 */
 * {
     margin: 0;
     padding: 0;
@@ -46,6 +44,10 @@
     font: inherit;
     border: none;
     background: none;
+  }
+
+  button {
+    cursor: pointer;
   }
   
   

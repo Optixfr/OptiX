@@ -1,24 +1,27 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    padding : 0px 80px 0px 80px;
+}
+
 .container {
     display: grid;
     grid-template-columns: 300px 1fr; 
-    grid-template-rows: auto 1fr;
     min-height: 100vh;
-    justify-content: center;
 }
 
-
 .container-form {
-    align-items: center;
-    flex-direction: column;
     display: flex;
-
+    justify-content: space-between;
 }
 
 .button { 
     background-color: var(--green-color);
     width: 246px;
     height: 44px;
-
+    align-self: center;
     background: #32DE8A;
     border-radius: 16px;
 }

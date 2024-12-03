@@ -12,6 +12,7 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 20px; 
+    align-items: center;
 }
 
 .logo {
@@ -23,13 +24,19 @@
 }
 
 .nav-links ul {
-    list-style-type: none; 
+    display: flex;
+    list-style-type: none;
     padding: 0;
     margin: 0;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .nav-links li {
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .nav-links a {

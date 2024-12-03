@@ -1,0 +1,35 @@
+<div class="container">
+    <h2>Formulaire EyesTear</h2>
+    <form (ngSubmit)="onSubmit(eyesTearForm)" #eyesTearForm="ngForm" class="container-form">
+
+        <!-- PSC -->
+        <div class="input-label-combo">
+            <label for="psc">PSC</label>
+            <input type="text" id="psc" name="psc" [(ngModel)]="eyesTear.psc" required>
+        </div>
+
+        <!-- Tonus -->
+        <div class="input-label-combo">
+            <label for="tonus">Tonus</label>
+            <input type="text" id="tonus" name="tonus" [(ngModel)]="eyesTear.tonus" required>
+        </div>
+
+        <!-- Hauteur Prisme -->
+        <div class="input-label-combo">
+            <label for="hauteurPrisme">Hauteur Prisme</label>
+            <input type="text" id="hauteurPrisme" name="hauteurPrisme" [(ngModel)]="eyesTear.hauteurPrisme" required>
+        </div>
+
+        <!-- Grade Lipide (optionnel) -->
+        <div class="input-label-combo">
+            <label for="gradeLipide">Grade Lipide</label>
+            <input type="text" id="gradeLipide" name="gradeLipide" [(ngModel)]="eyesTear.gradeLipide">
+        </div>
+
+        <!-- Charge Lacrimale (optionnel) -->
+        <div class="input-label-combo">
+            <label for="chargeLacrimale">Charge Lacrimale</label>
+            <input type="text" id="chargeLacrimale" name="chargeLacrimale" [(ngModel)]="eyesTear.chargeLacrimale">
+        </div>
+    </form>
+</div>

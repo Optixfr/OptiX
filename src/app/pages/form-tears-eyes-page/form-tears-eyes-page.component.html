@@ -4,9 +4,15 @@
     </div>
     <div class="page">
         <app-top-bar></app-top-bar>
-        <div class="container-form">
-            <app-form-tears-eyes></app-form-tears-eyes>
-            <app-form-tears-eyes></app-form-tears-eyes>
+        <div class="forms">
+            <div class="container-form">
+                <app-form-tears-eyes [nomFormulaire]="'Formulaire Oeil Gauche'"></app-form-tears-eyes>
+                <app-form-tears-eyes [nomFormulaire]="'Formulaire Oeil Droit'"></app-form-tears-eyes>
+            </div>
+            <div class="commentaire-form">
+                <label for=""></label>
+                <textarea name="" id=""></textarea>
+            </div>
         </div>
         <div class="buttons">
             <button class="button button-retour" routerLink="/accueil">Retour</button>

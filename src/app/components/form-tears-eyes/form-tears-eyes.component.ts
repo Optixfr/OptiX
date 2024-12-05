@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import { EyesTear } from '../../models/eyes-tear';
@@ -11,6 +11,8 @@ import { EyesTear } from '../../models/eyes-tear';
   styleUrl: './form-tears-eyes.component.css'
 })
 export class FormTearsEyesComponent {
+  @Input() nomFormulaire: string = '';
+
   eyesTear: EyesTear = {
     psc: '',
     tonus: '',

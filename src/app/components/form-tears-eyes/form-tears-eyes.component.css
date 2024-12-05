@@ -16,6 +16,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    gap: 20px;
 }
 
 input {
@@ -24,6 +25,7 @@ input {
     padding: 6px;
     border: none;
     width: 100%;
+    margin-left: 20px;
 }
 
 input:hover {
@@ -33,3 +35,4 @@ input:hover {
 h2 {
     margin-bottom: 60px;
 }
+

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { EyeMeasure } from '../../models/eye-measure.model';
 
@@ -10,6 +10,8 @@ import { EyeMeasure } from '../../models/eye-measure.model';
   styleUrl: './form-eye-size.component.css'
 })
 export class FormEyeSizeComponent {
+  @Input() nomFormulaire: string = '';
+
   eyeMeasure: EyeMeasure;  
   submitted = false;
 

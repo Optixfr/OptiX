@@ -15,7 +15,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-content: space-between;
-    gap: 20px;
+    gap: 10px;
     padding: 20px 20px;
 }
 
@@ -41,13 +41,32 @@
 }
 
 .container-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 20px 20px;
+}
+
+.commentaire-form {
+    padding: 20px 20px;
+}
+
+h2 {
+    margin-bottom: 12px;
+}
+
+textarea {
+    width: 100%;
     background-color: white;
     border-radius: 16px;
+    resize: none;
+    height: 200px;
     padding: 16px;
 }
 
 .forms {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1px;
 }

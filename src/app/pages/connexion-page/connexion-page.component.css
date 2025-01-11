@@ -20,3 +20,29 @@
     flex-direction: row;
     justify-content: center;
 }
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.container-hey {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.button { 
+    background-color: var(--green-color);
+    width: 246px;
+    height: 44px;
+    align-self: center;
+    background: #32DE8A;
+    border-radius: 16px;
+    margin-bottom: 20px;
+}
+

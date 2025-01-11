@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-connexion-page',
   standalone: true,
-  imports: [ConnexionFormComponent],
+  imports: [ConnexionFormComponent, RouterLink],
   templateUrl: './connexion-page.component.html',
   styleUrl: './connexion-page.component.css'
 })

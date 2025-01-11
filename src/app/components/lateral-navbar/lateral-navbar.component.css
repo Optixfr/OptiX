@@ -65,3 +65,7 @@ a {
 .logout a:hover {
     color: lightgray;
 }
+
+.cursor-pointer {
+    cursor: pointer;
+}

@@ -4,10 +4,36 @@
     gap: 20px;
 }
 
+h2 {
+    margin-bottom: 60px;
+}
+
 .input-label-combo {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     gap: 20px;
+}
+
+.input-label-combo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+input {
+    background-color: var(--secondary-color);
+    border-radius: 12px;
+    padding: 6px;
+    border: none;
+    width: 100%;
+}
+
+.container-form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }

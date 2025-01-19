@@ -5,5 +5,4 @@ export interface Utilisateur {
     email: string,
     motDePasse: string,
     numeroTelephone: string,
-    idBlog: number
 }

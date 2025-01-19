@@ -2,6 +2,6 @@ export interface EyesTear {
     psc: string,
     tonus: string,
     hauteurPrisme: string,
-    gradeLipide?: Date,
+    gradeLipide: string,
     chargeLacrimale?: string,
 };

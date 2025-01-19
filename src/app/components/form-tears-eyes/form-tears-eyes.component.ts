@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgForm } from '@angular/forms';
-import { EyesTear } from '../../models/eyes-tear';
+import { EyesTear } from '../../models/eyes-tear.model';
+import { FormTearsEyesDataService } from '../../services/form-tears-eyes-data.service';
 
 @Component({
   selector: 'app-form-tears-eyes',
@@ -17,15 +18,27 @@ export class FormTearsEyesComponent {
     psc: '',
     tonus: '',
     hauteurPrisme: '',
-    gradeLipide: undefined,
+    gradeLipide: '',
     chargeLacrimale: ''
   };
 
-  onSubmit(form: NgForm) {
-    if (form.valid) {
-      console.log(this.eyesTear);
-    } else {
-      console.log("Formulaire invalide");
+  // Injecter le service
+      constructor(@Inject(FormTearsEyesDataService) private formSizeEyesDataService: FormTearsEyesDataService) {}
+  
+      ngOnInit() {
+        console.log('Nom du formulaire :', this.nomFormulaire);
+        if (this.nomFormulaire === 'Formulaire Oeil Gauche') {
+          this.eyesTear = this.formSizeEyesDataService.getFormData()[0]; // Formulaire pour l'œil gauche
+        } else if (this.nomFormulaire === 'Formulaire Oeil Droit') {
+          this.eyesTear = this.formSizeEyesDataService.getFormData()[1]; // Formulaire pour l'œil droit
+        }
+      }
+  
+    submitted = false;
+  
+    getFormData(): EyesTear {
+      return this.eyesTear;
     }
-  }
+
+
 }

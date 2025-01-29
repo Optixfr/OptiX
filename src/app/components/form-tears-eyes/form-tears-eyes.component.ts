@@ -3,11 +3,12 @@ import { FormsModule } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import { EyesTear } from '../../models/eyes-tear.model';
 import { FormTearsEyesDataService } from '../../services/form-tears-eyes-data.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-form-tears-eyes',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, HttpClientModule ],
   templateUrl: './form-tears-eyes.component.html',
   styleUrl: './form-tears-eyes.component.css'
 })

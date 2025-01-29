@@ -19,7 +19,7 @@
     gap: 20px;
 }
 
-input {
+select {
     background-color: var(--secondary-color);
     border-radius: 12px;
     padding: 6px;
@@ -28,7 +28,7 @@ input {
     margin-left: 20px;
 }
 
-input:hover {
+select:hover {
     border: none;
 }
 

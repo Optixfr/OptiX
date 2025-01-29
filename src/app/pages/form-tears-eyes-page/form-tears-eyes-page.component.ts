@@ -5,6 +5,7 @@ import { TopBarComponent } from "../../components/top-bar/top-bar.component";
 import { Router, RouterLink } from '@angular/router';
 import { FormTearsEyesComponent } from "../../components/form-tears-eyes/form-tears-eyes.component";
 import {FormTearsEyesDataService} from "../../services/form-tears-eyes-data.service"
+import { EyesCalculationService } from '../../services/eyes-calculation.service';
 
 @Component({
   selector: 'app-form-tears-eyes-page',
@@ -17,11 +18,14 @@ import {FormTearsEyesDataService} from "../../services/form-tears-eyes-data.serv
 export class FormTearsEyesPageComponent {
 @ViewChildren(FormTearsEyesComponent) forms!: QueryList<FormTearsEyesComponent>; 
 
-  constructor(private formDataService: FormTearsEyesDataService, private router: Router) {}
+  constructor(private formDataService: FormTearsEyesDataService, private router: Router, private eyesCalc: EyesCalculationService ) {}
 
   submitForms() {
     const formData = this.forms.map((form) => form.getFormData()); 
-    console.log('Données des formulaires :', formData);
+    console.log('YYYYYOOOO Données des formulaires :', formData);
     this.formDataService.setFormData(formData);
+    this.eyesCalc.sendData(formData).subscribe((response) => {
+      console.log('YYYYYOOOO Réponse du serveur :', response);
+      this.router.navigate(['/result']);});
   } 
 }

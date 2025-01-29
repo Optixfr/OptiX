@@ -1,0 +1,18 @@
+<div class="container">
+    <div>
+      <app-lateral-navbar></app-lateral-navbar>
+    </div>
+    <div class="page">
+      <app-top-bar></app-top-bar>
+      <div class="container-form">
+        <div *ngIf="pdfUrl" class="pdf-preview">
+          <iframe [src]="pdfUrl"  style="border: none;" width="100%" height="500px"></iframe>
+        </div>
+      </div>
+      <div class="buttons">
+        <button class="button" (click)="downloadPDF()">Télécharger</button>
+        <button class="button" routerLink="/accueil">Valider</button>
+      </div>
+    </div>
+  </div>
+  

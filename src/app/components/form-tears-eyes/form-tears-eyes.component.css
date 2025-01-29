@@ -1,0 +1,38 @@
+.container {
+    background-color: white;
+    border-radius: 16px;
+    padding: 16px;
+}
+
+.container-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap:10px;
+}
+
+.input-label-combo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+input {
+    background-color: var(--secondary-color);
+    border-radius: 12px;
+    padding: 6px;
+    border: none;
+    width: 100%;
+    margin-left: 20px;
+}
+
+input:hover {
+    border: none;
+}
+
+h2 {
+    margin-bottom: 60px;
+}
+

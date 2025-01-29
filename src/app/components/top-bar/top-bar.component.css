@@ -1,0 +1,16 @@
+.container {
+    padding:16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    width: 100%;
+}
+
+.profile-picture {
+    width: 40px;
+    height: 40px;
+    background-color: rgb(98, 98, 183);
+    border-radius: 50%;
+}

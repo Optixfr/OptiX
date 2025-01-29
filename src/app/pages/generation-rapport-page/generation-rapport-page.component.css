@@ -1,0 +1,41 @@
+.page {
+    background-color: var(--secondary-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 300px 1fr; 
+    min-height: 100vh;
+}
+
+.container-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 0px 80px 0px 80px;
+}
+
+.button { 
+    background-color: var(--green-color);
+    width: 246px;
+    height: 44px;
+    align-self: center;
+    background: #32DE8A;
+    border-radius: 16px;
+}
+
+.button-retour {
+    background-color: var(--red-color);
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 20px;
+}

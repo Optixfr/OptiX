@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class EyesCalculationService {
 
 
-  private apiUrl = 'https://localhost:8080/calcul'; 
+  private apiUrl = 'localhost:8080/api/calcul'; 
 
   constructor(private http: HttpClient) { }
 

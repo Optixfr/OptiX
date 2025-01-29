@@ -26,6 +26,7 @@ export class FormTearsEyesPageComponent {
     console.log('Données des formulaires :', formData);
     this.formDataService.setFormData(formData);
     this.sendDataToBackend(formData);
+    this.router.navigate(['//report-generation']);
   }
 
   sendDataToBackend(data: any) {

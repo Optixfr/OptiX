@@ -1,35 +1,76 @@
 <div class="container">
-    <h2>{{nomFormulaire}}</h2>
-    <form (ngSubmit)="getFormData()" #eyesTearForm="ngForm" class="container-form">
+  <h2>{{ nomFormulaire }}</h2>
+  <form
+    (ngSubmit)="getFormData()"
+    #eyesTearForm="ngForm"
+    class="container-form"
+  >
+    <!-- PSC -->
+    <div class="input-label-combo">
+      <label for="psc">PSC</label>
+      <select id="psc" name="psc" [(ngModel)]="eyesTear.psc" required>
+        <option value="" disabled selected>Sélectionner une option</option>
+        <option value="option1">Lent</option>
+        <option value="option2">Standard</option>
+        <option value="option3">Rapide</option>
+      </select>
+    </div>
 
-        <!-- PSC -->
-        <div class="input-label-combo">
-            <label for="psc">PSC</label>
-            <input type="text" id="psc" name="psc" [(ngModel)]="eyesTear.psc" required>
-        </div>
+    <!-- Tonus -->
+    <div class="input-label-combo">
+      <label for="tonus">Tonus</label>
+      <select id="tonus" name="tonus" [(ngModel)]="eyesTear.tonus" required>
+        <option value="" disabled selected>Sélectionner un tonus</option>
+        <option value="faible">Faible</option>
+        <option value="normal">Standard</option>
+        <option value="fort">Elevé</option>
+      </select>
+    </div>
 
-        <!-- Tonus -->
-        <div class="input-label-combo">
-            <label for="tonus">Tonus</label>
-            <input type="text" id="tonus" name="tonus" [(ngModel)]="eyesTear.tonus" required>
-        </div>
+    <!-- Hauteur Prisme -->
+    <div class="input-label-combo">
+      <label for="hauteurPrisme">Hauteur Prisme</label>
+      <select
+        id="hauteurPrisme"
+        name="hauteurPrisme"
+        [(ngModel)]="eyesTear.hauteurPrisme"
+        required
+      >
+        <option value="" disabled selected>Sélectionner la hauteur</option>
+        <option value="haut">0.2 &lt;</option>
+        <option value="moyen">0.2 &lt; X &lt; 0.4 </option>
+        <option value="bas">0.4 &lt;</option>
+      </select>
+    </div>
 
-        <!-- Hauteur Prisme -->
-        <div class="input-label-combo">
-            <label for="hauteurPrisme">Hauteur Prisme</label>
-            <input type="text" id="hauteurPrisme" name="hauteurPrisme" [(ngModel)]="eyesTear.hauteurPrisme" required>
-        </div>
+    <!-- Grade Lipide (optionnel) -->
+    <div class="input-label-combo">
+      <label for="gradeLipide">Grade Lipide</label>
+      <select
+        id="gradeLipide"
+        name="gradeLipide"
+        [(ngModel)]="eyesTear.gradeLipide"
+      >
+        <option value="" disabled selected>Sélectionner un grade</option>
+        <option value="faible">Faible</option>
+        <option value="moyen">Standard</option>
+        <option value="élevé">Élevé</option>
+      </select>
+    </div>
 
-        <!-- Grade Lipide (optionnel) -->
-        <div class="input-label-combo">
-            <label for="gradeLipide">Grade Lipide</label>
-            <input type="text" id="gradeLipide" name="gradeLipide" [(ngModel)]="eyesTear.gradeLipide">
-        </div>
-
-        <!-- Charge Lacrimale (optionnel) -->
-        <div class="input-label-combo">
-            <label for="chargeLacrimale">Charge Lacrimale</label>
-            <input type="text" id="chargeLacrimale" name="chargeLacrimale" [(ngModel)]="eyesTear.chargeLacrimale">
-        </div>
-    </form>
+    <!-- Charge Lacrimale (optionnel) -->
+    <div class="input-label-combo">
+      <label for="chargeLacrimale">Charge Lacrimale</label>
+      <select
+        id="chargeLacrimale"
+        name="chargeLacrimale"
+        [(ngModel)]="eyesTear.chargeLacrimale"
+      >
+        <option value="" disabled selected>Sélectionner la charge</option>
+        <option value="faible">Faible</option>
+        <option value="normale">Standard</option>
+        <option value="élevée">Élevée</option>
+      </select>
+    </div>
+  </form>
 </div>

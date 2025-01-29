@@ -17,6 +17,6 @@ export class EyesCalculationService {
       'Content-Type': 'application/json' 
     });
 
-    return this.http.post<any>(this.apiUrl, data, { headers });
+    return this.http.post<any>(this.apiUrl, {data}, { headers });
   }
 }

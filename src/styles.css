@@ -21,6 +21,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: var(--font-stack);
+    white-space: nowrap;
   }
   
   html, body {

@@ -3,5 +3,5 @@ export interface EyesTear {
     tonus: string,
     hauteurPrisme: string,
     gradeLipide: string,
-    chargeLacrimale?: string,
+    chargeLacrimale: string,
 };

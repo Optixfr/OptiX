@@ -7,16 +7,16 @@ import { Observable } from 'rxjs';
 })
 export class EyesCalculationService {
 
-
-  private apiUrl = 'localhost:8080/api/calcul'; 
+  private apiUrl = 'http://localhost:8080/api/calcul'; // Assurez-vous d'ajouter http://
 
   constructor(private http: HttpClient) { }
 
   sendData(data: any): Observable<any> {
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json' 
+      'Content-Type': 'application/json'
     });
 
+    // Retourner l'observable pour récupérer les données
     return this.http.post<any>(this.apiUrl, {data}, { headers });
   }
 }

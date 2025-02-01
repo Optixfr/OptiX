@@ -36,9 +36,5 @@ export class FormTearsEyesPageComponent {
     const formData = this.forms.map((form) => form.getFormData()); 
     console.log('YYYYYOOOO Données des formulaires :', formData);
     this.formDataService.setFormData(formData);
-
-    this.eyesService.sendData(data).subscribe(response => {
-      console.log('Réponse du serveur:', response);
-    });
   }
 }

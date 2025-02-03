@@ -49,6 +49,7 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
     const formattedData = this.formatDataForAPI(formSizeData, formTearData);
 
     console.log(formattedData);
+
     this.dataSubscription = this.eyesCalculationService
       .sendData(formattedData)
       .subscribe((result: any) => {
@@ -63,10 +64,10 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
 
   private formatDataForAPI(eyeMeasures: any[], eyeTears: EyesTear[]) {
     return {
-      eye_m_gauche: eyeMeasures[0],  // Premier objet = Oeil gauche
-      eye_m_droite: eyeMeasures[1],  // Deuxième objet = Oeil droit
-      eye_t_gauche: eyeTears[0],     // Premier objet = Oeil gauche
-      eye_t_droite: eyeTears[1]      // Deuxième objet = Oeil droit
+      eye_m_gauche: eyeMeasures[0],  
+      eye_m_droite: eyeMeasures[1],  
+      eye_t_gauche: eyeTears[0],     
+      eye_t_droite: eyeTears[1]    
     };
   }
 

@@ -16,7 +16,6 @@ export class EyesCalculationService {
       'Content-Type': 'application/json'
     });
 
-    // Retourner l'observable pour récupérer les données
-    return this.http.post<any>(this.apiUrl, {data}, { headers });
+    return this.http.post<any>(this.apiUrl, data, { headers });
   }
 }

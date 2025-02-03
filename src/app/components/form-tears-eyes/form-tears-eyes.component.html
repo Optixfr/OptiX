@@ -10,9 +10,9 @@
       <label for="psc">PSC</label>
       <select id="psc" name="psc" [(ngModel)]="eyesTear.psc" required>
         <option value="" disabled selected>Sélectionner une option</option>
-        <option value="option1">Lent</option>
-        <option value="option2">Standard</option>
-        <option value="option3">Rapide</option>
+        <option value="lent">Lent</option>
+        <option value="standard">Standard</option>
+        <option value="rapide">Rapide</option>
       </select>
     </div>
 
@@ -22,8 +22,8 @@
       <select id="tonus" name="tonus" [(ngModel)]="eyesTear.tonus" required>
         <option value="" disabled selected>Sélectionner un tonus</option>
         <option value="faible">Faible</option>
-        <option value="normal">Standard</option>
-        <option value="fort">Elevé</option>
+        <option value="standard">Standard</option>
+        <option value="elevee">Elevé</option>
       </select>
     </div>
 
@@ -37,9 +37,9 @@
         required
       >
         <option value="" disabled selected>Sélectionner la hauteur</option>
-        <option value="haut">0.2 &lt;</option>
-        <option value="moyen">0.2 &lt; X &lt; 0.4 </option>
-        <option value="bas">0.4 &lt;</option>
+        <option value="faible">0.2 &lt;</option>
+        <option value="standard">0.2 &lt; X &lt; 0.4 </option>
+        <option value="elevee">0.4 &lt;</option>
       </select>
     </div>
 
@@ -53,8 +53,8 @@
       >
         <option value="" disabled selected>Sélectionner un grade</option>
         <option value="faible">Faible</option>
-        <option value="moyen">Standard</option>
-        <option value="élevé">Élevé</option>
+        <option value="standard">Standard</option>
+        <option value="elevee">Élevé</option>
       </select>
     </div>
 
@@ -68,8 +68,8 @@
       >
         <option value="" disabled selected>Sélectionner la charge</option>
         <option value="faible">Faible</option>
-        <option value="normale">Standard</option>
-        <option value="élevée">Élevée</option>
+        <option value="standard">Standard</option>
+        <option value="elevee">Élevée</option>
       </select>
     </div>
   </form>

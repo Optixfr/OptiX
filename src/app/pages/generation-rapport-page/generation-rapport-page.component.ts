@@ -41,8 +41,24 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    const formData = this.formSizeEyesDataService.getFormData();
-    this.dataSubscription = this.eyesCalculationService.sendData(formData).subscribe((result: any) => {
+    const formDataMeasure = this.formSizeEyesDataService.getFormData()
+    const formDataTear = this.eyesTearService.getFormData()
+
+    const transformValuesToNumber = (obj: any) => 
+      Object.fromEntries(Object.entries(obj).map(([key, value]) => [key, Number(value)]));
+    
+
+    // COnversion pour l'API
+    const transformedData = {
+      eye_m_droite: transformValuesToNumber(formDataMeasure[0]), 
+      eye_m_gauche: transformValuesToNumber(formDataMeasure[1]),
+      eye_t_droite: formDataTear[0],
+      eye_t_gauche: formDataTear[1]
+    };
+
+    console.log(transformedData)
+
+    this.dataSubscription = this.eyesCalculationService.sendData(transformedData).subscribe((result: any) => {
       this.eyeDataLeft = result.eye_o_gauche;
       this.eyeDataRight = result.eye_o_droite;
       this.generatePDF();

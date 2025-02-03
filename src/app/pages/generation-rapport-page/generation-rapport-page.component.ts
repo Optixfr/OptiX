@@ -32,57 +32,30 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
 
   eyesTear : EyesTear[] = [];
 
-  eyes = {
-    eye_o_droite: {
-      diametre: 14.2,
-      rayon: 8.6,
-      puissance: {
-        x: -2.5,
-        y: 0.75,
-        z: 180
-      }
-    },
-    eye_o_gauche: {
-      diametre: 14,
-      rayon: 8.4,
-      puissance: {
-        x: -3,
-        y: 1,
-        z: 90
-      }
-    }
-  };
-
   constructor(
     @Inject(FormSizeEyesDataService)
     private formSizeEyesDataService: FormSizeEyesDataService,
     private sanitizer: DomSanitizer, // Injection du service DomSanitizer
-    //private eyesCalculationService: EyesCalculationService // Injection du service de calcul
+    private eyesCalculationService: EyesCalculationService, // Injection du service de calcul
     private eyesTearService : FormTearsEyesDataService
   ) {}
 
   ngOnInit() {
-    //const formData = this.formSizeEyesDataService.getFormData();
-    // Envoyer les données au service et récupérer les résultats
-    // this.dataSubscription = this.eyesCalculationService.sendData(formData).subscribe((result: any) => {
-    //   this.eyeDataLeft = result.eye_o_gauche;
-    //   this.eyeDataRight = result.eye_o_droite;
-    //   this.generatePDF();
-    // });
+    const formData = this.formSizeEyesDataService.getFormData();
+    this.dataSubscription = this.eyesCalculationService.sendData(formData).subscribe((result: any) => {
+      this.eyeDataLeft = result.eye_o_gauche;
+      this.eyeDataRight = result.eye_o_droite;
+      this.generatePDF();
+    });
 
     this.eyesTear = this.eyesTearService.getFormData();
-
-    this.eyeDataLeft = this.eyes.eye_o_gauche;
-    this.eyeDataRight = this.eyes.eye_o_droite;
     this.generatePDF();
   }
 
   ngOnDestroy() {
-    // Nettoyer l'URL temporaire pour éviter les fuites mémoire
     if (this.pdfUrl) {
       URL.revokeObjectURL(this.pdfUrl as string);
     }
-    // Désabonner pour éviter les fuites mémoire
     if (this.dataSubscription) {
       this.dataSubscription.unsubscribe();
     }
@@ -92,13 +65,6 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
     const doc = new jsPDF();
 
     doc.setFontSize(16);
-
-  //   // Ajouter un logo
-  // const logoUrl = '../../../../public/assets/logo.png'; // Remplace par le chemin de ton logo
-  // const imgData = ''; // Tu peux charger ton image ici en base64 ou utiliser une URL
-
-  // // Charger et ajouter le logo (dimension du logo ajustée selon les besoins)
-  // doc.addImage(logoUrl, 'PNG', 10, 10, 30, 30);
 
   // Titre du document
   doc.setFontSize(16);
@@ -153,13 +119,11 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
           this.eyesTear[1].chargeLacrimale
         ],
       ],
-      startY:  140 // Position du second tableau après le premier
+      startY:  140 
     });
 
-    // Générer le PDF comme un Blob
     const pdfBlob = doc.output('blob');
 
-    // Créer une URL temporaire pour le PDF et la marquer comme sûre
     const pdfObjectUrl = URL.createObjectURL(pdfBlob);
     this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(pdfObjectUrl);
   }

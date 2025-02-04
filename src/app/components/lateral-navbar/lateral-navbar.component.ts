@@ -12,7 +12,7 @@ import { Router, RouterLink } from '@angular/router';
 })
 
 export class LateralNavbarComponent {
-  logoUrl: string = '../../../assets/home-2.svg';
+  logoUrl = '../../../assets/home-2.svg';
 
   constructor(private router: Router) {
   }

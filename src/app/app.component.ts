@@ -7,7 +7,7 @@ import { FormSizeEyesPageComponent } from "./pages/form-size-eyes-page/form-size
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, LateralNavbarComponent, TopBarComponent, FormSizeEyesPageComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

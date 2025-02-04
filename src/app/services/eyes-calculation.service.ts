@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class EyesCalculationService {
 
-  private apiUrl = 'http://localhost:3000/api/calcul';
+  private apiUrl = 'https://apioptix.jeremypatapy.fr/api/calcul/';
 
   constructor(private http: HttpClient) { }
 
@@ -15,8 +15,7 @@ export class EyesCalculationService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-
-    // Retourner l'observable pour récupérer les données
+    
     return this.http.post<any>(this.apiUrl, data, { headers });
   }
 }

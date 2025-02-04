@@ -43,20 +43,25 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    const formSizeData = this.formSizeEyesDataService.getFormData();
-    const formTearData = this.formTearEyesDataService.getFormData();
+    const formDataMeasure = this.formSizeEyesDataService.getFormData()
+    const formDataTear = this.eyesTearService.getFormData()
 
-    const formattedData = this.formatDataForAPI(formSizeData, formTearData);
+    const transformValuesToNumber = (obj: any) => 
+      Object.fromEntries(Object.entries(obj).map(([key, value]) => [key, Number(value)]));
 
-    console.log(formattedData);
+    const transformedData = {
+      eye_m_droite: transformValuesToNumber(formDataMeasure[0]), 
+      eye_m_gauche: transformValuesToNumber(formDataMeasure[1]),
+      eye_t_droite: formDataTear[0],
+      eye_t_gauche: formDataTear[1]
+    };
 
-    this.dataSubscription = this.eyesCalculationService
-      .sendData(formattedData)
-      .subscribe((result: any) => {
-        this.eyeDataLeft = result.eye_o_gauche;
-        this.eyeDataRight = result.eye_o_droite;
-        this.generatePDF();
-      });
+
+    this.dataSubscription = this.eyesCalculationService.sendData(transformedData).subscribe((result: any) => {
+      this.eyeDataLeft = result.eye_o_gauche;
+      this.eyeDataRight = result.eye_o_droite;
+      this.generatePDF();
+    });
 
     this.eyesTear = this.eyesTearService.getFormData();
     this.generatePDF();
@@ -94,7 +99,6 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
     doc.text('Date: ' + new Date().toLocaleDateString(), 150, 50);
     doc.text('Référence Tiers Payant: 987654321', 150, 60);
 
-    // Tableau récapitulatif des données
     autoTable(doc, {
       head: [
         [

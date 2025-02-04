@@ -12,8 +12,9 @@
 }
 
 .container-form {
+    /* Désactiver pour avoir le PDF en pleine écran
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;*/ 
     justify-content: space-between;
     gap: 20px;
     padding: 0px 80px 0px 80px;

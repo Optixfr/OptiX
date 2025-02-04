@@ -15,7 +15,7 @@ export class EyesCalculationService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-
+    
     return this.http.post<any>(this.apiUrl, data, { headers });
   }
 }

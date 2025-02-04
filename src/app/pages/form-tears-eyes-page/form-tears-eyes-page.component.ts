@@ -18,7 +18,7 @@ import { FormsModule } from '@angular/forms';
 })
 
 export class FormTearsEyesPageComponent {
-  commentaire: String = '';
+  commentaire = '';
 
   @ViewChildren(FormTearsEyesComponent) forms!: QueryList<FormTearsEyesComponent>; 
 

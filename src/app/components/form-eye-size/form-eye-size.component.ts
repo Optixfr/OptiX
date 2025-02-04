@@ -1,4 +1,4 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { EyeMeasure } from '../../models/eyes-measure.model';
 import { CommonModule } from '@angular/common';
@@ -11,8 +11,8 @@ import { FormSizeEyesDataService } from '../../services/form-size-eyes-data.serv
   templateUrl: './form-eye-size.component.html',
   styleUrl: './form-eye-size.component.css',
 })
-export class FormEyeSizeComponent {
-  @Input() nomFormulaire: string = '';
+export class FormEyeSizeComponent implements OnInit {
+  @Input() nomFormulaire = '';
 
   eyeMeasure: EyeMeasure = {
     xl: '',

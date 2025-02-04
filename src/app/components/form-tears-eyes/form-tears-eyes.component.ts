@@ -1,4 +1,4 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import { EyesTear } from '../../models/eyes-tear.model';
@@ -12,8 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
   templateUrl: './form-tears-eyes.component.html',
   styleUrl: './form-tears-eyes.component.css'
 })
-export class FormTearsEyesComponent {
-  @Input() nomFormulaire: string = '';
+export class FormTearsEyesComponent implements OnInit {
+  @Input() nomFormulaire = '';
 
   eyesTear: EyesTear = {
     psc: '',

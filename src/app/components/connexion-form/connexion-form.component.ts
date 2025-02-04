@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ConnexionService } from '../../services/connexion.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './connexion-form.component.html',
   styleUrl: './connexion-form.component.css'
 })
-export class ConnexionFormComponent {
+export class ConnexionFormComponent implements OnInit {
   email = '';
   password = '';
   noconnexion = false;

@@ -1,17 +1,22 @@
-import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { LateralNavbarComponent } from '../../components/lateral-navbar/lateral-navbar.component';
 import { TopBarComponent } from '../../components/top-bar/top-bar.component';
 import { CommonModule } from '@angular/common';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
-import { FormSizeEyesDataService } from '../../services/form-size-eyes-data.service';
+import { FormSizeEyesDataService } from '../../services/form-eyes-size/form-size-eyes-data.service';
 import { RouterLink } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { EyesCalculationService } from '../../services/eyes-calculation.service';
+import { EyesCalculationService } from '../../services/calculation/eyes-calculation.service';
 import { Subscription } from 'rxjs';
 import { EyesTear } from '../../models/eyes-tear.model';
-import { FormTearsEyesDataService } from '../../services/form-tears-eyes-data.service';
+import { FormTearsEyesDataService } from '../../services/form-tear-size/form-tears-eyes-data.service';
 import { HttpClientModule } from '@angular/common/http';
+
+interface FormData {
+  droite: EyesTear;
+  gauche: EyesTear;
+}
 
 @Component({
   selector: 'app-generation-rapport-page',
@@ -32,8 +37,23 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
   eyeDataRight: any;
   dataSubscription: Subscription | undefined;
 
-  eyesTear: EyesTear[] = [];
-
+  eyesTear: FormData = {
+    droite: {
+      psc: '',
+      tonus: '',
+      hauteurPrisme: '',
+      gradeLipide: '',
+      chargeLacrimale: ''
+    },
+    gauche: {
+      psc: '',
+      tonus: '',
+      hauteurPrisme: '',
+      gradeLipide: '',
+      chargeLacrimale: ''
+    }
+  };
+  
   constructor(
     private formSizeEyesDataService: FormSizeEyesDataService,
     private formTearEyesDataService: FormTearsEyesDataService,
@@ -50,10 +70,10 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
       Object.fromEntries(Object.entries(obj).map(([key, value]) => [key, Number(value)]));
 
     const transformedData = {
-      eye_m_droite: transformValuesToNumber(formDataMeasure[0]), 
-      eye_m_gauche: transformValuesToNumber(formDataMeasure[1]),
-      eye_t_droite: formDataTear[0],
-      eye_t_gauche: formDataTear[1]
+      eye_m_droite: transformValuesToNumber(formDataMeasure.droite), 
+      eye_m_gauche: transformValuesToNumber(formDataMeasure.gauche),
+      eye_t_droite: formDataTear.droite,
+      eye_t_gauche: formDataTear.gauche
     };
 
 
@@ -137,18 +157,18 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
       ],
       body: [
         [
-          this.eyesTear[0].psc,
-          this.eyesTear[0].tonus,
-          this.eyesTear[0].hauteurPrisme,
-          this.eyesTear[0].gradeLipide,
-          this.eyesTear[0].chargeLacrimale,
+          this.eyesTear.droite.psc,
+          this.eyesTear.droite.tonus,
+          this.eyesTear.droite.hauteurPrisme,
+          this.eyesTear.droite.gradeLipide,
+          this.eyesTear.droite.chargeLacrimale,
         ],
         [
-          this.eyesTear[1].psc,
-          this.eyesTear[1].tonus,
-          this.eyesTear[1].hauteurPrisme,
-          this.eyesTear[1].gradeLipide,
-          this.eyesTear[1].chargeLacrimale,
+          this.eyesTear.droite.psc,
+          this.eyesTear.droite.tonus,
+          this.eyesTear.droite.hauteurPrisme,
+          this.eyesTear.droite.gradeLipide,
+          this.eyesTear.droite.chargeLacrimale,
         ],
       ],
       startY: 140,

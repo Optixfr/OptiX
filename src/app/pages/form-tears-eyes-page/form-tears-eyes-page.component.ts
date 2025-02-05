@@ -1,8 +1,8 @@
 import { Component, QueryList, ViewChildren } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'; // Importer HttpClientModule
-import { EyesCalculationService } from '../../services/eyes-calculation.service';
+import { EyesCalculationService } from '../../services/calculation/eyes-calculation.service';
 import { FormTearsEyesComponent } from '../../components/form-tears-eyes/form-tears-eyes.component';
-import { FormTearsEyesDataService } from '../../services/form-tears-eyes-data.service';
+import { FormTearsEyesDataService } from '../../services/form-tear-size/form-tears-eyes-data.service';
 import { Router, RouterLink } from '@angular/router';
 import { TopBarComponent } from "../../components/top-bar/top-bar.component";
 import { LateralNavbarComponent } from "../../components/lateral-navbar/lateral-navbar.component";
@@ -27,11 +27,11 @@ export class FormTearsEyesPageComponent {
   submitForms() {
     const formData = this.forms.map((form) => form.getFormData());
     this.formDataService.setFormData(formData);
-    this.sendDataToBackend(formData);
+    this.sendDataToBackend();
     this.router.navigate(['/report-generation']);
   }
 
-  sendDataToBackend(data: any) {
+  sendDataToBackend() {
     const formData = this.forms.map((form) => form.getFormData()); 
     this.formDataService.setFormData(formData);
   }

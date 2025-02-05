@@ -6,7 +6,7 @@ import { Router, RouterLink } from '@angular/router';
 @Component({
   selector: 'app-lateral-navbar',
   standalone: true,
-  imports: [],
+  imports: [RouterLink, NgOptimizedImage],
   templateUrl: './lateral-navbar.component.html',
   styleUrl: './lateral-navbar.component.css'
 })

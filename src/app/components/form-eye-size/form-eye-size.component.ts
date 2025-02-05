@@ -2,7 +2,7 @@ import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { EyeMeasure } from '../../models/eyes-measure.model';
 import { CommonModule } from '@angular/common';
-import { FormSizeEyesDataService } from '../../services/form-size-eyes-data.service';
+import { FormSizeEyesDataService } from '../../services/form-eyes-size/form-size-eyes-data.service';
 
 @Component({
   selector: 'app-form-eye-size',
@@ -15,28 +15,26 @@ export class FormEyeSizeComponent implements OnInit {
   @Input() nomFormulaire = '';
 
   eyeMeasure: EyeMeasure = {
-    xl: '',
-    yl: '',
-    zl: '',
-    dhiv: '',
-    diametre: '',
-    recouvrement: '',
-    k1: '',
-    x: '',
-    k2: '',
-    y: '',
-    excentricite: '',
+    sphere: '0',
+    cylindre: '0',
+    axe: '0',
+    dhiv: '0',
+    dvo: '0',
+    k1: '0',
+    x: '0',
+    k2: '0',
+    y: '0',
+    excentricite: '0',
   };
 
     // Injecter le service
     constructor(@Inject(FormSizeEyesDataService) private formSizeEyesDataService: FormSizeEyesDataService) {}
 
     ngOnInit() {
-      console.log('Nom du formulaire :', this.nomFormulaire);
       if (this.nomFormulaire === 'Formulaire Oeil Gauche') {
-        this.eyeMeasure = this.formSizeEyesDataService.getFormData()[0]; // Formulaire pour l'œil gauche
+        this.eyeMeasure = this.formSizeEyesDataService.getFormData().gauche;
       } else if (this.nomFormulaire === 'Formulaire Oeil Droit') {
-        this.eyeMeasure = this.formSizeEyesDataService.getFormData()[1]; // Formulaire pour l'œil droit
+        this.eyeMeasure = this.formSizeEyesDataService.getFormData().droite;
       }
     }
 

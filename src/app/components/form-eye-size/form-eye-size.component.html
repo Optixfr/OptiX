@@ -5,34 +5,34 @@
     #eyeMeasureForm="ngForm"
     class="container-form"
   >
-    <!-- XL -->
+    <!-- Sphere -->
     <div class="input-label-combo">
-      <label for="xl">XL</label>
+      <label for="sphere">Sphere</label>
       <input
         type="number"
-        id="xl"
-        name="xl"
+        id="sphere"
+        name="sphere"
         [(ngModel)]="eyeMeasure.sphere"
         required
       />
     </div>
 
-    <!-- YL -->
+    <!-- Cylindre -->
     <div class="input-label-combo">
-      <label for="yl">YL</label>
+      <label for="cylindre">Cylindre</label>
       <input
         type="number"
-        id="yl"
-        name="yl"
+        id="cylindre"
+        name="cylindre"
         [(ngModel)]="eyeMeasure.cylindre"
         required
       />
     </div>
 
-    <!-- ZL (optionnel) -->
+    <!-- Axe (optionnel) -->
     <div class="input-label-combo">
-      <label for="zl">ZL</label>
-      <input type="number" id="zl" name="zl" [(ngModel)]="eyeMeasure.axe" required />
+      <label for="axe">Axe</label>
+      <input type="number" id="axe" name="axe" [(ngModel)]="eyeMeasure.axe" required />
     </div>
 
     <!-- Diamètre (optionnel) -->

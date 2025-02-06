@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class EyesCalculationService {
 
-  private apiUrl = 'https://apioptix.jeremypatapy.fr/api/calcul/';
+  private apiUrl = 'https://apioptix.jeremypatapy.fr/api/calcul';
 
   constructor(private http: HttpClient) { }
 

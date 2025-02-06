@@ -77,16 +77,22 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
     };
 
 
-    this.dataSubscription = this.eyesCalculationService.sendData(transformedData).subscribe((result: any) => {
-      this.eyeDataLeft = result.eye_o_gauche;
-      this.eyeDataRight = result.eye_o_droite;
-      this.generatePDF();
-    });
+    this.dataSubscription = this.eyesCalculationService.sendData(transformedData).subscribe(
+      (result: any) => {
+        this.eyeDataLeft = result.eye_o_gauche;
+        this.eyeDataRight = result.eye_o_droite;
+        this.generatePDF();
+      },
+      (error) => {
+        window.alert(error.error.error);
+      }
+    );
 
     this.eyesTear = this.eyesTearService.getFormData();
     this.generatePDF();
   }
 
+  // Inutile --> supprimer ?
   private formatDataForAPI(eyeMeasures: any[], eyeTears: EyesTear[]) {
     return {
       eye_m_gauche: eyeMeasures[0],  

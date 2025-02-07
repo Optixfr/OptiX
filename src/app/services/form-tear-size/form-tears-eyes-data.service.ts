@@ -42,6 +42,6 @@ export class FormTearsEyesDataService {
   }
   
   duplicateRightForm() {
-    this.formData.gauche = this.formData.droite;
+    this.formData.gauche = structuredClone(this.formData.droite);
   }
 }

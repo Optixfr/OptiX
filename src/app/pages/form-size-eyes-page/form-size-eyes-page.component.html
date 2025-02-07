@@ -6,7 +6,13 @@
       <app-top-bar></app-top-bar>
       <div class="container-form">
         <app-form-eye-size [nomFormulaire]="'Formulaire Oeil Droit'"></app-form-eye-size>
-        <app-form-eye-size [nomFormulaire]="'Formulaire Oeil Gauche'"></app-form-eye-size>
+        @if (isDuplicatedForm) {
+          <app-form-eye-size [nomFormulaire]="'Formulaire Oeil Gauche'"></app-form-eye-size>
+        } @else {
+            <button mat-button (click)="addSideForm()">
+                <img src="assets/additem.svg" alt="Duplicate the form">
+            </button>
+        }
       </div>
       <button class="button" (click)="submitForms()" routerLink="/tears">Evaluer les critères</button>
     </div>

@@ -7,11 +7,12 @@ import { Router, RouterLink } from '@angular/router';
 import { TopBarComponent } from "../../components/top-bar/top-bar.component";
 import { LateralNavbarComponent } from "../../components/lateral-navbar/lateral-navbar.component";
 import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-form-tears-eyes-page',
   standalone: true,
-  imports: [HttpClientModule, FormTearsEyesComponent, TopBarComponent, LateralNavbarComponent, FormsModule, RouterLink], // Importer HttpClientModule ici
+  imports: [HttpClientModule, FormTearsEyesComponent, TopBarComponent, LateralNavbarComponent, FormsModule, RouterLink, MatIconModule], // Importer HttpClientModule ici
   providers: [EyesCalculationService],
   templateUrl: './form-tears-eyes-page.component.html',
   styleUrls: ['./form-tears-eyes-page.component.css']
@@ -19,10 +20,11 @@ import { FormsModule } from '@angular/forms';
 
 export class FormTearsEyesPageComponent {
   commentaire = '';
+  isDuplicatedForm: boolean = false;
 
   @ViewChildren(FormTearsEyesComponent) forms!: QueryList<FormTearsEyesComponent>; 
 
-  constructor(private eyesService: EyesCalculationService, private formDataService: FormTearsEyesDataService, private router: Router) {}
+  constructor(private formDataService: FormTearsEyesDataService, private router: Router) {}
 
   submitForms() {
     const formData = this.forms.map((form) => form.getFormData());
@@ -34,5 +36,15 @@ export class FormTearsEyesPageComponent {
   sendDataToBackend() {
     const formData = this.forms.map((form) => form.getFormData()); 
     this.formDataService.setFormData(formData);
+    this.formDataService.duplicateRightForm();
+  }
+
+  getCommentaire() {
+    return this.commentaire;
+  }
+
+  addSideForm(): void {
+    this.isDuplicatedForm = true;
+    this.formDataService.duplicateRightForm();
   }
 }

@@ -49,4 +49,8 @@ export class FormSizeEyesDataService {
       };
     }
   }
+  
+  duplicateRightForm() {
+    this.formData.gauche = this.formData.droite;
+  }
 }

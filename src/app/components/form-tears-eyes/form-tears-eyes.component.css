@@ -19,6 +19,18 @@
     gap: 20px;
 }
 
+input {
+    background-color: var(--secondary-color);
+    border-radius: 12px;
+    padding: 6px;
+    border: none;
+    width: 100%;
+}
+
+input:hover {
+    border: none;
+}
+
 select {
     background-color: var(--secondary-color);
     border-radius: 12px;

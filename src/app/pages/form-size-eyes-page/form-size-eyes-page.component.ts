@@ -18,6 +18,8 @@ import { FormSizeEyesDataService } from '../../services/form-eyes-size/form-size
   styleUrl: './form-size-eyes-page.component.css',
 })
 export class FormSizeEyesPageComponent {
+  isDuplicatedForm: boolean = false;
+  
   @ViewChildren(FormEyeSizeComponent) forms!: QueryList<FormEyeSizeComponent>; 
 
   constructor(private formDataService: FormSizeEyesDataService, private router: Router) {}
@@ -26,5 +28,11 @@ export class FormSizeEyesPageComponent {
     const formData = this.forms.map((form) => form.getFormData()); 
     console.log('Données des formulaires :', formData);
     this.formDataService.setFormData(formData);
+    this.formDataService.duplicateRightForm();
   } 
+  
+  addSideForm(): void {
+    this.isDuplicatedForm = true;
+    this.formDataService.duplicateRightForm();
+  }
 }

@@ -7,12 +7,17 @@
         <div class="forms">
             <div class="container-form">
                 <app-form-tears-eyes [nomFormulaire]="'Formulaire Oeil Droit'"></app-form-tears-eyes>
-                <app-form-tears-eyes [nomFormulaire]="'Formulaire Oeil Gauche'"></app-form-tears-eyes>
+                @if (isDuplicatedForm) {
+                    <app-form-tears-eyes [nomFormulaire]="'Formulaire Oeil Gauche'"></app-form-tears-eyes>
+                } @else {
+                    <button mat-button (click)="addSideForm()">
+                        <img src="assets/additem.svg" alt="Duplicate the form">
+                    </button>
+                }
             </div>
             <div class="commentaire-form">
                 <h2>Commentaire</h2>
-                    <textarea [(ngModel)]="commentaire" name="commentaire" id="commentaire" rows="4" cols="50"></textarea>
-
+                <textarea [(ngModel)]="commentaire" name="commentaire" id="commentaire" rows="4" cols="50"></textarea>
             </div>
         </div>
         <div class="buttons">

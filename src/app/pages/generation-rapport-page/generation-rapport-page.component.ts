@@ -92,16 +92,6 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
     this.generatePDF();
   }
 
-  // Inutile --> supprimer ?
-  private formatDataForAPI(eyeMeasures: any[], eyeTears: EyesTear[]) {
-    return {
-      eye_m_gauche: eyeMeasures[0],  
-      eye_m_droite: eyeMeasures[1],  
-      eye_t_gauche: eyeTears[0],     
-      eye_t_droite: eyeTears[1]    
-    };
-  }
-
   ngOnDestroy() {
     if (this.pdfUrl) {
       URL.revokeObjectURL(this.pdfUrl as string);

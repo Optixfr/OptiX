@@ -12,11 +12,21 @@
 }
 
 .input-label-combo {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
     gap: 20px;
+}
+
+input {
+    background-color: var(--secondary-color);
+    border-radius: 12px;
+    padding: 6px;
+    border: none;
+    width: 100%;
+}
+
+input:hover {
+    border: none;
 }
 
 select {
@@ -25,7 +35,6 @@ select {
     padding: 6px;
     border: none;
     width: 100%;
-    margin-left: 20px;
 }
 
 select:hover {

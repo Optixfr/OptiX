@@ -9,9 +9,8 @@
     <div class="input-label-combo">
       <label for="psc">PSC</label>
       <select id="psc" name="psc" [(ngModel)]="eyesTear.psc" required>
-        <option value="" disabled selected>Sélectionner une option</option>
         <option value="lent">Lent</option>
-        <option value="standard">Standard</option>
+        <option value="standard"  >Standard</option>
         <option value="rapide">Rapide</option>
       </select>
     </div>
@@ -20,9 +19,8 @@
     <div class="input-label-combo">
       <label for="tonus">Tonus</label>
       <select id="tonus" name="tonus" [(ngModel)]="eyesTear.tonus" required>
-        <option value="" disabled selected>Sélectionner un tonus</option>
         <option value="faible">Faible</option>
-        <option value="standard">Standard</option>
+        <option value="standard"  >Standard</option>
         <option value="elevee">Elevé</option>
       </select>
     </div>
@@ -30,17 +28,13 @@
     <!-- Hauteur Prisme -->
     <div class="input-label-combo">
       <label for="hauteurPrisme">Hauteur Prisme</label>
-      <select
+      <input
+        type="number"
         id="hauteurPrisme"
         name="hauteurPrisme"
         [(ngModel)]="eyesTear.hauteurPrisme"
         required
       >
-        <option value="" disabled selected>Sélectionner la hauteur</option>
-        <option value="faible">0.2 &lt;</option>
-        <option value="standard">0.2 &lt; X &lt; 0.4 </option>
-        <option value="elevee">0.4 &lt;</option>
-      </select>
     </div>
 
     <!-- Grade Lipide (optionnel) -->
@@ -51,9 +45,8 @@
         name="gradeLipide"
         [(ngModel)]="eyesTear.gradeLipide"
       >
-        <option value="" disabled selected>Sélectionner un grade</option>
         <option value="faible">Faible</option>
-        <option value="standard">Standard</option>
+        <option value="standard"  >Standard</option>
         <option value="elevee">Élevé</option>
       </select>
     </div>
@@ -66,9 +59,8 @@
         name="chargeLacrimale"
         [(ngModel)]="eyesTear.chargeLacrimale"
       >
-        <option value="" disabled selected>Sélectionner la charge</option>
         <option value="faible">Faible</option>
-        <option value="standard">Standard</option>
+        <option value="standard"  >Standard</option>
         <option value="elevee">Élevée</option>
       </select>
     </div>

@@ -9,20 +9,11 @@ h2 {
 }
 
 .input-label-combo {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
     gap: 20px;
 }
 
-.input-label-combo {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-}
 
 input {
     background-color: var(--secondary-color);

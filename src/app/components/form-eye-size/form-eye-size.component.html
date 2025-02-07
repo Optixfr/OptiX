@@ -5,86 +5,76 @@
     #eyeMeasureForm="ngForm"
     class="container-form"
   >
-    <!-- XL -->
+    <!-- Sphere -->
     <div class="input-label-combo">
-      <label for="xl">XL</label>
+      <label for="sphere">Sphere</label>
       <input
         type="number"
-        id="xl"
-        name="xl"
-        [(ngModel)]="eyeMeasure.xl"
+        id="sphere"
+        name="sphere"
+        [(ngModel)]="eyeMeasure.sphere"
         required
       />
     </div>
 
-    <!-- YL -->
+    <!-- Cylindre -->
     <div class="input-label-combo">
-      <label for="yl">YL</label>
+      <label for="cylindre">Cylindre</label>
       <input
         type="number"
-        id="yl"
-        name="yl"
-        [(ngModel)]="eyeMeasure.yl"
+        id="cylindre"
+        name="cylindre"
+        [(ngModel)]="eyeMeasure.cylindre"
         required
       />
     </div>
 
-    <!-- ZL (optionnel) -->
+    <!-- Axe (optionnel) -->
     <div class="input-label-combo">
-      <label for="zl">ZL</label>
-      <input type="number" id="zl" name="zl" [(ngModel)]="eyeMeasure.zl" />
+      <label for="axe">Axe</label>
+      <input type="number" id="axe" name="axe" [(ngModel)]="eyeMeasure.axe" required />
+    </div>
+
+    <!-- Diamètre (optionnel) -->
+    <div class="input-label-combo">
+      <label for="dvo">DVO</label>
+      <input
+        type="number"
+        id="dvo"
+        name="dvo"
+        [(ngModel)]="eyeMeasure.dvo"
+        required
+      />
     </div>
 
     <!-- DHIV (optionnel) -->
     <div class="input-label-combo">
       <label for="dhiv">DHIV</label>
-      <input type="number" id="dhiv" name="dhiv" [(ngModel)]="eyeMeasure.dhiv" />
-    </div>
-
-    <!-- Diamètre (optionnel) -->
-    <div class="input-label-combo">
-      <label for="diametre">Diamètre</label>
-      <input
-        type="number"
-        id="diametre"
-        name="diametre"
-        [(ngModel)]="eyeMeasure.diametre"
-      />
-    </div>
-
-    <!-- Recouvrement (optionnel) -->
-    <div class="input-label-combo">
-      <label for="recouvrement">Recouvrement</label>
-      <input
-        type="number"
-        id="recouvrement"
-        name="recouvrement"
-        [(ngModel)]="eyeMeasure.recouvrement"
-      />
+      <input type="number" id="dhiv" name="dhiv" [(ngModel)]="eyeMeasure.dhiv" required/>
     </div>
 
     <!-- K1 (optionnel) -->
     <div class="input-label-combo">
       <label for="k1">K1</label>
-      <input type="number" id="k1" name="k1" [(ngModel)]="eyeMeasure.k1" />
+      <input type="number" id="k1" name="k1" [(ngModel)]="eyeMeasure.k1" required/>
     </div>
 
     <!-- X (optionnel) -->
     <div class="input-label-combo">
       <label for="x">X</label>
-      <input type="number" id="x" name="x" [(ngModel)]="eyeMeasure.x" />
+      <input type="number" id="x" name="x" [(ngModel)]="eyeMeasure.x" required/>
     </div>
 
     <!-- K2 (optionnel) -->
     <div class="input-label-combo">
       <label for="k2">K2</label>
-      <input type="number" id="k2" name="k2" [(ngModel)]="eyeMeasure.k2" />
+      <input type="number" id="k2" name="k2" [(ngModel)]="eyeMeasure.k2" required/>
     </div>
 
     <!-- Y (optionnel) -->
     <div class="input-label-combo">
       <label for="y">Y</label>
-      <input type="number" id="y" name="y" [(ngModel)]="eyeMeasure.y" />
+      <input type="number" id="y" name="y" [(ngModel)]="eyeMeasure.y" required/>
     </div>
 
     <!-- Excentricité (optionnel) -->
@@ -95,6 +85,7 @@
         id="excentricite"
         name="excentricite"
         [(ngModel)]="eyeMeasure.excentricite"
+        required
       />
     </div>
   </form>

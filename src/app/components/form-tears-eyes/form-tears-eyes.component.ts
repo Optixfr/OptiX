@@ -1,8 +1,7 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgForm } from '@angular/forms';
 import { EyesTear } from '../../models/eyes-tear.model';
-import { FormTearsEyesDataService } from '../../services/form-tears-eyes-data.service';
+import { FormTearsEyesDataService } from '../../services/form-tear-size/form-tears-eyes-data.service';
 import { HttpClientModule } from '@angular/common/http';
 
 @Component({
@@ -16,22 +15,21 @@ export class FormTearsEyesComponent implements OnInit {
   @Input() nomFormulaire = '';
 
   eyesTear: EyesTear = {
-    psc: '',
-    tonus: '',
-    hauteurPrisme: '',
-    gradeLipide: '',
-    chargeLacrimale: ''
+    psc: 'standard',
+    tonus: 'standard',
+    hauteurPrisme: 'standard',
+    gradeLipide: 'standard',
+    chargeLacrimale: 'standard'
   };
 
   // Injecter le service
       constructor(@Inject(FormTearsEyesDataService) private formSizeEyesDataService: FormTearsEyesDataService) {}
   
       ngOnInit() {
-        console.log('Nom du formulaire :', this.nomFormulaire);
         if (this.nomFormulaire === 'Formulaire Oeil Gauche') {
-          this.eyesTear = this.formSizeEyesDataService.getFormData()[0]; // Formulaire pour l'œil gauche
+          this.eyesTear = this.formSizeEyesDataService.getFormData().gauche; // Formulaire pour l'œil gauche
         } else if (this.nomFormulaire === 'Formulaire Oeil Droit') {
-          this.eyesTear = this.formSizeEyesDataService.getFormData()[1]; // Formulaire pour l'œil droit
+          this.eyesTear = this.formSizeEyesDataService.getFormData().droite; // Formulaire pour l'œil droit
         }
       }
   
@@ -40,6 +38,4 @@ export class FormTearsEyesComponent implements OnInit {
     getFormData(): EyesTear {
       return this.eyesTear;
     }
-
-
 }

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ConnexionService } from '../../services/connexion.service';
+import { Component } from '@angular/core';
+import { ConnexionService } from '../../services/connexion/connexion.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
@@ -11,16 +11,12 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './connexion-form.component.html',
   styleUrl: './connexion-form.component.css'
 })
-export class ConnexionFormComponent implements OnInit {
+export class ConnexionFormComponent {
   email = '';
   password = '';
   noconnexion = false;
 
   constructor(private connexionService: ConnexionService, private router: Router) {}
-
-  ngOnInit(): void {
-    // Initialisation
-  }
 
   login() {
     this.noconnexion = false;

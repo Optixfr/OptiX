@@ -1,3 +1,9 @@
+Pour cypress : 
+npx cypress open
+
+pour mode headless :
+npx cypress run 
+
 
 # OptiX
 

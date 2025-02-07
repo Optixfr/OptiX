@@ -1,0 +1,30 @@
+name: Run Cypress Tests
+
+on:
+  push:
+    branches:
+      - main  # Déclenche le workflow sur un push sur `main`
+  pull_request:
+    branches:
+      - main  # Déclenche aussi sur une PR
+
+jobs:
+  cypress-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # Assure-toi d'utiliser la même version de Node.js que dans ton projet
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Start Angular app
+        run: npm start &  # Lance ton application en arrière-plan
+
+      - name: Run Cypress tests
+        run: npx cypress run

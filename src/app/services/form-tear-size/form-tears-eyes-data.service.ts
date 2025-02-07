@@ -14,14 +14,14 @@ export class FormTearsEyesDataService {
     droite: {
       psc: 'standard',
       tonus: 'standard',
-      hauteurPrisme: 'standard',
+      hauteurPrisme: '',
       gradeLipide: 'standard',
       chargeLacrimale: 'standard',
     },
     gauche: {
       psc: 'standard',
       tonus: 'standard',
-      hauteurPrisme: 'standard',
+      hauteurPrisme: '',
       gradeLipide: 'standard',
       chargeLacrimale: 'standard',
     }

@@ -20,7 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 export class FormTearsEyesPageComponent {
   commentaire = '';
-  isDuplicatedForm: boolean = false;
+  isDuplicatedForm = false;
 
   @ViewChildren(FormTearsEyesComponent) forms!: QueryList<FormTearsEyesComponent>; 
 

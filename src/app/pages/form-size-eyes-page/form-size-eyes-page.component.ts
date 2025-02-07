@@ -18,7 +18,7 @@ import { FormSizeEyesDataService } from '../../services/form-eyes-size/form-size
   styleUrl: './form-size-eyes-page.component.css',
 })
 export class FormSizeEyesPageComponent {
-  isDuplicatedForm: boolean = false;
+  isDuplicatedForm = false;
   
   @ViewChildren(FormEyeSizeComponent) forms!: QueryList<FormEyeSizeComponent>; 
 

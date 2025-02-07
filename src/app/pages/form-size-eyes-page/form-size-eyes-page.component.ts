@@ -26,9 +26,7 @@ export class FormSizeEyesPageComponent {
 
   submitForms() {
     const formData = this.forms.map((form) => form.getFormData()); 
-    console.log('Données des formulaires :', formData);
     this.formDataService.setFormData(formData);
-    this.formDataService.duplicateRightForm();
   } 
   
   addSideForm(): void {

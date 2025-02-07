@@ -42,6 +42,7 @@ export class FormSizeEyesDataService {
   }
 
   setFormData(data: EyeMeasure[]): void {
+    this.duplicateRightForm();
     if (data.length >= 2) {
       this.formData = {
         droite: data[0],

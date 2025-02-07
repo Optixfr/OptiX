@@ -7,12 +7,11 @@ import { Router, RouterLink } from '@angular/router';
 import { TopBarComponent } from "../../components/top-bar/top-bar.component";
 import { LateralNavbarComponent } from "../../components/lateral-navbar/lateral-navbar.component";
 import { FormsModule } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-form-tears-eyes-page',
   standalone: true,
-  imports: [HttpClientModule, FormTearsEyesComponent, TopBarComponent, LateralNavbarComponent, FormsModule, RouterLink, MatIconModule], // Importer HttpClientModule ici
+  imports: [HttpClientModule, FormTearsEyesComponent, TopBarComponent, LateralNavbarComponent, FormsModule, RouterLink], // Importer HttpClientModule ici
   providers: [EyesCalculationService],
   templateUrl: './form-tears-eyes-page.component.html',
   styleUrls: ['./form-tears-eyes-page.component.css']
@@ -29,14 +28,13 @@ export class FormTearsEyesPageComponent {
   submitForms() {
     const formData = this.forms.map((form) => form.getFormData());
     this.formDataService.setFormData(formData);
-    this.sendDataToBackend();
+    this.sendDataToBackend();    
     this.router.navigate(['/report-generation']);
   }
 
   sendDataToBackend() {
     const formData = this.forms.map((form) => form.getFormData()); 
     this.formDataService.setFormData(formData);
-    this.formDataService.duplicateRightForm();
   }
 
   getCommentaire() {

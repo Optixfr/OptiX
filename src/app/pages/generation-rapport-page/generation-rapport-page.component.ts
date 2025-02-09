@@ -2,16 +2,14 @@ import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import { LateralNavbarComponent } from '../../components/lateral-navbar/lateral-navbar.component';
 import { TopBarComponent } from '../../components/top-bar/top-bar.component';
 import { CommonModule } from '@angular/common';
-import jsPDF from 'jspdf';
-import autoTable from 'jspdf-autotable';
+import jsPDF from 'jspdf'
+import autoTable from 'jspdf-autotable'
 import { FormSizeEyesDataService } from '../../services/form-size-eyes-data.service';
 import { RouterLink } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { EyesCalculationService } from '../../services/eyes-calculation.service';
 import { Subscription } from 'rxjs';
 import { EyesTear } from '../../models/eyes-tear.model';
 import { FormTearsEyesDataService } from '../../services/form-tears-eyes-data.service';
-import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-generation-rapport-page',
@@ -20,8 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     LateralNavbarComponent,
     TopBarComponent,
     CommonModule,
-    RouterLink,
-    HttpClientModule,
+    RouterLink
   ],
   templateUrl: './generation-rapport-page.component.html',
   styleUrl: './generation-rapport-page.component.css',
@@ -32,54 +29,57 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
   eyeDataRight: any;
   dataSubscription: Subscription | undefined;
 
-  eyesTear: EyesTear[] = [];
+  eyesTear : EyesTear[] = [];
 
+  eyes = {
+    eye_o_droite: {
+      diametre: 14.2,
+      rayon: 8.6,
+      puissance: {
+        x: -2.5,
+        y: 0.75,
+        z: 180
+      }
+    },
+    eye_o_gauche: {
+      diametre: 14,
+      rayon: 8.4,
+      puissance: {
+        x: -3,
+        y: 1,
+        z: 90
+      }
+    }
+  };
   constructor(
+    @Inject(FormSizeEyesDataService)
     private formSizeEyesDataService: FormSizeEyesDataService,
-    private formTearEyesDataService: FormTearsEyesDataService,
-    private sanitizer: DomSanitizer,
-    private eyesCalculationService: EyesCalculationService,
-    private eyesTearService: FormTearsEyesDataService
+    private sanitizer: DomSanitizer, // Injection du service DomSanitizer
+    //private eyesCalculationService: EyesCalculationService // Injection du service de calcul
+    private eyesTearService : FormTearsEyesDataService
   ) {}
 
   ngOnInit() {
-    const formDataMeasure = this.formSizeEyesDataService.getFormData()
-    const formDataTear = this.eyesTearService.getFormData()
-
-    const transformValuesToNumber = (obj: any) => 
-      Object.fromEntries(Object.entries(obj).map(([key, value]) => [key, Number(value)]));
-
-    const transformedData = {
-      eye_m_droite: transformValuesToNumber(formDataMeasure[0]), 
-      eye_m_gauche: transformValuesToNumber(formDataMeasure[1]),
-      eye_t_droite: formDataTear[0],
-      eye_t_gauche: formDataTear[1]
-    };
-
-
-    this.dataSubscription = this.eyesCalculationService.sendData(transformedData).subscribe((result: any) => {
-      this.eyeDataLeft = result.eye_o_gauche;
-      this.eyeDataRight = result.eye_o_droite;
-      this.generatePDF();
-    });
+    //const formData = this.formSizeEyesDataService.getFormData();
+    // Envoyer les données au service et récupérer les résultats
+    // this.dataSubscription = this.eyesCalculationService.sendData(formData).subscribe((result: any) => {
+    //   this.eyeDataLeft = result.eye_o_gauche;
+    //   this.eyeDataRight = result.eye_o_droite;
+    //   this.generatePDF();
+    // });
 
     this.eyesTear = this.eyesTearService.getFormData();
+    this.eyeDataLeft = this.eyes.eye_o_gauche;
+    this.eyeDataRight = this.eyes.eye_o_droite;
     this.generatePDF();
   }
 
-  private formatDataForAPI(eyeMeasures: any[], eyeTears: EyesTear[]) {
-    return {
-      eye_m_gauche: eyeMeasures[0],  
-      eye_m_droite: eyeMeasures[1],  
-      eye_t_gauche: eyeTears[0],     
-      eye_t_droite: eyeTears[1]    
-    };
-  }
-
   ngOnDestroy() {
+    // Nettoyer l'URL temporaire pour éviter les fuites mémoire
     if (this.pdfUrl) {
       URL.revokeObjectURL(this.pdfUrl as string);
     }
+    // Désabonner pour éviter les fuites mémoire
     if (this.dataSubscription) {
       this.dataSubscription.unsubscribe();
     }
@@ -90,72 +90,71 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
 
     doc.setFontSize(16);
 
-    doc.setFontSize(16);
-    doc.text('Rapport de Prise en Charge', 50, 20);
+  //   // Ajouter un logo
+  // const logoUrl = '../../../../public/assets/logo.png'; // Remplace par le chemin de ton logo
+  // const imgData = ''; // Tu peux charger ton image ici en base64 ou utiliser une URL
+  // // Charger et ajouter le logo (dimension du logo ajustée selon les besoins)
+  // doc.addImage(logoUrl, 'PNG', 10, 10, 30, 30);
+  // Titre du document
+  doc.setFontSize(16);
+  doc.text('Rapport de Prise en Charge', 50, 20);
 
-    doc.setFontSize(12);
-    doc.text('Mutuelle: Nom de la Mutuelle', 10, 50);
-    doc.text('Numéro de contrat: 123456789', 10, 60);
-    doc.text('Date: ' + new Date().toLocaleDateString(), 150, 50);
-    doc.text('Référence Tiers Payant: 987654321', 150, 60);
+  // Informations Mutuelle et Tiers Payant (Exemple)
+  doc.setFontSize(12);
+  doc.text('Mutuelle: Nom de la Mutuelle', 10, 50);
+  doc.text('Numéro de contrat: 123456789', 10, 60);
+  doc.text('Date: ' + new Date().toLocaleDateString(), 150, 50);
+  doc.text('Référence Tiers Payant: 987654321', 150, 60);
 
+    // Tableau récapitulatif des données
     autoTable(doc, {
-      head: [
-        [
-          'Oeil',
-          'Diamètre',
-          'Rayon',
-          'Puissance X',
-          'Puissance Y',
-          'Puissance Z',
-        ],
-      ],
+      head: [['Oeil', 'Diamètre', 'Rayon', 'Puissance X', 'Puissance Y', 'Puissance Z']],
       body: [
         [
-          'Gauche',
-          this.eyeDataLeft.diametre,
-          this.eyeDataLeft.rayon,
-          this.eyeDataLeft.puissance.x,
-          this.eyeDataLeft.puissance.y,
-          this.eyeDataLeft.puissance.z,
+          'Gauche', 
+          this.eyeDataLeft.diametre, 
+          this.eyeDataLeft.rayon, 
+          this.eyeDataLeft.puissance.x, 
+          this.eyeDataLeft.puissance.y, 
+          this.eyeDataLeft.puissance.z
         ],
         [
-          'Droit',
-          this.eyeDataRight.diametre,
-          this.eyeDataRight.rayon,
-          this.eyeDataRight.puissance.x,
-          this.eyeDataRight.puissance.y,
-          this.eyeDataRight.puissance.z,
+          'Droit', 
+          this.eyeDataRight.diametre, 
+          this.eyeDataRight.rayon, 
+          this.eyeDataRight.puissance.x, 
+          this.eyeDataRight.puissance.y, 
+          this.eyeDataRight.puissance.z
         ],
       ],
-      startY: 80,
+      startY: 80
     });
 
     autoTable(doc, {
-      head: [
-        ['PSC', 'Tonus', 'Hauteur Prisme', 'Grade Lipide', 'Charge Lacrimale'],
-      ],
+      head: [['PSC', 'Tonus', 'Hauteur Prisme', 'Grade Lipide', 'Charge Lacrimale']],
       body: [
         [
           this.eyesTear[0].psc,
           this.eyesTear[0].tonus,
           this.eyesTear[0].hauteurPrisme,
           this.eyesTear[0].gradeLipide,
-          this.eyesTear[0].chargeLacrimale,
+          this.eyesTear[0].chargeLacrimale
         ],
         [
           this.eyesTear[1].psc,
           this.eyesTear[1].tonus,
           this.eyesTear[1].hauteurPrisme,
           this.eyesTear[1].gradeLipide,
-          this.eyesTear[1].chargeLacrimale,
+          this.eyesTear[1].chargeLacrimale
         ],
       ],
-      startY: 140,
+      startY:  140 // Position du second tableau après le premier
     });
 
+    // Générer le PDF comme un Blob
     const pdfBlob = doc.output('blob');
 
+    // Créer une URL temporaire pour le PDF et la marquer comme sûre
     const pdfObjectUrl = URL.createObjectURL(pdfBlob);
     this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(pdfObjectUrl);
   }

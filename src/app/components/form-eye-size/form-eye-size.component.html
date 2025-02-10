@@ -10,6 +10,7 @@
       <label for="sphere">Sphere</label>
       <input
         type="number"
+        step="0.25"
         id="sphere"
         name="sphere"
         [(ngModel)]="eyeMeasure.sphere"
@@ -22,6 +23,7 @@
       <label for="cylindre">Cylindre</label>
       <input
         type="number"
+        step="0.25"
         id="cylindre"
         name="cylindre"
         [(ngModel)]="eyeMeasure.cylindre"
@@ -40,6 +42,7 @@
       <label for="dvo">DVO</label>
       <input
         type="number"
+        step="0.5"
         id="dvo"
         name="dvo"
         [(ngModel)]="eyeMeasure.dvo"
@@ -56,24 +59,24 @@
     <!-- K1 (optionnel) -->
     <div class="input-label-combo">
       <label for="k1">K1</label>
-      <input type="number" id="k1" name="k1" [(ngModel)]="eyeMeasure.k1" required/>
+      <input type="number" step="0.01" id="k1" name="k1" [(ngModel)]="eyeMeasure.k1" required/>
     </div>
 
     <!-- X (optionnel) -->
     <div class="input-label-combo">
-      <label for="x">X</label>
+      <label for="x">Axe</label>
       <input type="number" id="x" name="x" [(ngModel)]="eyeMeasure.x" required/>
     </div>
 
     <!-- K2 (optionnel) -->
     <div class="input-label-combo">
       <label for="k2">K2</label>
-      <input type="number" id="k2" name="k2" [(ngModel)]="eyeMeasure.k2" required/>
+      <input type="number" step="0.01" id="k2" name="k2" [(ngModel)]="eyeMeasure.k2" required/>
     </div>
 
     <!-- Y (optionnel) -->
     <div class="input-label-combo">
-      <label for="y">Y</label>
+      <label for="y">Axe</label>
       <input type="number" id="y" name="y" [(ngModel)]="eyeMeasure.y" required/>
     </div>
 
@@ -82,6 +85,7 @@
       <label for="excentricite">Excentricité</label>
       <input
         type="number"
+        step="0.05"
         id="excentricite"
         name="excentricite"
         [(ngModel)]="eyeMeasure.excentricite"

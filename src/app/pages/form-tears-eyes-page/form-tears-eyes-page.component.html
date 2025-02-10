@@ -6,7 +6,7 @@
         <app-top-bar></app-top-bar>
         <div class="forms">
             <div class="container-form">
-                <app-form-tears-eyes [nomFormulaire]="'Formulaire Oeil Droit'"></app-form-tears-eyes>
+                <app-form-tears-eyes [nomFormulaire]="isDuplicatedForm ? 'Formulaire Oeil Droit' : 'Biométrie Oeil Droit = Biométrie Oeil Gauche'"></app-form-tears-eyes>
                 @if (isDuplicatedForm) {
                     <app-form-tears-eyes [nomFormulaire]="'Formulaire Oeil Gauche'"></app-form-tears-eyes>
                 } @else {

@@ -12,6 +12,8 @@ export class EyesCalculationService {
   constructor(private http: HttpClient) { }
 
   sendData(data: any): Observable<any> {
+    
+    console.log(data);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });

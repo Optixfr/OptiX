@@ -1,21 +1,31 @@
-<div class="sidebar-container">
-    <div class="sidebar">
-        <div class="logo">
-            <img src="assets/logo.png" alt="logo">
-        </div>
-        
-        <div class="nav-links">
-            <nav>
-                <ul>
-                    <li><a href="#" routerLink="/accueil"><img src="assets/home-2.svg" alt="accueil">Accueil</a></li>
-                    <li><a href="#"><img src="assets/calculator.svg" alt="outils">Outils</a></li>
-                    <li><a class="cursor-pointer" routerLink="/connexion"><img src="assets/setting-2.svg" alt="parametres">Paramètres</a></li>
-                </ul>
-            </nav>
+<div class="flex h-screen">
+    <div class="w-72 bg-primary text-white flex flex-col p-5 rounded-tr-2xl rounded-br-2xl">
+        <!-- Logo -->
+        <div class="mb-10 flex justify-center">
+            <img src="assets/logo.png" alt="logo" class="w-24">
         </div>
 
-        <div class="logout">
-            <button (click)="deco()" class="cursor-pointer"><img src="assets/home-2.svg" alt="home">Déconnexion</button>
-        </div>
+        <!-- Navigation -->
+        <nav class="flex flex-col gap-6 text-white justify-center self-center w-full">
+            <a routerLink="/accueil" routerLinkActive="active"
+                class="flex items-center gap-6 p-3 rounded-lg hover:bg-white/10 text-white transition duration-200">
+                <img src="assets/home-2.svg" alt="accueil" class="w-6">
+                <span>Accueil</span>
+            </a>
+            <a routerLink="/outils" routerLinkActive="active"
+                class="flex items-center gap-6 p-3 rounded-lg hover:bg-white/10 text-white">
+                <img src="assets/calculator.svg" alt="outils" class="w-6">
+                <span>Outils</span>
+            </a>
+            <a routerLink="/connexion" routerLinkActive="active"
+                class="cursor-pointer flex items-center gap-6 p-3 rounded-lg hover:bg-white/10 text-white">
+                <img src="assets/setting-2.svg" alt="parametres" class="w-6">
+                <span>Paramètres</span>
+            </a>
+            <a (click)="deco()" class="cursor-pointer flex items-center gap-6 p-3 rounded-lg hover:bg-white/10 text-white">
+                <img src="assets/home-2.svg" alt="home" class="w-6">
+                <span>Déconnexion</span>
+            </a>
+        </nav>
     </div>
 </div>

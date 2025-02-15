@@ -15,6 +15,11 @@
     --spacing-unit: 16px;
 }
 
+.active {
+  @apply bg-hey rounded-lg;
+}
+
+
 
 * {
     margin: 0;
@@ -22,6 +27,8 @@
     box-sizing: border-box;
     font-family: var(--font-stack);
     white-space: nowrap;
+    font-size: 14px;
+    
   }
   
   html, body {
@@ -44,13 +51,16 @@
   
   a {
     text-decoration: none;
-    color: inherit;
   }
   
   button, input, textarea, select {
     font: inherit;
     border: none;
     background: none;
+  }
+  
+  button, a {
+    color: white;
   }
 
   button {

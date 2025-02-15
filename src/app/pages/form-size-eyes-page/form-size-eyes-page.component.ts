@@ -15,7 +15,6 @@ import { FormSizeEyesDataService } from '../../services/form-eyes-size/form-size
     RouterLink,
   ],
   templateUrl: './form-size-eyes-page.component.html',
-  styleUrl: './form-size-eyes-page.component.css',
 })
 export class FormSizeEyesPageComponent {
   isDuplicatedForm = false;

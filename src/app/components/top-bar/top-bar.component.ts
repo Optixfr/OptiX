@@ -6,7 +6,6 @@ import { NavbarService } from '../../services/navbar-service/navbar-service.serv
   standalone: true,
   imports: [],
   templateUrl: './top-bar.component.html',
-  styleUrl: './top-bar.component.css'
 })
 export class TopBarComponent {
   

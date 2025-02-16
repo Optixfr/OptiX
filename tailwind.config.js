@@ -9,7 +9,9 @@ module.exports = {
       secondary: '#64748B', // Gris-bleuté
       accent: '#4CC5F6',
       background: '#F8FAFB', 
-      hey: '#324160'
+      hey: '#324160',
+      white: '#FFFFFF',
+      tertiary: '#BED6DF'
     },
     extend: {},
   },

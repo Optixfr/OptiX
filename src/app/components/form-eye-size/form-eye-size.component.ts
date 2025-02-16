@@ -7,9 +7,8 @@ import { FormSizeEyesDataService } from '../../services/form-eyes-size/form-size
 @Component({
   selector: 'app-form-eye-size',
   standalone: true,
-  imports: [FormsModule, CommonModule, ],
+  imports: [FormsModule, CommonModule],
   templateUrl: './form-eye-size.component.html',
-  styleUrl: './form-eye-size.component.css',
 })
 export class FormEyeSizeComponent implements OnInit {
   @Input() nomFormulaire = '';
@@ -27,16 +26,18 @@ export class FormEyeSizeComponent implements OnInit {
     excentricite: '0',
   };
 
-    // Injecter le service
-    constructor(@Inject(FormSizeEyesDataService) private formSizeEyesDataService: FormSizeEyesDataService) {}
+  constructor(
+    @Inject(FormSizeEyesDataService)
+    private formSizeEyesDataService: FormSizeEyesDataService
+  ) {}
 
-    ngOnInit() {
-      if (this.nomFormulaire === 'Formulaire Oeil Gauche') {
-        this.eyeMeasure = this.formSizeEyesDataService.getFormData().gauche;
-      } else if (this.nomFormulaire === 'Formulaire Oeil Droit') {
-        this.eyeMeasure = this.formSizeEyesDataService.getFormData().droite;
-      }
+  ngOnInit() {
+    if (this.nomFormulaire === 'Formulaire Oeil Gauche') {
+      this.eyeMeasure = this.formSizeEyesDataService.getFormData().gauche;
+    } else if (this.nomFormulaire === 'Formulaire Oeil Droit') {
+      this.eyeMeasure = this.formSizeEyesDataService.getFormData().droite;
     }
+  }
 
   submitted = false;
 

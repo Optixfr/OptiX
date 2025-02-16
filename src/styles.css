@@ -23,8 +23,6 @@
     box-sizing: border-box;
     font-family: var(--font-stack);
     white-space: nowrap;
-    font-size: 14px;
-    
   }
   
   html, body {
@@ -49,11 +47,7 @@
     text-decoration: none;
   }
   
-  button, input, textarea, select {
-    font: inherit;
-    border: none;
-    background: none;
-  }
+
   
   button, a {
     color: white;

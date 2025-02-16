@@ -1,14 +1,14 @@
-<div class="container">
-  <h2>{{ nomFormulaire }}</h2>
+<div class="bg-white rounded-xl p-4 border border-tertiary drop-shadow-xl">
+  <h2 class="text-xl text-wrap mb-16">{{ nomFormulaire }}</h2>
   <form
     (ngSubmit)="getFormData()"
     #eyesTearForm="ngForm"
-    class="container-form"
+    class="flex flex-col justify-around gap-2"
   >
     <!-- PSC -->
-    <div class="input-label-combo">
+    <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
       <label for="psc">PSC</label>
-      <select id="psc" name="psc" [(ngModel)]="eyesTear.psc" required>
+      <select class="border-secondary border w-full rounded-lg p-2" id="psc" name="psc" [(ngModel)]="eyesTear.psc" required>
         <option value="lent">Lent</option>
         <option value="standard"  >Standard</option>
         <option value="rapide">Rapide</option>
@@ -16,9 +16,9 @@
     </div>
 
     <!-- Tonus -->
-    <div class="input-label-combo">
+    <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
       <label for="tonus">Tonus</label>
-      <select id="tonus" name="tonus" [(ngModel)]="eyesTear.tonus" required>
+      <select class="border-secondary border w-full rounded-lg p-2" id="tonus" name="tonus" [(ngModel)]="eyesTear.tonus" required>
         <option value="faible">Faible</option>
         <option value="standard"  >Standard</option>
         <option value="elevee">Elevé</option>
@@ -26,9 +26,10 @@
     </div>
 
     <!-- Hauteur Prisme -->
-    <div class="input-label-combo">
+    <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
       <label for="hauteurPrisme">Hauteur Prisme</label>
       <input
+        class="border-secondary border w-full rounded-lg p-2"
         type="number"
         id="hauteurPrisme"
         name="hauteurPrisme"
@@ -38,9 +39,10 @@
     </div>
 
     <!-- Grade Lipide (optionnel) -->
-    <div class="input-label-combo">
+    <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
       <label for="gradeLipide">Grade Lipide</label>
       <select
+        class="border-secondary border w-full rounded-lg p-2"
         id="gradeLipide"
         name="gradeLipide"
         [(ngModel)]="eyesTear.gradeLipide"
@@ -52,15 +54,16 @@
     </div>
 
     <!-- Charge Lacrimale (optionnel) -->
-    <div class="input-label-combo">
+    <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
       <label for="chargeLacrimale">Charge Lacrimale</label>
       <select
+        class="border-secondary border w-full rounded-lg p-2"
         id="chargeLacrimale"
         name="chargeLacrimale"
         [(ngModel)]="eyesTear.chargeLacrimale"
       >
         <option value="faible">Faible</option>
-        <option value="standard"  >Standard</option>
+        <option value="standard">Standard</option>
         <option value="elevee">Élevée</option>
       </select>
     </div>

@@ -14,7 +14,6 @@ import { FormsModule } from '@angular/forms';
   imports: [HttpClientModule, FormTearsEyesComponent, TopBarComponent, LateralNavbarComponent, FormsModule, RouterLink], // Importer HttpClientModule ici
   providers: [EyesCalculationService],
   templateUrl: './form-tears-eyes-page.component.html',
-  styleUrls: ['./form-tears-eyes-page.component.css']
 })
 
 export class FormTearsEyesPageComponent {

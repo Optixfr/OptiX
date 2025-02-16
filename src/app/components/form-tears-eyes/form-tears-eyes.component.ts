@@ -9,8 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
   standalone: true,
   imports: [FormsModule, HttpClientModule],
   templateUrl: './form-tears-eyes.component.html',
-  styleUrl: './form-tears-eyes.component.css',
 })
+
 export class FormTearsEyesComponent implements OnInit {
   @Input() nomFormulaire = '';
 

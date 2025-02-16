@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { Router, RouterLink, RouterModule } from '@angular/router';
+import { NavbarService } from '../../services/navbar-service/navbar-service.service';
 
 @Component({
   selector: 'app-lateral-navbar',
@@ -10,9 +11,18 @@ import { Router, RouterLink, RouterModule } from '@angular/router';
 })
 export class LateralNavbarComponent {
   
+  isExtended  = false;
+  
   logoUrl = '../../../assets/home-2.svg';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private navbarService: NavbarService) {}
+  
+
+  ngOnInit(): void {
+    this.navbarService.isExtended$.subscribe(isExtended => {
+      this.isExtended = isExtended;
+    });
+  }
   
   isActive(route: string): boolean {
     return this.router.url === route;
@@ -24,5 +34,9 @@ export class LateralNavbarComponent {
       localStorage.removeItem('token');
       this.router.navigateByUrl('/connexion');
     }
+  }
+  
+  setExtension(): void {
+    this.isExtended = !this.isExtended;
   }
 }

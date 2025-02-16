@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavbarService } from '../../services/navbar-service/navbar-service.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -9,4 +10,9 @@ import { Component } from '@angular/core';
 })
 export class TopBarComponent {
   
+  constructor(private navbarService: NavbarService) {}
+
+  extend() {
+    this.navbarService.toggleExtension(); 
+  }
 }

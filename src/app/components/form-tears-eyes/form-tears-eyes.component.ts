@@ -7,35 +7,36 @@ import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-form-tears-eyes',
   standalone: true,
-  imports: [FormsModule, HttpClientModule ],
+  imports: [FormsModule, HttpClientModule],
   templateUrl: './form-tears-eyes.component.html',
-  styleUrl: './form-tears-eyes.component.css'
+  styleUrl: './form-tears-eyes.component.css',
 })
 export class FormTearsEyesComponent implements OnInit {
   @Input() nomFormulaire = '';
 
-  eyesTear: EyesTear = {
-    psc: 'standard',
-    tonus: 'standard',
-    hauteurPrisme: 'standard',
-    gradeLipide: 'standard',
-    chargeLacrimale: 'standard'
-  };
+  eyesTear!: EyesTear;
 
-  // Injecter le service
-      constructor(@Inject(FormTearsEyesDataService) private formSizeEyesDataService: FormTearsEyesDataService) {}
-  
-      ngOnInit() {
-        if (this.nomFormulaire === 'Formulaire Oeil Gauche') {
-          this.eyesTear = this.formSizeEyesDataService.getFormData().gauche; // Formulaire pour l'œil gauche
-        } else if (this.nomFormulaire === 'Formulaire Oeil Droit') {
-          this.eyesTear = this.formSizeEyesDataService.getFormData().droite; // Formulaire pour l'œil droit
-        }
-      }
-  
-    submitted = false;
-  
-    getFormData(): EyesTear {
-      return this.eyesTear;
+  constructor(
+    @Inject(FormTearsEyesDataService)
+    private formSizeEyesDataService: FormTearsEyesDataService
+  ) {}
+
+  ngOnInit() {
+    if (
+      this.nomFormulaire.includes('Droit') &&
+      this.nomFormulaire.includes('Gauche')
+    ) {
+      this.eyesTear = this.formSizeEyesDataService.getFormData().droite;
+    } else if (this.nomFormulaire.includes('Gauche')) {
+      this.eyesTear = this.formSizeEyesDataService.getFormData().gauche;
+    } else {
+      this.eyesTear = this.formSizeEyesDataService.getFormData().droite;
     }
+  }
+
+  submitted = false;
+
+  getFormData(): EyesTear {
+    return this.eyesTear;
+  }
 }

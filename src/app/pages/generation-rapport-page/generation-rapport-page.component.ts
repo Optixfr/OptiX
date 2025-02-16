@@ -65,6 +65,8 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const formDataMeasure = this.formSizeEyesDataService.getFormData()
     const formDataTear = this.eyesTearService.getFormData()
+    
+    console.log('salut ', formDataMeasure);
 
     const transformValuesToNumber = (obj: any) => 
       Object.fromEntries(Object.entries(obj).map(([key, value]) => [key, Number(value)]));
@@ -81,6 +83,7 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
       (result: any) => {
         this.eyeDataLeft = result.eye_o_gauche;
         this.eyeDataRight = result.eye_o_droite;
+        console.log(this.eyeDataLeft);
         this.generatePDF();
       },
       (error) => {

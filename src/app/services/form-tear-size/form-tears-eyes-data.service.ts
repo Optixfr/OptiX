@@ -28,7 +28,7 @@ export class FormTearsEyesDataService {
   }
 
   getFormData(): FormData {
-    return this.formData;
+    return { ...this.formData };
   }
 
   setFormData(data: EyesTear[]): void {

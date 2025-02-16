@@ -1,18 +1,16 @@
-name: Deploy Angular to GitHub Pages
+name: Deploy OptiX
 
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -20,13 +18,18 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 18  # Use the version your project requires
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
-      - name: Build Angular App
-        run: npm run build -- --base-href="/OptiX/"
+      - name: Build Angular project
+        run: npm run build -- --configuration=production
 
       - name: Deploy to GitHub Pages
-        run: npx angular-cli-ghpages --dir=dist/OptiX
+        if: success()
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages  # Deployment branch
+          folder: dist/optix  # Adjust this if your Angular build output is in a different folder

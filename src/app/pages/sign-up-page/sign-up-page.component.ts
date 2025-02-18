@@ -6,7 +6,6 @@ import { ConnexionFormComponent } from "../../components/connexion-form/connexio
   standalone: true,
   imports: [ConnexionFormComponent],
   templateUrl: './sign-up-page.component.html',
-  styleUrl: './sign-up-page.component.css'
 })
 export class SignUpPageComponent {
 

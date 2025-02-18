@@ -1,5 +1,5 @@
 <div class="flex h-screen">
-    <div class="w-72 bg-primary text-white flex flex-col p-5 rounded-tr-2xl rounded-br-2xl transition-all duration-300 ease-in-out"
+    <div class="w-72 bg-primary text-white flex flex-col p-5 rounded-tr-sm rounded-br-sm transition-all duration-300 ease-in-out"
         [class.w-72]="isExtended"  
         [class.w-24]="!isExtended"
     >
@@ -11,7 +11,9 @@
         </div>
 
         <!-- Navigation -->
-        <nav class="flex flex-col gap-6 text-white justify-center self-center w-full">
+        <nav class="flex flex-col gap-6 text-white justify-center self-center w-full"
+        [class.items-center]="!isExtended"
+        >
             <a routerLink="/accueil" routerLinkActive="active"
                 class="flex items-center gap-6 p-3 rounded-lg hover:bg-white/10 text-white transition duration-300 ease-in-out">
                 <img src="assets/home-2.svg" alt="accueil" class="w-6">
@@ -35,7 +37,7 @@
                 }
             </a>
             <a (click)="deco()" class="cursor-pointer flex items-center gap-6 p-3 rounded-lg hover:bg-white/10 text-white">
-                <img src="assets/home-2.svg" alt="home" class="w-6">
+                <img src="assets/logout.svg" alt="home" class="w-6">
                 @if(isExtended) {
                     <span>Déconnexion</span>
                 }

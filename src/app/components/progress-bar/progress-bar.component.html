@@ -1,0 +1,44 @@
+<nav class="w-full h-full">
+    <div class="flex items-center justify-center w-full">
+
+        <div class="flex flex-col items-center">
+            @if(this.stepService.activeStep === 1) {
+                <div class="w-20 h-10 text-sm flex items-center justify-center rounded-full font-bold text-white bg-primary">
+                    Etape 1
+                </div>
+            } @else {
+                <div class="w-20 h-10 text-sm flex items-center justify-center rounded-full font-bold border-2 border-primary text-primary">
+                    Etape 1
+                </div>
+            }
+        </div>
+
+        <div class="w-12 h-1 bg-primary rounded-md"></div>
+
+        <div class="flex flex-col items-center">
+            @if(this.stepService.activeStep === 2) {
+                <div class="w-20 h-10 text-sm flex items-center justify-center rounded-full font-bold text-white bg-primary">
+                    Etape 2
+                </div>
+            } @else {
+                <div class="w-20 h-10 text-sm flex items-center justify-center rounded-full font-bold border-2 border-primary text-primary">
+                    Etape 2
+                </div>
+            }
+        </div>
+
+        <div class="w-12 h-1 bg-gray-300 rounded-md bg-primary"></div>
+
+        <div class="flex flex-col items-center">
+            @if(this.stepService.activeStep === 3) {
+                <div class="w-20 h-10 text-sm flex items-center justify-center rounded-full font-bold text-white bg-primary">
+                    Etape 3
+                </div>
+            } @else {
+                <div class="w-20 h-10 text-sm flex items-center justify-center rounded-full font-bold border-2 border-primary text-primary">
+                    Etape 3
+                </div>
+            }
+        </div>
+    </div>
+</nav>

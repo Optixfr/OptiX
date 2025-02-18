@@ -1,14 +1,14 @@
-<div class="container">
-  <h2>{{ nomFormulaire }}</h2>
-  <form
+<div class="bg-white rounded-xl p-4 border border-tertiary drop-shadow-xl">
+  <h2 class="text-xl text-wrap mb-16">{{ nomFormulaire }}</h2>
+  <form 
     (ngSubmit)="getFormData()"
     #eyeMeasureForm="ngForm"
-    class="container-form"
+    class="flex flex-col justify-around gap-2"
   >
     <!-- Sphere -->
-    <div class="input-label-combo">
+    <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
       <label for="sphere">Sphere</label>
-      <input
+      <input class="border-secondary border w-full rounded-lg p-2" placeholder="Type here..."
         type="number"
         step="0.25"
         id="sphere"
@@ -19,9 +19,9 @@
     </div>
 
     <!-- Cylindre -->
-    <div class="input-label-combo">
+    <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
       <label for="cylindre">Cylindre</label>
-      <input
+      <input class="border-secondary border w-full rounded-lg p-2"
         type="number"
         step="0.25"
         id="cylindre"
@@ -32,15 +32,15 @@
     </div>
 
     <!-- Axe (optionnel) -->
-    <div class="input-label-combo">
+    <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
       <label for="axe">Axe</label>
-      <input type="number" id="axe" name="axe" [(ngModel)]="eyeMeasure.axe" required />
+      <input class="border-secondary border w-full rounded-lg p-2" type="number" id="axe" name="axe" [(ngModel)]="eyeMeasure.axe" required />
     </div>
 
     <!-- Diamètre (optionnel) -->
-    <div class="input-label-combo">
+    <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
       <label for="dvo">DVO</label>
-      <input
+      <input class="border-secondary border w-full rounded-lg p-2"
         type="number"
         step="0.5"
         id="dvo"
@@ -51,39 +51,39 @@
     </div>
 
     <!-- DHIV (optionnel) -->
-    <div class="input-label-combo">
+    <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
       <label for="dhiv">DHIV</label>
-      <input type="number" id="dhiv" name="dhiv" [(ngModel)]="eyeMeasure.dhiv" required/>
+      <input class="border-secondary border w-full rounded-lg p-2" type="number" id="dhiv" name="dhiv" [(ngModel)]="eyeMeasure.dhiv" required/>
     </div>
 
     <!-- K1 (optionnel) -->
-    <div class="input-label-combo">
+    <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
       <label for="k1">K1</label>
-      <input type="number" step="0.01" id="k1" name="k1" [(ngModel)]="eyeMeasure.k1" required/>
+      <input class="border-secondary border w-full rounded-lg p-2" type="number" step="0.01" id="k1" name="k1" [(ngModel)]="eyeMeasure.k1" required/>
     </div>
 
     <!-- X (optionnel) -->
-    <div class="input-label-combo">
+    <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
       <label for="x">Axe</label>
-      <input type="number" id="x" name="x" [(ngModel)]="eyeMeasure.x" required/>
+      <input class="border-secondary border w-full rounded-lg p-2" type="number" id="x" name="x" [(ngModel)]="eyeMeasure.x" required/>
     </div>
 
     <!-- K2 (optionnel) -->
-    <div class="input-label-combo">
+    <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
       <label for="k2">K2</label>
-      <input type="number" step="0.01" id="k2" name="k2" [(ngModel)]="eyeMeasure.k2" required/>
+      <input class="border-secondary border w-full rounded-lg p-2" type="number" step="0.01" id="k2" name="k2" [(ngModel)]="eyeMeasure.k2" required/>
     </div>
 
     <!-- Y (optionnel) -->
-    <div class="input-label-combo">
+    <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
       <label for="y">Axe</label>
-      <input type="number" id="y" name="y" [(ngModel)]="eyeMeasure.y" required/>
+      <input class="border-secondary border w-full rounded-lg p-2" type="number" id="y" name="y" [(ngModel)]="eyeMeasure.y" required/>
     </div>
 
     <!-- Excentricité (optionnel) -->
-    <div class="input-label-combo">
+    <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
       <label for="excentricite">Excentricité</label>
-      <input
+      <input class="border-secondary border w-full rounded-lg p-2"
         type="number"
         step="0.05"
         id="excentricite"

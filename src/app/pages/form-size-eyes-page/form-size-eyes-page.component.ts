@@ -15,7 +15,6 @@ import { FormSizeEyesDataService } from '../../services/form-eyes-size/form-size
     RouterLink,
   ],
   templateUrl: './form-size-eyes-page.component.html',
-  styleUrl: './form-size-eyes-page.component.css',
 })
 export class FormSizeEyesPageComponent {
   isDuplicatedForm = false;
@@ -26,6 +25,7 @@ export class FormSizeEyesPageComponent {
 
   submitForms() {
     const formData = this.forms.map((form) => form.getFormData()); 
+    console.log('hey', formData);
     this.formDataService.setFormData(formData);
   } 
   

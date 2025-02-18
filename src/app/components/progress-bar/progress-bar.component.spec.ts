@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ConnexionFormComponent } from './connexion-form.component';
+import { ProgressBarComponent } from './progress-bar.component';
 
-describe('ConnexionFormComponent', () => {
-  let component: ConnexionFormComponent;
-  let fixture: ComponentFixture<ConnexionFormComponent>;
+describe('ProgressBarComponent', () => {
+  let component: ProgressBarComponent;
+  let fixture: ComponentFixture<ProgressBarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ConnexionFormComponent]
+      imports: [ProgressBarComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ConnexionFormComponent);
+    fixture = TestBed.createComponent(ProgressBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

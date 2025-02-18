@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 import { EyesTear } from '../../models/eyes-tear.model';
 import { FormTearsEyesDataService } from '../../services/form-tear-size/form-tears-eyes-data.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 interface FormData {
   droite: EyesTear;
@@ -27,9 +28,9 @@ interface FormData {
     CommonModule,
     RouterLink,
     HttpClientModule,
+    FormsModule
   ],
   templateUrl: './generation-rapport-page.component.html',
-  styleUrl: './generation-rapport-page.component.css',
 })
 export class GenerationRapportPageComponent implements OnInit, OnDestroy {
   pdfUrl: SafeResourceUrl | undefined;
@@ -65,7 +66,7 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const formDataMeasure = this.formSizeEyesDataService.getFormData()
     const formDataTear = this.eyesTearService.getFormData()
-
+    
     const transformValuesToNumber = (obj: any) => 
       Object.fromEntries(Object.entries(obj).map(([key, value]) => [key, Number(value)]));
 

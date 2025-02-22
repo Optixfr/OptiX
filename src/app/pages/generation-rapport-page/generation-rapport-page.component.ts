@@ -151,6 +151,139 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
       startY:  140 // Position du second tableau après le premier
     });
 
+    doc.addPage(); // Ajouter une nouvelle page
+    doc.setFontSize(16);
+
+    const pageWidth = doc.internal.pageSize.getWidth(); // Largeur de la page
+    doc.text("Adaptation lentille de contact", pageWidth / 2, 20, { align: "center" });
+
+    // Informations Magasin (Exemple)
+    doc.setFontSize(12);
+    doc.text('Magasin: [...]', 20, 40);
+    doc.text('Adresse : [...]', 20, 45);
+    doc.text('Par : [...]', 20, 50);
+    doc.text('Fait le : ' + new Date().toLocaleDateString(), 150, 55);
+    doc.text('A : [...]', 150, 60);
+    doc.text('Porteur: [...]', 20, 65);
+    doc.text('Age : [...]', 20, 70);
+
+    // Tableau récapitulatif des données
+    autoTable(doc, {
+      head: [['Oeil', 'Droit', 'Gauche']],
+      body: [
+        [
+          'Information', 
+          '[...]', 
+          '[...]'
+        ],
+        [
+          'Résultat', 
+          '[...]',
+          '[...]'
+        ],
+      ],
+      startY: 90,
+      styles: {
+        halign: 'center', // Centrage horizontal du texte dans les cellules
+        valign: 'middle', // Centrage vertical du texte dans les cellules
+        lineWidth: 0.2, // Épaisseur des bordures
+        lineColor: [0, 0, 0] // Couleur des bordures (noir)
+      },
+      headStyles: {
+        fillColor: [0, 76, 153], // Bleu foncé pour l'en-tête
+        textColor: [255, 255, 255], // Texte en blanc
+        halign: 'center',
+        valign: 'middle',
+        fontStyle: 'bold' // Texte en gras pour l'en-tête
+      },
+      bodyStyles: {
+        textColor: 0, // Texte en noir
+      },
+      alternateRowStyles: {
+        fillColor: [220, 220, 220] // Gris très clair pour une ligne sur deux
+      },
+      columnStyles: {
+        0: { halign: 'center' }, // Centrer la première colonne
+        1: { halign: 'center' }, // Centrer la deuxième colonne
+        2: { halign: 'center' }  // Centrer la troisième colonne
+      }
+    });
+    
+    doc.setFont("times", "italic");
+    doc.setFontSize(10);
+    doc.setTextColor(150); // Gris (0 = noir, 255 = blanc)
+    doc.text("Document réalisé grâce à la solution OptiX", pageWidth / 2, 287, { align: "center" });
+
+    doc.addPage(); // Ajouter une nouvelle page
+    doc.setFontSize(16);
+
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(0); // Noir
+
+    doc.text("Compte Rendu", pageWidth / 2, 20, { align: "center" });
+
+    // Informations Magasin (Exemple)
+    doc.setFontSize(12);
+    doc.text('Magasin: [...]', 20, 40);
+    doc.text('Adresse : [...]', 20, 45);
+    doc.text('Par : [...]', 20, 50);
+    doc.text('Fait le : ' + new Date().toLocaleDateString(), 150, 55);
+    doc.text('A : [...]', 150, 60);
+    doc.text('Porteur: [...]', 20, 65);
+    doc.text('Age : [...]', 20, 70);
+    doc.text('Raison : [...]', 20, 75);
+
+    autoTable(doc, {
+      startY: 85, // ✅ Position du tableau fixée à 85
+      head: [
+        [
+          { content: 'Intitulé', rowSpan: 2, styles: { halign: 'center', valign: 'middle', fontStyle: 'bold' } },
+          { content: 'Commentaire', colSpan: 2, styles: { halign: 'center', fontStyle: 'bold' } }
+        ],
+        ['OD', 'OG']
+      ],
+      body: [
+        ['Oeil directeur VL / VP', { content: '', colSpan: 2, styles: { halign: 'center' } }], // ✅ Fusion OD & OG
+        ['Oeil dominant VL / VP', { content: '', colSpan: 2, styles: { halign: 'center' } }], // ✅ Fusion OD & OG
+        ['Réfraction lentille', '', ''],
+        ['PSC', '', ''],
+        ['DHIV', '', ''],
+        ['Diamètre pupillaire', '', ''],
+        ['FP / Recouvrement', '', ''],
+        ['Tonus', '', ''],
+        ['Clignement', { content: '', colSpan: 2, styles: { halign: 'center' } }], // ✅ Fusion OD & OG
+        ['Kératométrie', '', ''],
+        ['Hauteur prisme de larmes', '', ''],
+        ['Charge lacrymale', '', ''],
+        ['Lipides', '', '']
+      ],
+      styles: {
+        halign: 'center', // ✅ Centre tous les textes
+        valign: 'middle',
+        lineWidth: 0.5,
+        lineColor: [0, 0, 0] // ✅ Bordures noires
+      },
+      headStyles: {
+        fillColor: [0, 76, 153], // ✅ Bleu foncé pour l'en-tête
+        textColor: [255, 255, 255], // ✅ Texte blanc
+        fontStyle: 'bold'
+      },
+      alternateRowStyles: {
+        fillColor: [240, 240, 240] // ✅ Fond gris clair une ligne sur deux
+      },
+      columnStyles: {
+        0: { cellWidth: 50, halign: 'center', fontStyle: 'bold' }, // ✅ Largeur fixe à 50px pour "Intitulé"
+        1: { halign: 'center', cellWidth: 65 }, // ✅ Largeur de 65px pour OD
+        2: { halign: 'center', cellWidth: 65 }  // ✅ Largeur de 65px pour OG
+      }
+    });
+    
+
+    doc.setFont("times", "italic");
+    doc.setFontSize(10);
+    doc.setTextColor(150); // Gris (0 = noir, 255 = blanc)
+    doc.text("Document réalisé grâce à la solution OptiX", pageWidth / 2, 287, { align: "center" });
+
     // Générer le PDF comme un Blob
     const pdfBlob = doc.output('blob');
 

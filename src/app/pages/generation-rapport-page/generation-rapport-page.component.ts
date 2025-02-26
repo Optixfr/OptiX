@@ -151,6 +151,8 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
       startY:  140 // Position du second tableau après le premier
     });
 
+    // --------------- PREMIERE PAGE --------------- //
+
     doc.addPage(); // Ajouter une nouvelle page
     doc.setFontSize(16);
 
@@ -208,11 +210,15 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
         2: { halign: 'center' }  // Centrer la troisième colonne
       }
     });
+
+    doc.text('Commentaire : [...]', 20, 125);
     
     doc.setFont("times", "italic");
     doc.setFontSize(10);
     doc.setTextColor(150); // Gris (0 = noir, 255 = blanc)
     doc.text("Document réalisé grâce à la solution OptiX", pageWidth / 2, 287, { align: "center" });
+
+    // --------------- DEUXIEME PAGE --------------- //
 
     doc.addPage(); // Ajouter une nouvelle page
     doc.setFontSize(16);
@@ -234,7 +240,7 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
     doc.text('Raison : [...]', 20, 75);
 
     autoTable(doc, {
-      startY: 85, // ✅ Position du tableau fixée à 85
+      startY: 85, // Position du tableau fixée à 85
       head: [
         [
           { content: 'Intitulé', rowSpan: 2, styles: { halign: 'center', valign: 'middle', fontStyle: 'bold' } },
@@ -243,44 +249,82 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
         ['OD', 'OG']
       ],
       body: [
-        ['Oeil directeur VL / VP', { content: '', colSpan: 2, styles: { halign: 'center' } }], // ✅ Fusion OD & OG
-        ['Oeil dominant VL / VP', { content: '', colSpan: 2, styles: { halign: 'center' } }], // ✅ Fusion OD & OG
+        ['Oeil directeur VL / VP', { content: '', colSpan: 2, styles: { halign: 'center' } }], // Fusion OD & OG
+        ['Oeil dominant VL / VP', { content: '', colSpan: 2, styles: { halign: 'center' } }], // Fusion OD & OG
         ['Réfraction lentille', '', ''],
         ['PSC', '', ''],
         ['DHIV', '', ''],
         ['Diamètre pupillaire', '', ''],
         ['FP / Recouvrement', '', ''],
         ['Tonus', '', ''],
-        ['Clignement', { content: '', colSpan: 2, styles: { halign: 'center' } }], // ✅ Fusion OD & OG
+        ['Clignement', { content: '', colSpan: 2, styles: { halign: 'center' } }], // Fusion OD & OG
         ['Kératométrie', '', ''],
         ['Hauteur prisme de larmes', '', ''],
         ['Charge lacrymale', '', ''],
         ['Lipides', '', '']
       ],
       styles: {
-        halign: 'center', // ✅ Centre tous les textes
+        halign: 'center', 
         valign: 'middle',
         lineWidth: 0.5,
-        lineColor: [0, 0, 0] // ✅ Bordures noires
+        lineColor: [0, 0, 0] 
       },
       headStyles: {
-        fillColor: [0, 76, 153], // ✅ Bleu foncé pour l'en-tête
-        textColor: [255, 255, 255], // ✅ Texte blanc
+        fillColor: [0, 76, 153], // Bleu foncé pour l'en-tête
+        textColor: [255, 255, 255], 
         fontStyle: 'bold'
       },
       alternateRowStyles: {
-        fillColor: [240, 240, 240] // ✅ Fond gris clair une ligne sur deux
+        fillColor: [240, 240, 240] // Fond gris clair une ligne sur deux
       },
       columnStyles: {
-        0: { cellWidth: 50, halign: 'center', fontStyle: 'bold' }, // ✅ Largeur fixe à 50px pour "Intitulé"
-        1: { halign: 'center', cellWidth: 65 }, // ✅ Largeur de 65px pour OD
-        2: { halign: 'center', cellWidth: 65 }  // ✅ Largeur de 65px pour OG
+        0: { cellWidth: 50, halign: 'center', fontStyle: 'bold' }, // Largeur fixe à 50px pour "Intitulé"
+        1: { halign: 'center', cellWidth: 65 }, // Largeur de 65px pour OD
+        2: { halign: 'center', cellWidth: 65 }  // Largeur de 65px pour OG
       }
     });
     
+    doc.text('Commentaire : [...]', 20, 210);
 
     doc.setFont("times", "italic");
     doc.setFontSize(10);
+    doc.setTextColor(150); // Gris (0 = noir, 255 = blanc)
+    doc.text("Document réalisé grâce à la solution OptiX", pageWidth / 2, 287, { align: "center" });
+
+    // --------------- TROISIÈME PAGE --------------- //
+
+    doc.addPage(); // Ajouter une nouvelle page
+    
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(0); // Noir
+
+    // Informations Magasin (Exemple)
+    doc.setFontSize(12);
+    doc.text('NOM PRENOM', 20, 30);
+    doc.text('ADRESSE', 20, 35);
+    doc.text('VILLE', 20, 40);
+    doc.text('NUM SECU SOCIALE', 20, 45);
+    doc.text('NUM CONTRAT', 20, 50);
+
+    doc.text('DESTINATAIRE', 140, 55);
+    doc.text('ADRESSE', 140, 60);
+
+    doc.text('Fait à [...], le ' + new Date().toLocaleDateString(), 140, 70);
+    
+    doc.text('Objet : [...]', 20, 80);
+
+    doc.text('Madame, Monsieur,', 20, 90);
+
+    doc.text('Par la présente lettre, je vous fais part de ma demande d\'information au sujet du \nremboursement des soins [...].', 20, 100);
+
+    doc.text('En effet, des soins devront être réalisés et j\' aimerais savoir quel sera le montant de votre \nprise en charge pour [...].', 20, 120);
+    
+    doc.text('Ci-joint, une estimation des coûts réalisée par [...] qui me suit.', 20, 140);
+
+    doc.text('Avec mes remerciements, je vous prie d\' agréer, Madame, Monsieur, mes \nrespectueuses salutations ', 20, 155);
+    
+    doc.text('Signature : ', 150, 180);
+
     doc.setTextColor(150); // Gris (0 = noir, 255 = blanc)
     doc.text("Document réalisé grâce à la solution OptiX", pageWidth / 2, 287, { align: "center" });
 

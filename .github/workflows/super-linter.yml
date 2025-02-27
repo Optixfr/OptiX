@@ -9,10 +9,10 @@ name: Lint Code Base
 on:
   push:
     branches:
-      - disabled #main
+      - main
   pull_request:
     branches:
-      - disabled #main
+      - main
 jobs:
   run-lint:
     runs-on: ubuntu-latest

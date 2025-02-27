@@ -3,10 +3,10 @@ name: Angular CI
 on:
   pull_request:
     branches:
-      - disabled #main
+      - main
   push:
     branches:
-      - disabled #main
+      - main
 
 jobs:
   build-and-test:

@@ -27,6 +27,9 @@
             "styles": [
               "src/styles.css"
             ],
+            "polyfills": [
+              "zone.js"
+            ],
             "scripts": [],
             "baseHref": "/OptiX/"
           },

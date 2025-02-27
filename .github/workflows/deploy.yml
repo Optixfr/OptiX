@@ -1,0 +1,26 @@
+name: Déploiement sur serveur privé
+
+on:
+  push:
+    branches:
+      - disabled
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Déployer sur le serveur via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_IP }}   # Adresse IP d serveur
+          username: ${{ secrets.SERVER_USER }}  # Nom d'utilisateur SSH
+          key: ${{ secrets.SSH_PRIVATE_KEY }}  # Clé privée SSH stockée dans GitHub Secrets
+          script: |
+            cd /chemin/du/deploiement
+            git pull origin main
+            go build -o my_app
+            systemctl restart my_app.service

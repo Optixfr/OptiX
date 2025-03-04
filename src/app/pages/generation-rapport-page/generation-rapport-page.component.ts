@@ -88,6 +88,8 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
   generatePDF(): void {
     const doc = new jsPDF();
 
+    /*
+
     doc.setFontSize(16);
 
   //   // Ajouter un logo
@@ -151,9 +153,11 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
       startY:  140 // Position du second tableau après le premier
     });
 
+    */
+
     // --------------- PREMIERE PAGE --------------- //
 
-    doc.addPage(); // Ajouter une nouvelle page
+    // doc.addPage(); // Ajouter une nouvelle page
     doc.setFontSize(16);
 
     const pageWidth = doc.internal.pageSize.getWidth(); // Largeur de la page
@@ -174,12 +178,22 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
       head: [['Oeil', 'Droit', 'Gauche']],
       body: [
         [
-          'Information', 
+          'Marque', 
           '[...]', 
           '[...]'
         ],
         [
-          'Résultat', 
+          'Modèle', 
+          '[...][diamètre][rayon]',
+          '[...]'
+        ],
+        [
+          'Compensation', 
+          '[...]',
+          '[...]'
+        ],
+        [
+          'Produit d\'entretien', 
           '[...]',
           '[...]'
         ],
@@ -211,7 +225,7 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
       }
     });
 
-    doc.text('Commentaire : [...]', 20, 125);
+    doc.text('Commentaire : [...]', 20, 140);
     
     doc.setFont("times", "italic");
     doc.setFontSize(10);
@@ -226,7 +240,7 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
     doc.setFont("helvetica", "normal");
     doc.setTextColor(0); // Noir
 
-    doc.text("Compte Rendu", pageWidth / 2, 20, { align: "center" });
+    doc.text("Compte Rendu Biomicroscopie", pageWidth / 2, 20, { align: "center" });
 
     // Informations Magasin (Exemple)
     doc.setFontSize(12);
@@ -324,9 +338,85 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
     doc.text('Avec mes remerciements, je vous prie d\' agréer, Madame, Monsieur, mes \nrespectueuses salutations ', 20, 155);
     
     doc.text('Signature : ', 150, 180);
-
+ 
     doc.setTextColor(150); // Gris (0 = noir, 255 = blanc)
     doc.text("Document réalisé grâce à la solution OptiX", pageWidth / 2, 287, { align: "center" });
+
+    // --------------- QUATRIEME PAGE --------------- //
+
+    doc.addPage(); // Ajouter une nouvelle page
+    doc.setFontSize(16);
+
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(0); // Noir
+
+    doc.text("Biomicroscopie lentilles", pageWidth / 2, 20, { align: "center" });
+
+    // Informations Magasin (Exemple)
+    doc.setFontSize(12);
+    doc.text('Magasin: [...]', 20, 40);
+    doc.text('Adresse : [...]', 20, 45);
+    doc.text('Par : [...]', 20, 50);
+    doc.text('Fait le : ' + new Date().toLocaleDateString(), 150, 55);
+    doc.text('A : [...]', 150, 60);
+    doc.text('Fait à : [ex: H + 2 / J + 4]', 20, 65);
+    doc.text('Porteur: [...]', 20, 70);
+    
+    autoTable(doc, {
+      startY: 85, // Position du tableau fixée à 85
+      head: [
+        [
+          { content: 'Intitulé', rowSpan: 2, styles: { halign: 'center', valign: 'middle', fontStyle: 'bold' } },
+          { content: 'Commentaire', colSpan: 2, styles: { halign: 'center', fontStyle: 'bold' } }
+        ],
+        ['OD', 'OG']
+      ],
+      body: [
+        ['Lentille', '[...]', '[...]'],
+        ['Recouvrement', 'Grade : [...]', 'Grade : [...]'],
+        ['Centrage', 'Grade : [...]', 'Grade : [...]'],
+        ['Mobilité', 'Grade : [...]', 'Grade : [...]'],
+        ['Rotation', '[...]', '[...]'],
+        ['Oscillation', '[...]', '[...]'],
+        ['Particularité', '[...]', '[...]'],
+        ['Conjonctive', '[...]', '[...]'],
+        ['Cornée', '[...]', '[...]'],
+        ['AV VL', '[...]', '[...]'],
+        ['AV VL ODG', { content: '[...]', colSpan: 2, styles: { halign: 'center' } }], // Fusion OD & OG
+        ['AV VP', '[...]', '[...]'],
+        ['AV VP ODG', { content: '[...]', colSpan: 2, styles: { halign: 'center' } }], // Fusion OD & OG
+        ['Surréfraction', '[...]', '[...]'],
+        ['Confort subjectif', '[...]', '[...]']
+      ],
+      styles: {
+        halign: 'center', 
+        valign: 'middle',
+        lineWidth: 0.5,
+        lineColor: [0, 0, 0] 
+      },
+      headStyles: {
+        fillColor: [0, 76, 153], // Bleu foncé pour l'en-tête
+        textColor: [255, 255, 255], 
+        fontStyle: 'bold'
+      },
+      alternateRowStyles: {
+        fillColor: [240, 240, 240] // Fond gris clair une ligne sur deux
+      },
+      columnStyles: {
+        0: { cellWidth: 50, halign: 'center', fontStyle: 'bold' }, // Largeur fixe à 50px pour "Intitulé"
+        1: { halign: 'center', cellWidth: 65 }, // Largeur de 65px pour OD
+        2: { halign: 'center', cellWidth: 65 }  // Largeur de 65px pour OG
+      }
+    });
+    
+    doc.text('Commentaire : [...]', 20, 225);
+
+    doc.setFont("times", "italic");
+    doc.setFontSize(10);
+    doc.setTextColor(150); // Gris (0 = noir, 255 = blanc)
+    doc.text("Document réalisé grâce à la solution OptiX", pageWidth / 2, 287, { align: "center" });
+
+    // --------------- FIN  --------------- //
 
     // Générer le PDF comme un Blob
     const pdfBlob = doc.output('blob');

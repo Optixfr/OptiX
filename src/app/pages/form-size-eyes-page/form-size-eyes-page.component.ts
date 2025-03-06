@@ -6,15 +6,14 @@ import { Router, RouterLink } from '@angular/router';
 import { FormSizeEyesDataService } from '../../services/form-eyes-size/form-size-eyes-data.service';
 
 @Component({
-  selector: 'app-form-size-eyes-page',
-  standalone: true,
-  imports: [
-    LateralNavbarComponent,
-    TopBarComponent,
-    FormEyeSizeComponent,
-    RouterLink,
-  ],
-  templateUrl: './form-size-eyes-page.component.html',
+    selector: 'app-form-size-eyes-page',
+    imports: [
+        LateralNavbarComponent,
+        TopBarComponent,
+        FormEyeSizeComponent,
+        RouterLink,
+    ],
+    templateUrl: './form-size-eyes-page.component.html'
 })
 export class FormSizeEyesPageComponent {
   isDuplicatedForm = false;

@@ -20,17 +20,16 @@ interface FormData {
 }
 
 @Component({
-  selector: 'app-generation-rapport-page',
-  standalone: true,
-  imports: [
-    LateralNavbarComponent,
-    TopBarComponent,
-    CommonModule,
-    RouterLink,
-    HttpClientModule,
-    FormsModule
-  ],
-  templateUrl: './generation-rapport-page.component.html',
+    selector: 'app-generation-rapport-page',
+    imports: [
+        LateralNavbarComponent,
+        TopBarComponent,
+        CommonModule,
+        RouterLink,
+        HttpClientModule,
+        FormsModule
+    ],
+    templateUrl: './generation-rapport-page.component.html'
 })
 export class GenerationRapportPageComponent implements OnInit, OnDestroy {
   pdfUrl: SafeResourceUrl | undefined;

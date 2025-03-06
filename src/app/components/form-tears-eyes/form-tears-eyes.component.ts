@@ -5,10 +5,9 @@ import { FormTearsEyesDataService } from '../../services/form-tear-size/form-tea
 import { HttpClientModule } from '@angular/common/http';
 
 @Component({
-  selector: 'app-form-tears-eyes',
-  standalone: true,
-  imports: [FormsModule, HttpClientModule],
-  templateUrl: './form-tears-eyes.component.html',
+    selector: 'app-form-tears-eyes',
+    imports: [FormsModule, HttpClientModule],
+    templateUrl: './form-tears-eyes.component.html'
 })
 
 export class FormTearsEyesComponent implements OnInit {

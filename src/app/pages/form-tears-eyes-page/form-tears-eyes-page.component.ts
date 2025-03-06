@@ -9,11 +9,10 @@ import { LateralNavbarComponent } from "../../components/lateral-navbar/lateral-
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-form-tears-eyes-page',
-  standalone: true,
-  imports: [HttpClientModule, FormTearsEyesComponent, TopBarComponent, LateralNavbarComponent, FormsModule, RouterLink], // Importer HttpClientModule ici
-  providers: [EyesCalculationService],
-  templateUrl: './form-tears-eyes-page.component.html',
+    selector: 'app-form-tears-eyes-page',
+    imports: [HttpClientModule, FormTearsEyesComponent, TopBarComponent, LateralNavbarComponent, FormsModule, RouterLink], // Importer HttpClientModule ici
+    providers: [EyesCalculationService],
+    templateUrl: './form-tears-eyes-page.component.html'
 })
 
 export class FormTearsEyesPageComponent {

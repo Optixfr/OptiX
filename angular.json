@@ -34,23 +34,23 @@
             "baseHref": "/OptiX/"
           },
           "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "vendorChunk": false,
-              "buildOptimizer": true
-            }
-          }
+  "production": {
+    "fileReplacements": [
+      {
+        "replace": "src/environments/environment.ts",
+        "with": "src/environments/environment.prod.ts"
+      }
+    ],
+    "optimization": true,
+    "outputHashing": "all"
+  },
+  "development": {
+    "buildOptimizer": false,
+    "optimization": false,
+    "sourceMap": true
+  }
+}
+
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",

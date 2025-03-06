@@ -4,10 +4,9 @@ import { filter } from 'rxjs';
 import { ProgressBarService } from '../../services/progress-bar/progress-bar-service.service';
 
 @Component({
-  selector: 'app-progress-bar',
-  standalone: true,
-  imports: [],
-  templateUrl: './progress-bar.component.html',
+    selector: 'app-progress-bar',
+    imports: [],
+    templateUrl: './progress-bar.component.html'
 })
 
 export class ProgressBarComponent implements OnInit {

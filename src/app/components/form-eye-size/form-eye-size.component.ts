@@ -5,10 +5,9 @@ import { CommonModule } from '@angular/common';
 import { FormSizeEyesDataService } from '../../services/form-eyes-size/form-size-eyes-data.service';
 
 @Component({
-  selector: 'app-form-eye-size',
-  standalone: true,
-  imports: [FormsModule, CommonModule],
-  templateUrl: './form-eye-size.component.html',
+    selector: 'app-form-eye-size',
+    imports: [FormsModule, CommonModule],
+    templateUrl: './form-eye-size.component.html'
 })
 export class FormEyeSizeComponent implements OnInit {
   @Input() nomFormulaire = '';

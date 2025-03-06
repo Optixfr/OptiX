@@ -3,10 +3,9 @@ import { NavbarService } from '../../services/navbar-service/navbar-service.serv
 import { ProgressBarComponent } from "../progress-bar/progress-bar.component";
 
 @Component({
-  selector: 'app-top-bar',
-  standalone: true,
-  imports: [ProgressBarComponent],
-  templateUrl: './top-bar.component.html',
+    selector: 'app-top-bar',
+    imports: [ProgressBarComponent],
+    templateUrl: './top-bar.component.html'
 })
 export class TopBarComponent {
   

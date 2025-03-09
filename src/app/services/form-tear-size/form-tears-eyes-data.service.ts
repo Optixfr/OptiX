@@ -10,6 +10,7 @@ interface FormData {
   providedIn: 'root',
 })
 export class FormTearsEyesDataService {
+  
   private formData: FormData = {
     droite: {
       psc: 'standard',
@@ -26,6 +27,8 @@ export class FormTearsEyesDataService {
       chargeLacrimale: 'standard',
     }
   }
+  
+  private commentaire: string = '';
 
   getFormData(): FormData {
     return { ...this.formData };
@@ -41,7 +44,15 @@ export class FormTearsEyesDataService {
     }
   }
   
+  setCommentaire(commentaire: string) {
+    this.commentaire = commentaire;
+  }
+  
   duplicateRightForm() {
     this.formData.gauche = structuredClone(this.formData.droite);
+  }
+  
+  getCommentaire(): string {
+    return this.commentaire;
   }
 }

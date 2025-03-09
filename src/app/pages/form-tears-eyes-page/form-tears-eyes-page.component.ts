@@ -26,6 +26,7 @@ export class FormTearsEyesPageComponent {
   submitForms() {
     const formData = this.forms.map((form) => form.getFormData());
     this.formDataService.setFormData(formData);
+    this.formDataService.setCommentaire(this.commentaire);
     this.sendDataToBackend();    
     this.router.navigate(['/report-generation']);
   }

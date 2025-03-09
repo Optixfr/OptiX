@@ -1,6 +1,6 @@
 <div class="flex flex-row bg-background">
     <app-lateral-navbar></app-lateral-navbar>
-    <div class="flex flex-col justify-between bg-background w-full pl-8 pr-8">
+    <div class="flex flex-col justify-between bg-background w-full">
       <app-top-bar></app-top-bar>
       <div class="grid grid-cols-2 gap-5">
         <app-form-tears-eyes [nomFormulaire]="isDuplicatedForm ? 'Formulaire Oeil Droit' : 'Biométrie Oeil Droit = Biométrie Oeil Gauche'"></app-form-tears-eyes>
@@ -15,7 +15,7 @@
       
       <div>
           <h2 class="text-xl mb-6">Commentaire</h2>
-          <textarea class="border w-full rounded-lg border-tertiary drop-shadow-xl resize-none" rows="5" cols="50" [(ngModel)]="commentaire" name="commentaire" id="commentaire"></textarea>
+          <textarea class="border w-full rounded-lg border-tertiary drop-shadow-xl resize-none p-2" rows="5" cols="50" [(ngModel)]="commentaire" name="commentaire" id="commentaire" placeholder="Ecrivez un commentaire ici..."></textarea>
       </div>
       
       

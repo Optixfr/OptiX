@@ -22,8 +22,10 @@
     "@angular/platform-browser": "^19.2.1",
     "@angular/platform-browser-dynamic": "^19.2.1",
     "@angular/router": "^19.2.1",
-    "jspdf": "^2.5.2",
-    "jspdf-autotable": "^3.8.4",
+    "jspdf": "^3.0.0",
+    "jspdf-autotable": "^5.0.2",
+    "ng2-pdf-viewer": "^10.4.0",
+    "pdfjs-dist": "^4.10.38",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

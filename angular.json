@@ -13,6 +13,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+        "lodash"
+     ],
             "outputPath": "docs",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -84,7 +87,10 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/pdfjs-dist/build/pdf.min.js",
+              "node_modules/pdfjs-dist/build/pdf.worker.min.js"
+            ]
           }
         },
         "lint": {

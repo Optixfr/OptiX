@@ -4,9 +4,11 @@
         [class.w-24]="!isExtended"
     >
         <!-- Logo -->
-        <div class="mb-10 flex justify-center">
+        <div class="mb-10 mt-2 flex justify-center">
             @if(isExtended) {
                 <img src="assets/optalyx_blanc.png" alt="logo" class="w-24">
+            } @else {
+                <img src="assets/optalyx_oeil_blanc.png" alt="logo" class="w-6">
             }
         </div>
 

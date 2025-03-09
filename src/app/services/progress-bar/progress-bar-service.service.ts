@@ -21,7 +21,6 @@ export class ProgressBarService {
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((event: any) => {
         this.activeStep = this.routeSteps[event.url] || 1;
-        console.log('Active step:', this.activeStep);
       });
   }
 }

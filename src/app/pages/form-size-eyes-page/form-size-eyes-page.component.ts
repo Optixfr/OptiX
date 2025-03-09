@@ -24,7 +24,6 @@ export class FormSizeEyesPageComponent {
 
   submitForms() {
     const formData = this.forms.map((form) => form.getFormData()); 
-    console.log('hey', formData);
     this.formDataService.setFormData(formData);
   } 
   

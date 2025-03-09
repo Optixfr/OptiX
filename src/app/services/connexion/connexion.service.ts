@@ -18,7 +18,6 @@ export class ConnexionService {
   //     this.httpClient.post<Utilisateur>(this.apiUrl, { email, password }).subscribe(
   //       (user: Utilisateur) => {
   //         this.utilisateurCourant = user;
-  //         console.log(this.utilisateurCourant);
   //         observer.next(true);
   //         observer.complete();
   //       },

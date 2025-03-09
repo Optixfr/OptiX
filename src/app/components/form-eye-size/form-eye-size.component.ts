@@ -1,41 +1,48 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { EyeMeasure } from '../../models/eyes-measure.model';
-import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormSizeEyesDataService } from '../../services/form-eyes-size/form-size-eyes-data.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: 'app-form-eye-size',
-    imports: [FormsModule, CommonModule],
-    templateUrl: './form-eye-size.component.html'
+  selector: 'app-form-eye-size',
+  templateUrl: './form-eye-size.component.html',
+  imports: [ReactiveFormsModule, CommonModule],
 })
 export class FormEyeSizeComponent implements OnInit {
   @Input() nomFormulaire = '';
+  @Output() formValidity = new EventEmitter<boolean>(); // 🔹 Émet la validité du formulaire
 
-  eyeMeasure!: EyeMeasure;
+  eyeMeasureForm!: FormGroup;
 
   constructor(
-    @Inject(FormSizeEyesDataService)
-    private formSizeEyesDataService: FormSizeEyesDataService
+    private fb: FormBuilder,
+    @Inject(FormSizeEyesDataService) private formSizeEyesDataService: FormSizeEyesDataService
   ) {}
 
   ngOnInit() {
-    if (
-      this.nomFormulaire.includes('Droit') &&
-      this.nomFormulaire.includes('Gauche')
-    ) {
-      // Cas où on duplique l'œil droit sur l'œil gauche
-      this.eyeMeasure = this.formSizeEyesDataService.getFormData().droite;
-    } else if (this.nomFormulaire.includes('Gauche')) {
-      this.eyeMeasure = this.formSizeEyesDataService.getFormData().gauche;
-    } else {
-      this.eyeMeasure = this.formSizeEyesDataService.getFormData().droite;
-    }
+    this.eyeMeasureForm = this.fb.group({
+      sphere: ['', [Validators.required, Validators.pattern(/^-?\d+(\.\d{1,2})?$/)]],
+      cylindre: ['', Validators.required],
+      axe: ['', [Validators.required, Validators.min(0), Validators.max(180)]],
+      dvo: ['', Validators.required],
+      dhiv: ['', Validators.required],
+      k1: ['', Validators.required],
+      k2: ['', Validators.required],
+      excentricite: ['', Validators.required],
+    });
+
+    // 🔹 Écoute les changements et informe le parent
+    this.eyeMeasureForm.statusChanges.subscribe(status => {
+      this.formValidity.emit(this.eyeMeasureForm.valid);
+    });
+  }
+  
+  isInvalid(field: string): boolean {
+    return this.eyeMeasureForm.controls[field].invalid && this.eyeMeasureForm.controls[field].touched;
   }
 
-  submitted = false;
-
-  getFormData(): EyeMeasure {
-    return this.eyeMeasure;
+  getFormData() {
+    return this.eyeMeasureForm.value;
+    console.log('Formulaire soumis :', this.eyeMeasureForm.value);
   }
 }

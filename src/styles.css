@@ -13,7 +13,7 @@
 }
 
 .active {
-  @apply bg-hey rounded-lg;
+  @apply bg-white/10 rounded-lg;
 }
 
 * {

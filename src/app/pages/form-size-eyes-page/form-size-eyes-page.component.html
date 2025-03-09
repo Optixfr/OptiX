@@ -7,7 +7,7 @@
       @if (isDuplicatedForm) {
         <app-form-eye-size [nomFormulaire]="'Formulaire Oeil Gauche'"></app-form-eye-size>
       } @else {
-        <button mat-button (click)="addSideForm()" class="flex justify-center self-center items-center w-[50px] h-[50px] p-[5px] bg-transparent border-none cursor-pointer w-full h-full">
+        <button mat-button (click)="addSideForm()" class="flex justify-center self-center items-center p-[5px] bg-transparent border-none cursor-pointer w-full h-full">
           <img class="self-center" src="assets/additem.svg" alt="Duplicate the form">
         </button>
       }

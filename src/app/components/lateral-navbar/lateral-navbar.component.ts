@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { NavbarService } from '../../services/navbar-service/navbar-service.service';
 
 @Component({
     selector: 'app-lateral-navbar',
-    imports: [RouterLink, NgOptimizedImage, RouterModule],
+    imports: [RouterLink, RouterModule],
     templateUrl: './lateral-navbar.component.html'
 })
 export class LateralNavbarComponent {

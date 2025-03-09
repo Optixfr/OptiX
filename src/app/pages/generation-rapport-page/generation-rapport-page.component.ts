@@ -22,20 +22,22 @@ interface FormData {
 @Component({
     selector: 'app-generation-rapport-page',
     imports: [
-        LateralNavbarComponent,
-        TopBarComponent,
-        CommonModule,
-        RouterLink,
-        HttpClientModule,
-        FormsModule
-    ],
+    LateralNavbarComponent,
+    TopBarComponent,
+    CommonModule,
+    RouterLink,
+    HttpClientModule,
+    FormsModule,
+],
     templateUrl: './generation-rapport-page.component.html'
 })
 export class GenerationRapportPageComponent implements OnInit, OnDestroy {
   pdfUrl: SafeResourceUrl | undefined;
+  pdfSettings: string = '#toolbar=0&navpanes=0&scrollbar=0&view=FitH&view=FitW';
   eyeDataLeft: any;
   eyeDataRight: any;
   dataSubscription: Subscription | undefined;
+  pdfBlobounet: any;
 
   eyesTear: FormData = {
     droite: {
@@ -58,7 +60,7 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
     private formSizeEyesDataService: FormSizeEyesDataService,
     private formTearEyesDataService: FormTearsEyesDataService,
     private sanitizer: DomSanitizer,
-    private eyesCalculationService: EyesCalculationService,
+    //private eyesCalculationService: EyesCalculationService,
     private eyesTearService: FormTearsEyesDataService
   ) {}
 
@@ -77,16 +79,16 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
     };
 
 
-    this.dataSubscription = this.eyesCalculationService.sendData(transformedData).subscribe(
-      (result: any) => {
-        this.eyeDataLeft = result.eye_o_gauche;
-        this.eyeDataRight = result.eye_o_droite;
-        this.generatePDF();
-      },
-      (error) => {
-        window.alert(error.error.error);
-      }
-    );
+    // this.dataSubscription = this.eyesCalculationService.sendData(transformedData).subscribe(
+    //   (result: any) => {
+    //     this.eyeDataLeft = result.eye_o_gauche;
+    //     this.eyeDataRight = result.eye_o_droite;
+    //     this.generatePDF();
+    //   },
+    //   (error) => {
+    //     window.alert(error.error.error);
+    //   }
+    // );
 
     this.eyesTear = this.eyesTearService.getFormData();
     this.generatePDF();
@@ -103,72 +105,6 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
 
   generatePDF(): void {
     const doc = new jsPDF();
-
-    doc.setFontSize(16);
-
-  //   // Ajouter un logo
-  // const logoUrl = '../../../../public/assets/logo.png'; // Remplace par le chemin de ton logo
-  // const imgData = ''; // Tu peux charger ton image ici en base64 ou utiliser une URL
-  // // Charger et ajouter le logo (dimension du logo ajustée selon les besoins)
-  // doc.addImage(logoUrl, 'PNG', 10, 10, 30, 30);
-  // Titre du document
-  doc.setFontSize(16);
-  doc.text('Rapport de Prise en Charge', 50, 20);
-
-  // Informations Mutuelle et Tiers Payant (Exemple)
-  doc.setFontSize(12);
-  doc.text('Mutuelle: Nom de la Mutuelle', 10, 50);
-  doc.text('Numéro de contrat: 123456789', 10, 60);
-  doc.text('Date: ' + new Date().toLocaleDateString(), 150, 50);
-  doc.text('Référence Tiers Payant: 987654321', 150, 60);
-
-    // Tableau récapitulatif des données
-    autoTable(doc, {
-      head: [['Oeil', 'Diamètre', 'Rayon', 'Puissance X', 'Puissance Y', 'Puissance Z']],
-      body: [
-        [
-          'Gauche', 
-          this.eyeDataLeft.diametre, 
-          this.eyeDataLeft.rayon, 
-          this.eyeDataLeft.puissance.x, 
-          this.eyeDataLeft.puissance.y, 
-          this.eyeDataLeft.puissance.z
-        ],
-        [
-          'Droit', 
-          this.eyeDataRight.diametre, 
-          this.eyeDataRight.rayon, 
-          this.eyeDataRight.puissance.x, 
-          this.eyeDataRight.puissance.y, 
-          this.eyeDataRight.puissance.z
-        ],
-      ],
-      startY: 80
-    });
-
-    autoTable(doc, {
-      head: [['Oeil', 'PSC', 'Tonus', 'Hauteur Prisme', 'Grade Lipide', 'Charge Lacrimale']],
-      body: [
-        [
-          'Gauche',
-          this.eyesTear.gauche.psc,
-          this.eyesTear.gauche.tonus,
-          this.eyesTear.gauche.hauteurPrisme,
-          this.eyesTear.gauche.gradeLipide,
-          this.eyesTear.gauche.chargeLacrimale
-        ],
-        [
-          'Droit',
-          this.eyesTear.droite.psc,
-          this.eyesTear.droite.tonus,
-          this.eyesTear.droite.hauteurPrisme,
-          this.eyesTear.droite.gradeLipide,
-          this.eyesTear.droite.chargeLacrimale
-        ],
-      ],
-      startY:  140 
-    });
-
     doc.setFontSize(16);
 
     const pageWidth = doc.internal.pageSize.getWidth(); // Largeur de la page
@@ -195,8 +131,10 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
         ],
         [
           'Modèle', 
-          '[...][diamètre][rayon]',
-          '[...]'
+          `[...][${this.eyeDataRight.diametre}][${this.eyeDataRight.rayon}]`,
+          `[...][${this.eyeDataLeft.diametre}][${this.eyeDataLeft.rayon}]`,
+
+
         ],
         [
           'Compensation', 
@@ -241,7 +179,7 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
     doc.setFont("times", "italic");
     doc.setFontSize(10);
     doc.setTextColor(150); // Gris (0 = noir, 255 = blanc)
-    doc.text("Document réalisé grâce à la solution OptiX", pageWidth / 2, 287, { align: "center" });
+    doc.text("Document réalisé grâce à la solution OptalyX", pageWidth / 2, 287, { align: "center" });
 
     // --------------- DEUXIEME PAGE --------------- //
 
@@ -431,10 +369,11 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
 
     // Générer le PDF comme un Blob
     const pdfBlob = doc.output('blob');
-
+  
     // Créer une URL temporaire pour le PDF et la marquer comme sûre
     const pdfObjectUrl = URL.createObjectURL(pdfBlob);
-    this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(pdfObjectUrl);
+    this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(pdfObjectUrl+this.pdfSettings);
+    
   }
 
   downloadPDF(): void {

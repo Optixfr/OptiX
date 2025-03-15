@@ -1,27 +1,33 @@
 <div class="flex flex-row bg-background">
-    <app-lateral-navbar></app-lateral-navbar>
-    <div class="flex flex-col justify-between bg-background w-full">
-      <app-top-bar></app-top-bar>
-      <div class="grid grid-cols-2 gap-5  pl-8 pr-8">
-        <app-form-tears-eyes [nomFormulaire]="isDuplicatedForm ? 'Formulaire Oeil Droit' : 'Biométrie Oeil Droit = Biométrie Oeil Gauche'"></app-form-tears-eyes>
-        @if (isDuplicatedForm) {
-            <app-form-tears-eyes [nomFormulaire]="'Formulaire Oeil Gauche'"></app-form-tears-eyes>
-        } @else {
-            <button mat-button (click)="addSideForm()" class="flex justify-center self-center items-center p-[5px] bg-transparent border-none cursor-pointer w-full h-full">
-                <img src="assets/additem.svg" alt="Duplicate the form">
-            </button>
-        }
-      </div>
-      
-      <div class="pl-8 pr-8">
-          <h2 class="text-xl mb-6">Commentaire</h2>
-          <textarea class="border w-full rounded-lg border-tertiary drop-shadow-xl resize-none p-2" rows="5" cols="50" [(ngModel)]="commentaire" name="commentaire" id="commentaire" placeholder="Ecrivez un commentaire ici..."></textarea>
-      </div>
-      
-      
-      <div class="flex flex-row gap-5 justify-center mb-5">
-        <button class="w-[246px] h-[44px] bg-accent rounded-[16px] mx-auto mb-5 drop-shadow-xl" routerLink="/accueil">Retour</button>
-        <button class="w-[246px] h-[44px] bg-accent rounded-[16px] mx-auto mb-5 drop-shadow-xl" (click)="submitForms()" routerLink="/report-generation">Soumettre</button>
-      </div>
-     </div>
+  <app-lateral-navbar></app-lateral-navbar>
+  <div class="flex flex-col justify-between bg-background w-full">
+    <app-top-bar></app-top-bar>
+    <div class="grid grid-cols-2 gap-5  pl-8 pr-8">
+      <app-form-tears-eyes
+        [nomFormulaire]="isDuplicatedForm ? 'Biométrie Oeil Droit' : 'Biométrie Oeil Droit = Biométrie Oeil Gauche'"></app-form-tears-eyes>
+      @if (isDuplicatedForm) {
+      <app-form-tears-eyes [nomFormulaire]="'Biométrie Oeil Gauche'"></app-form-tears-eyes>
+      } @else {
+      <button mat-button (click)="addSideForm()"
+        class="flex justify-center self-center items-center p-[5px] bg-transparent border-none cursor-pointer w-full h-full">
+        <img src="assets/additem.svg" alt="Duplicate the form">
+      </button>
+      }
+    </div>
+
+    <div class="pl-8 pr-8">
+      <h2 class="text-xl mb-6">Commentaire</h2>
+      <textarea class="border w-full rounded-lg border-tertiary drop-shadow-xl resize-none p-2" rows="5" cols="50"
+        [(ngModel)]="commentaire" name="commentaire" id="commentaire"
+        placeholder="Ecrivez un commentaire ici..."></textarea>
+    </div>
+
+
+    <div class="flex flex-row gap-5 justify-center mb-5">
+      <button class="w-[246px] h-[44px] bg-accent rounded-[16px] mx-auto mb-5 drop-shadow-xl"
+        routerLink="/accueil">Retour</button>
+      <button class="w-[246px] h-[44px] bg-accent rounded-[16px] mx-auto mb-5 drop-shadow-xl" (click)="submitForms()"
+        routerLink="/report-generation">Soumettre</button>
+    </div>
   </div>
+</div>

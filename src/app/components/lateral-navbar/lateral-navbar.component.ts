@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { NavbarService } from '../../services/navbar-service/navbar-service.service';
+import { FormSizeEyesDataService } from '../../services/form-eyes-size/form-size-eyes-data.service';
 
 @Component({
     selector: 'app-lateral-navbar',
@@ -13,7 +14,7 @@ export class LateralNavbarComponent {
   
   logoUrl = '../../../assets/home-2.svg';
 
-  constructor(private router: Router, private navbarService: NavbarService) {}
+  constructor(private router: Router, private navbarService: NavbarService, private formEyesSizeService : FormSizeEyesDataService) {}
   
 
   ngOnInit(): void {

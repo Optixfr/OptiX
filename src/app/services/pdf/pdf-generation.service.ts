@@ -7,7 +7,6 @@ import { FormSizeEyesDataService } from '../form-eyes-size/form-size-eyes-data.s
 import { EyesTear } from '../../models/eyes-tear.model';
 import { EyesCalculationService } from '../calculation/eyes-calculation.service';
 
-
 interface FormData {
   droite: EyesTear;
   gauche: EyesTear;
@@ -17,56 +16,57 @@ interface FormData {
   providedIn: `root`,
 })
 export class PdfGenerationService {
-  private commentaire: string = ``;
-  private nomClient: string = `Dupont`;
-  private prenomClient: string = `Thomas`;
-  private adresse: string = `Rue de la Paix, 12`;
-  private ville: string = `Toulouse`;
-  private numSecu: string = `123456789012345`;
-  private numContrat: string = `Z123456789012345`;
-  private destinataire: string = `Louis Dupont`;
+  private commentaire = ``;
+  private nomClient = `Dupont`;
+  private prenomClient = `Thomas`;
+  private adresse = `Rue de la Paix, 12`;
+  private ville = `Toulouse`;
+  private numSecu = `123456789012345`;
+  private numContrat = `Z123456789012345`;
+  private destinataire = `Louis Dupont`;
   private dateLieu: string = new Date().toLocaleDateString();
-  private objet: string = ``;
-  private detailsSoins: string = ``;
-  private estimation: string = ``;
-  private signature: string = ``;
-  private magasin: string = `OptalyX`;
-  private magasinAdresse: string = `Route de Paris, 12`;
-  private faitPar: string = `Jean Dupont`;
-  private lieuFait: string = `Tournefeuille`;
-  private porteur: string = `Jean Dupont`;
-  private age: string = `18 ans`;
-  private raison: string = `ZED`;
-  
+  private objet = ``;
+  private detailsSoins = ``;
+  private estimation = ``;
+  private signature = ``;
+  private magasin = `OptalyX`;
+  private magasinAdresse = `Route de Paris, 12`;
+  private faitPar = `Jean Dupont`;
+  private lieuFait = `Tournefeuille`;
+  private porteur = `Jean Dupont`;
+  private age = `18 ans`;
+  private raison = `ZED`;
+
   eyeDataLeft: any;
   eyeDataRight: any;
-  
+
   eyesTear: FormData = {
     droite: {
       psc: '',
       tonus: '',
       hauteurPrisme: '',
       gradeLipide: '',
-      chargeLacrimale: ''
+      chargeLacrimale: '',
     },
     gauche: {
       psc: '',
       tonus: '',
       hauteurPrisme: '',
       gradeLipide: '',
-      chargeLacrimale: ''
-    }
+      chargeLacrimale: '',
+    },
   };
+
   dataSubscription: any;
-  
+
   private doc: jsPDF = new jsPDF();
 
   constructor(
     private sanitizer: DomSanitizer,
     private formSizeEyesDataService: FormSizeEyesDataService,
     private formTearEyesDataService: FormTearsEyesDataService,
-    //private eyesCalculationService: EyesCalculationService,
-    private eyesTearService: FormTearsEyesDataService,
+    private eyesCalculationService: EyesCalculationService,
+    private eyesTearService: FormTearsEyesDataService
   ) {
     const formDataMeasure = this.formSizeEyesDataService.getFormData();
     const formDataTear = this.eyesTearService.getFormData();
@@ -84,15 +84,20 @@ export class PdfGenerationService {
       eye_t_gauche: formDataTear.gauche,
     };
 
-    // this.dataSubscription = this.eyesCalculationService.sendData(transformedData).subscribe(
-    //   (result: any) => {
-    //     this.eyeDataLeft = result.eye_o_gauche;
-    //     this.eyeDataRight = result.eye_o_droite;
-    //   },
-    //   (error) => {
-    //     window.alert(error.error.error);
-    //   }
-    // );
+    this.dataSubscription = this.eyesCalculationService
+      .sendData(transformedData)
+      .subscribe(
+        (result: any) => {
+          this.eyeDataLeft = result.eye_o_gauche;
+          this.eyeDataRight = result.eye_o_droite;
+        },
+        (error) => {
+          window.alert(error.error.error);
+        }
+      );
+
+    console.log(this.eyeDataLeft);
+    console.log(this.eyeDataRight);
 
     this.eyesTear = this.eyesTearService.getFormData();
   }
@@ -151,9 +156,14 @@ export class PdfGenerationService {
     this.doc.text(`Signature : `, 150, 180);
 
     this.doc.setTextColor(150); // Gris (0 = noir, 255 = blanc)
-    this.doc.text('this.document réalisé grâce à la solution OptiX', pageWidth / 2, 287, {
-      align: 'center',
-    });
+    this.doc.text(
+      'this.document réalisé grâce à la solution OptiX',
+      pageWidth / 2,
+      287,
+      {
+        align: 'center',
+      }
+    );
 
     // --------------- QUATRIEME PAGE --------------- //
 
@@ -163,7 +173,9 @@ export class PdfGenerationService {
     this.doc.setFont('helvetica', 'normal');
     this.doc.setTextColor(0); // Noir
 
-    this.doc.text('Biomicroscopie lentilles', pageWidth / 2, 20, { align: 'center' });
+    this.doc.text('Biomicroscopie lentilles', pageWidth / 2, 20, {
+      align: 'center',
+    });
 
     // Informations Magasin (Exemple)
     this.doc.setFontSize(12);
@@ -301,15 +313,31 @@ export class PdfGenerationService {
         [`DHIV`, `13`, `13`],
         [`Diamètre pupillaire`, `13`, ``],
         [`FP / Recouvrement`, `13`, ``],
-        [`Tonus`, `${this.eyesTear.droite.tonus}`, `${this.eyesTear.gauche.tonus}`],
+        [
+          `Tonus`,
+          `${this.eyesTear.droite.tonus}`,
+          `${this.eyesTear.gauche.tonus}`,
+        ],
         [
           `Clignement`,
           { content: ``, colSpan: 2, styles: { halign: `center` } },
         ], // Fusion OD & OG
         [`Kératométrie`, ``, ``],
-        [`Hauteur prisme de larmes`, `${this.eyesTear.droite.hauteurPrisme}`, `${this.eyesTear.gauche.hauteurPrisme}`],
-        [`Charge lacrymale`, `${this.eyesTear.droite.chargeLacrimale}`, `${this.eyesTear.gauche.tonus}`],
-        [`Lipides`, `${this.eyesTear.droite.gradeLipide}`, `${this.eyesTear.gauche.gradeLipide}`],
+        [
+          `Hauteur prisme de larmes`,
+          `${this.eyesTear.droite.hauteurPrisme}`,
+          `${this.eyesTear.gauche.hauteurPrisme}`,
+        ],
+        [
+          `Charge lacrymale`,
+          `${this.eyesTear.droite.chargeLacrimale}`,
+          `${this.eyesTear.gauche.tonus}`,
+        ],
+        [
+          `Lipides`,
+          `${this.eyesTear.droite.gradeLipide}`,
+          `${this.eyesTear.gauche.gradeLipide}`,
+        ],
       ],
       styles: {
         halign: `center`,
@@ -413,12 +441,12 @@ export class PdfGenerationService {
     const pdfObjectUrl = URL.createObjectURL(pdfBlob);
     return this.sanitizer.bypassSecurityTrustResourceUrl(pdfObjectUrl);
   }
-  
+
   generateAlldocumentsPDF(): SafeResourceUrl {
     this.generatepdfff();
     this.generateCRBiomicroscopiePDF();
-   // this.generateAdapterPDF();
-    
+    this.generateAdapterPDF();
+
     const pdfBlob = this.doc.output(`blob`);
     const pdfObjectUrl = URL.createObjectURL(pdfBlob);
     return this.sanitizer.bypassSecurityTrustResourceUrl(pdfObjectUrl);

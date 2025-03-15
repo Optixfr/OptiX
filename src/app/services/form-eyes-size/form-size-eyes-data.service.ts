@@ -54,4 +54,8 @@ export class FormSizeEyesDataService {
   duplicateRightForm() {
     this.formData.gauche = structuredClone(this.formData.droite);
   }
+  
+  settingFromData(data: FormData): void {
+    this.formData = data;
+  }
 }

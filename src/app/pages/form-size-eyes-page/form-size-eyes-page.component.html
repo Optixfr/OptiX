@@ -3,16 +3,19 @@
   <div class="flex flex-col justify-between bg-background w-full">
     <app-top-bar></app-top-bar>
     <div class="grid grid-cols-2 gap-5 pl-8 pr-8">
-      <app-form-eye-size [nomFormulaire]="isDuplicatedForm ? 'Formulaire Oeil Droit' : 'Biométrie Oeil Droit = Biométrie Oeil Gauche'"></app-form-eye-size>
+      <app-form-eye-size
+        [nomFormulaire]="isDuplicatedForm ? 'Biométrie Oeil Droit' : 'Biométrie Oeil Droit = Biométrie Oeil Gauche'"></app-form-eye-size>
       @if (isDuplicatedForm) {
-        <app-form-eye-size [nomFormulaire]="'Formulaire Oeil Gauche'"></app-form-eye-size>
+      <app-form-eye-size [nomFormulaire]="'Biométrie Oeil Gauche'"></app-form-eye-size>
       } @else {
-        <button mat-button (click)="addSideForm()" class="flex justify-center self-center items-center p-[5px] bg-transparent border-none cursor-pointer w-full h-full">
-          <img class="self-center" src="assets/additem.svg" alt="Duplicate the form">
-        </button>
+      <button mat-button (click)="addSideForm()"
+        class="flex justify-center self-center items-center p-[5px] bg-transparent border-none cursor-pointer w-full h-full">
+        <img class="self-center" src="assets/additem.svg" alt="Duplicate the form">
+      </button>
       }
     </div>
-    <button class="w-[246px] h-[44px] bg-accent rounded-[16px] mx-auto mb-5 drop-shadow-xl" (click)="submitForms()" routerLink="/tears">
+    <button class="w-[246px] h-[44px] bg-accent rounded-[16px] mx-auto mb-5 drop-shadow-xl" (click)="submitForms()"
+      routerLink="/tears">
       Evaluer les critères
     </button>
   </div>

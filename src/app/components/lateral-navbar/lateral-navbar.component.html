@@ -37,12 +37,12 @@
                     <span>Paramètres</span>
                 }
             </a>
-            <a (click)="deco()" class="cursor-pointer flex items-center gap-6 p-3 rounded-lg hover:bg-white/10 text-white">
+            <button (click)="deco()" class="cursor-pointer flex items-center gap-6 p-3 rounded-lg hover:bg-white/10 text-white">
                 <img src="assets/logout.svg" alt="home" class="w-6">
                 @if(isExtended) {
                     <span>Déconnexion</span>
                 }
-            </a>
+            </button>
         </nav>
     </div>
 </div>

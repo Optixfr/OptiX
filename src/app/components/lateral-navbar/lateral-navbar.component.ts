@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { NavbarService } from '../../services/navbar-service/navbar-service.service';
-import { FormData } from '../../models/form-data';
 import { FormSizeEyesDataService } from '../../services/form-eyes-size/form-size-eyes-data.service';
 
 @Component({

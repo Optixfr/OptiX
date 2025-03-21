@@ -1,5 +1,14 @@
-<div class="bg-white rounded-xl p-4 border border-[#000000] border-opacity-35 border border-[#000000] border-opacity-35-accent drop-shadow-xl">
-  <h2 class="text-xl text-wrap mb-16">{{ nomFormulaire }}</h2>
+<div class="bg-white rounded-xl p-4 border-black border-opacity-35 border border-opacity-35-accent drop-shadow-xl">
+  <h2 class="text-xl text-wrap mb-16">{{ nomFormulaire }} 
+    <div class="flex flex-row gap-5 ">
+      <button class="bg-primary rounded-3xl h-6 px-3 text-xs leading-none flex items-center justify-center" (click)="fillTest1()">
+        Demo 1
+      </button>
+      <button class="bg-accent rounded-3xl h-6 px-3 text-xs leading-none flex items-center justify-center" (click)="fillTest2()">
+        Demo 2
+      </button>
+    </div>
+  </h2>
   <form 
     (ngSubmit)="getFormData()"
     #eyeMeasureForm="ngForm"
@@ -92,7 +101,5 @@
         required
       />
     </div> 
-    <button (click)="fillTest1()">Test 1</button>
-    <button (click)="fillTest2()">Test 2</button>
   </form>
 </div>

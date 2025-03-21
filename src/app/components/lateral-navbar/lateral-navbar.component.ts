@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { NavbarService } from '../../services/navbar-service/navbar-service.service';
 import { FormSizeEyesDataService } from '../../services/form-eyes-size/form-size-eyes-data.service';
@@ -8,7 +8,7 @@ import { FormSizeEyesDataService } from '../../services/form-eyes-size/form-size
     imports: [RouterLink, RouterModule],
     templateUrl: './lateral-navbar.component.html'
 })
-export class LateralNavbarComponent {
+export class LateralNavbarComponent implements OnInit {
   
   isExtended  = false;
   

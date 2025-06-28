@@ -4,13 +4,11 @@ import { EyesCalculationService } from '../../services/calculation/eyes-calculat
 import { FormTearsEyesComponent } from '../../components/form-tears-eyes/form-tears-eyes.component';
 import { FormTearsEyesDataService } from '../../services/form-tear-size/form-tears-eyes-data.service';
 import { Router, RouterLink } from '@angular/router';
-import { TopBarComponent } from "../../components/top-bar/top-bar.component";
-import { LateralNavbarComponent } from "../../components/lateral-navbar/lateral-navbar.component";
 import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-form-tears-eyes-page',
-    imports: [HttpClientModule, FormTearsEyesComponent, TopBarComponent, LateralNavbarComponent, FormsModule, RouterLink], // Importer HttpClientModule ici
+    imports: [HttpClientModule, FormTearsEyesComponent, FormsModule, RouterLink], // Importer HttpClientModule ici
     providers: [EyesCalculationService],
     templateUrl: './form-tears-eyes-page.component.html'
 })

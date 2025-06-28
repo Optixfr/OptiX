@@ -1,7 +1,4 @@
-<div class="flex flex-row bg-background">
-  <app-lateral-navbar></app-lateral-navbar>
-  <div class="flex flex-col justify-between bg-background w-full">
-    <app-top-bar></app-top-bar>
+<div class="flex-col justify-center w-full h-full">
     <div class="grid grid-cols-2 gap-5 pl-8 pr-8">
       <app-form-eye-size
         [nomFormulaire]="isDuplicatedForm ? 'Biométrie Oeil Droit' : 'Biométrie Oeil Droit = Biométrie Oeil Gauche'"></app-form-eye-size>
@@ -14,9 +11,12 @@
       </button>
       }
     </div>
-    <button class="w-[246px] h-[44px] bg-accent rounded-[16px] mx-auto mb-5 drop-shadow-xl" (click)="submitForms()"
-      routerLink="/tears">
-      Evaluer les critères
-    </button>
-  </div>
+    <div class="flex justify-center mb-5 mt-4">
+      <button
+        class="w-[246px] h-[44px] bg-accent rounded-[16px] drop-shadow-xl"
+        (click)="submitForms()"
+        routerLink="/tears">
+        Evaluer les critères
+      </button>
+    </div>    
 </div>

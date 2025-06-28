@@ -33,8 +33,7 @@
             "polyfills": [
               "zone.js"
             ],
-            "scripts": [],
-            "baseHref": "/OptiX/"
+            "scripts": []
           },
           "configurations": {
   "production": {

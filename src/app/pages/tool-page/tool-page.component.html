@@ -1,0 +1,9 @@
+<div class="flex flex-row flex-wrap gap-5 pl-8 pr-8 mt-2">
+@for(item of cards; track item.title) {
+    <app-tool-card
+    [title]="item.title"
+    [description]="item.description"
+    [link]="item.link"
+    ></app-tool-card>
+}
+</div>

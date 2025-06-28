@@ -23,27 +23,19 @@
                     <span>Accueil</span>
                 }
             </a>
-            <a routerLink="/outils" routerLinkActive="active"
+            <a routerLink="/tools" routerLinkActive="active"
                 class="flex items-center gap-6 p-3 rounded-lg hover:bg-white/10 text-white">
                 <img src="assets/calculator.svg" alt="outils" class="w-6">
                 @if(isExtended) {
                     <span>Outils</span>
                 }
             </a>
-            <a routerLink="/connexion" routerLinkActive="active"
-                class="cursor-pointer flex items-center gap-6 p-3 rounded-lg hover:bg-white/10 text-white">
-                <img src="assets/setting-2.svg" alt="parametres" class="w-6">
-                @if(isExtended) {
-                    <span>Paramètres</span>
-
-                }
-            </a>
-            <a (click)="deco()" class="cursor-pointer flex items-center gap-6 p-3 rounded-lg hover:bg-white/10 text-white">
+            <button (click)="deco()" class="cursor-pointer flex items-center gap-6 p-3 rounded-lg hover:bg-white/10 text-white">
                 <img src="assets/logout.svg" alt="home" class="w-6">
                 @if(isExtended) {
                     <span>Déconnexion</span>
                 }
-            </a>
+            </button>
         </nav>
     </div>
 </div>

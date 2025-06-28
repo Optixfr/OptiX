@@ -1,14 +1,14 @@
 <div class="bg-white rounded-xl p-4 border border-tertiary drop-shadow-xl">
   <h2 class="text-xl text-wrap mb-16">{{ nomFormulaire }}</h2>
   <form
-    (ngSubmit)="getFormData()"
     #eyesTearForm="ngForm"
     class="flex flex-col justify-around gap-2"
   >
     <!-- PSC -->
     <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
       <label for="psc">PSC</label>
-      <select class="border border-[#000000] border-opacity-35  w-full rounded-lg p-2" id="psc" name="psc" [(ngModel)]="eyesTear.psc" required>
+      <select class="border border-[#000000] border-opacity-35  w-full rounded-md p-2" id="psc" name="psc" [value]="(eyeTear$ | async)?.psc ?? ''"
+              (input)="onInputChange('psc', $event)" required>
         <option value="lent">Lent</option>
         <option value="standard"  >Standard</option>
         <option value="rapide">Rapide</option>
@@ -18,7 +18,8 @@
     <!-- Tonus -->
     <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
       <label for="tonus">Tonus</label>
-      <select class="border border-[#000000] border-opacity-35 w-full rounded-lg p-2" id="tonus" name="tonus" [(ngModel)]="eyesTear.tonus" required>
+      <select class="border border-[#000000] border-opacity-35 w-full rounded-md p-2" id="tonus" name="tonus" [value]="(eyeTear$ | async)?.tonus ?? ''"
+              (input)="onInputChange('tonus', $event)" required>
         <option value="faible">Faible</option>
         <option value="standard"  >Standard</option>
         <option value="elevee">Elevé</option>
@@ -29,12 +30,13 @@
     <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
       <label for="hauteurPrisme">Hauteur Prisme</label>
       <input
-        class="border border-[#000000] border-opacity-35  w-full rounded-lg p-2"
+        class="border border-[#000000] border-opacity-35  w-full rounded-md p-2"
         type="number"
         step="0.1"
         id="hauteurPrisme"
         name="hauteurPrisme"
-        [(ngModel)]="eyesTear.hauteurPrisme"
+        [value]="(eyeTear$ | async)?.hauteurPrisme ?? ''"
+        (input)="onInputChange('hauteurPrisme', $event)"
         required
       >
     </div>
@@ -43,10 +45,11 @@
     <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
       <label for="gradeLipide">Grade Lipide</label>
       <select
-        class="border border-[#000000] border-opacity-35  w-full rounded-lg p-2"
+        class="border border-[#000000] border-opacity-35  w-full rounded-md p-2"
         id="gradeLipide"
         name="gradeLipide"
-        [(ngModel)]="eyesTear.gradeLipide"
+        [value]="(eyeTear$ | async)?.gradeLipide ?? ''"
+        (input)="onInputChange('gradeLipide', $event)"
       >
         <option value="faible">Faible</option>
         <option value="standard"  >Standard</option>
@@ -58,10 +61,11 @@
     <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
       <label for="chargeLacrimale">Charge Lacrimale</label>
       <select
-        class="border border-[#000000] border-opacity-35  w-full rounded-lg p-2"
+        class="border border-[#000000] border-opacity-35  w-full rounded-md p-2"
         id="chargeLacrimale"
         name="chargeLacrimale"
-        [(ngModel)]="eyesTear.chargeLacrimale"
+        [value]="(eyeTear$ | async)?.chargeLacrimale ?? ''"
+        (input)="onInputChange('chargeLacrimale', $event)"
       >
         <option value="faible">Faible</option>
         <option value="standard">Standard</option>

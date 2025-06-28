@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 @Injectable({

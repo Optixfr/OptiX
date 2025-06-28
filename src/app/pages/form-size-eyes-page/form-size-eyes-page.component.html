@@ -1,10 +1,20 @@
 <div class="flex-col justify-center w-full h-full">
     <div class="grid grid-cols-2 gap-5 pl-8 pr-8">
-      <app-form-eye-size
-        [nomFormulaire]="isDuplicatedForm ? 'Biométrie Oeil Droit' : 'Biométrie Oeil Droit = Biométrie Oeil Gauche'"></app-form-eye-size>
-      @if (isDuplicatedForm) {
-      <app-form-eye-size [nomFormulaire]="'Biométrie Oeil Gauche'"></app-form-eye-size>
+      @if (isDuplicated$ | async) {
+        <app-form-eye-size
+          nomFormulaire="Biométrie Oeil Droit"
+          side="droite">
+        </app-form-eye-size>
+
+        <app-form-eye-size
+          nomFormulaire="Biométrie Oeil Gauche"
+          side="gauche">
+        </app-form-eye-size>
       } @else {
+      <app-form-eye-size
+        nomFormulaire="Biométrie Oeil Droit = Biométrie Oeil Gauche"
+        side="both">
+      </app-form-eye-size>
       <button mat-button (click)="addSideForm()"
         class="flex justify-center self-center items-center p-[5px] bg-transparent border-none cursor-pointer w-full h-full">
         <img class="self-center" src="assets/additem.svg" alt="Duplicate the form">
@@ -13,8 +23,7 @@
     </div>
     <div class="flex justify-center mb-5 mt-4">
       <button
-        class="w-[246px] h-[44px] bg-accent rounded-[16px] drop-shadow-xl"
-        (click)="submitForms()"
+        class="w-[246px] bg-accent drop-shadow-xl flex justify-center rounded-md px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
         routerLink="/tears">
         Evaluer les critères
       </button>

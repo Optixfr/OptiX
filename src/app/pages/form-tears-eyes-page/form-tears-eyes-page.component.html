@@ -1,28 +1,32 @@
-
 <div class="grid grid-rows-layout p-8 gap-4">
-
     <div class="grid grid-cols-2 gap-5">
-      <app-form-tears-eyes
-        [nomFormulaire]="isDuplicatedForm ? 'Biométrie Oeil Droit' : 'Biométrie Oeil Droit = Biométrie Oeil Gauche'">
-      </app-form-tears-eyes>
+      @if (isDuplicated$ | async) {
+        <app-form-tears-eyes
+          nomFormulaire="Biométrie Oeil Droit"
+          side="droite">
+        </app-form-tears-eyes>
 
-      @if (isDuplicatedForm) {
-        <app-form-tears-eyes [nomFormulaire]="'Biométrie Oeil Gauche'"></app-form-tears-eyes>
+        <app-form-tears-eyes
+          nomFormulaire="Biométrie Oeil Gauche"
+          side="gauche">
+        </app-form-tears-eyes>
       } @else {
-        <button mat-button (click)="addSideForm()"
-          class="flex justify-center items-center p-2 bg-transparent border-none cursor-pointer">
-          <img src="assets/additem.svg" alt="Duplicate the form">
-        </button>
+      <app-form-tears-eyes
+        nomFormulaire="Biométrie Oeil Droit = Biométrie Oeil Gauche"
+        side="both">
+      </app-form-tears-eyes>
+      <button mat-button (click)="addSideForm()"
+        class="flex justify-center self-center items-center p-[5px] bg-transparent border-none cursor-pointer w-full h-full">
+        <img class="self-center" src="assets/additem.svg" alt="Duplicate the form">
+      </button>
       }
-    </div>
 
     <!-- Zone de commentaire -->
     <div>
       <h2 class="text-xl mb-2">Commentaire</h2>
       <textarea
-        class="border w-full rounded-lg border-tertiary drop-shadow-xl resize-none p-2"
+        class="border w-full rounded-md border-tertiary drop-shadow-xl resize-none p-2"
         rows="5"
-        [(ngModel)]="commentaire"
         name="commentaire"
         id="commentaire"
         placeholder="Écrivez un commentaire ici...">
@@ -31,9 +35,9 @@
 
     <!-- Section boutons -->
     <div class="flex flex-row gap-5 justify-center">
-      <button class="w-[246px] h-[44px] bg-accent rounded-[16px] drop-shadow-xl"
+      <button class="w-[246px] bg-accent drop-shadow-xl flex justify-center rounded-md px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
         routerLink="/accueil">Retour</button>
-      <button class="w-[246px] h-[44px] bg-accent rounded-[16px] drop-shadow-xl"
+      <button class="w-[246px] bg-accent drop-shadow-xl flex justify-center rounded-md px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
         (click)="submitForms()" routerLink="/report-generation">Soumettre</button>
     </div>
   </div>

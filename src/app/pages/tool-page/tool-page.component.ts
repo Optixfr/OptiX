@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { LateralNavbarComponent } from "../../components/lateral-navbar/lateral-navbar.component";
-import { TopBarComponent } from "../../components/top-bar/top-bar.component";
 import { ToolCardComponent } from "../../components/tool-card/tool-card.component";
 
 @Component({
   selector: 'app-tool-page',
-  imports: [LateralNavbarComponent, TopBarComponent, ToolCardComponent],
+  imports: [ToolCardComponent],
   templateUrl: './tool-page.component.html',
 })
 export class ToolPageComponent {

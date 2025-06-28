@@ -77,6 +77,44 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
     },
   };
 
+  private commentaire = ``;
+  private nomClient = `Dupont`;
+  private prenomClient = `Thomas`;
+  private adresse = `Rue de la Paix, 12`;
+  private ville = `Toulouse`;
+  private numSecu = `123456789012345`;
+  private numContrat = `Z123456789012345`;
+  private destinataire = `Louis Dupont`;
+  private dateLieu: string = new Date().toLocaleDateString();
+  private objet = ``;
+  private detailsSoins = ``;
+  private estimation = ``;
+  private signature = ``;
+  private magasin = `OptalyX`;
+  private magasinAdresse = `Route de Paris, 12`;
+  private faitPar = `Jean Dupont`;
+  private lieuFait = `Tournefeuille`;
+  private porteur = `Jean Dupont`;
+  private age = `18 ans`;
+  private raison = `ZED`;
+
+  eyesTear: FormData = {
+    droite: {
+      psc: '',
+      tonus: '',
+      hauteurPrisme: '',
+      gradeLipide: '',
+      chargeLacrimale: '',
+    },
+    gauche: {
+      psc: '',
+      tonus: '',
+      hauteurPrisme: '',
+      gradeLipide: '',
+      chargeLacrimale: '',
+    },
+  };
+
   constructor(
     private formSizeEyesDataService: FormSizeEyesDataService,
     private formTearEyesDataService: FormTearsEyesDataService,
@@ -88,8 +126,8 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const formDataMeasure = this.formSizeEyesDataService.getFormData();
     const formDataTear = this.eyesTearService.getFormData();
-    console.log("yop", formDataMeasure);
     this.temp = formDataMeasure.droite.sphere;
+
 
     const transformValuesToNumber = (obj: any) =>
       Object.fromEntries(
@@ -115,6 +153,7 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
           window.alert(error.error.error);
         }
       );
+
     this.eyesTear = this.eyesTearService.getFormData();
     this.generatePDF();
   }

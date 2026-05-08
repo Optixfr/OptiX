@@ -1,12 +1,12 @@
 import { Component, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { EyeMeasure } from '../../models/eyes-measure.model';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-form-eye-size',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule],
   templateUrl: './form-eye-size.component.html'
 })
 export class FormEyeSizeComponent {

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { LateralNavbarComponent } from '../../components/lateral-navbar/lateral-navbar.component';
 import { TopBarComponent } from '../../components/top-bar/top-bar.component';
-import { CommonModule } from '@angular/common';
+
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { EyesMeasureStore } from '../../state/eyes-measure.store';
@@ -25,11 +25,10 @@ interface FormData {
   imports: [
     LateralNavbarComponent,
     TopBarComponent,
-    CommonModule,
     RouterLink,
     HttpClientModule,
-    FormsModule,
-  ],
+    FormsModule
+],
   templateUrl: './generation-rapport-page.component.html',
 })
 export class GenerationRapportPageComponent implements OnInit, OnDestroy {

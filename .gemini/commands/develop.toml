@@ -1,0 +1,106 @@
+description = "Full development pipeline: architect → code → a11y → test → e2e → review → docs"
+
+prompt = """
+Execute the full development pipeline for: {{args}}
+
+## Setup
+1. Create the pipeline working directory: `.gemini/tmp/pipeline/`
+2. Create a git checkpoint: `git stash push -m "pre-pipeline-checkpoint" --include-untracked` (only if there are uncommitted changes)
+
+## Pipeline Execution
+Execute these steps **sequentially**. Each step MUST write its output to a file. Read that file to confirm completion before proceeding.
+
+### Step 1: Architecture & Analysis
+Delegate to @architect:
+> Analyze and plan the following feature: {{args}}
+> Write your plan to `.gemini/tmp/pipeline/01-plan.md`
+
+✅ **Gate**: Verify `.gemini/tmp/pipeline/01-plan.md` exists and summarize key decisions.
+
+---
+
+### Step 2: Implementation
+Delegate to @coder:
+> Implement the feature based on the plan in `.gemini/tmp/pipeline/01-plan.md`.
+> Write your report to `.gemini/tmp/pipeline/02-implementation.md`
+
+✅ **Gate**: Verify `.gemini/tmp/pipeline/02-implementation.md` exists. List files created/modified.
+
+---
+
+### Step 3: Accessibility Audit
+Delegate to @a11y-auditor:
+> Audit accessibility on the files listed in `.gemini/tmp/pipeline/02-implementation.md`.
+> Auto-fix safe issues. Write your report to `.gemini/tmp/pipeline/03-a11y-report.md`
+
+✅ **Gate**: Verify `.gemini/tmp/pipeline/03-a11y-report.md` exists. Report findings count.
+
+---
+
+### Step 4: Unit Testing
+Delegate to @test-engineer:
+> Write Vitest component tests for components listed in `.gemini/tmp/pipeline/02-implementation.md`.
+> Run tests with `npm run test:vitest`. Write your report to `.gemini/tmp/pipeline/04-test-report.md`
+
+✅ **Gate**: Verify `.gemini/tmp/pipeline/04-test-report.md` exists. Report pass/fail counts.
+
+---
+
+### Step 5: E2E Testing
+Delegate to @e2e-engineer:
+> Write Playwright e2e tests for the user flows described in `.gemini/tmp/pipeline/01-plan.md`.
+> Write your report to `.gemini/tmp/pipeline/05-e2e-report.md`
+
+✅ **Gate**: Verify `.gemini/tmp/pipeline/05-e2e-report.md` exists. Report test results.
+
+---
+
+### Step 6: Code Review
+Delegate to @code-reviewer:
+> Review all changes made during this pipeline. Read all reports in `.gemini/tmp/pipeline/`.
+> Use `git diff` to see the full changeset. Write your review to `.gemini/tmp/pipeline/06-review.md`
+
+✅ **Gate**: Verify `.gemini/tmp/pipeline/06-review.md` exists. Report verdict.
+
+---
+
+### Step 7: Documentation
+Delegate to @doc-writer:
+> Update project documentation to reflect all changes from this pipeline.
+> Update GEMINI.md if new patterns/structure were introduced.
+> Update README.md if new user-facing features were added.
+> Add TSDoc to new public interfaces, services, and stores.
+> Write your report to `.gemini/tmp/pipeline/07-docs-report.md`
+
+✅ **Gate**: Verify `.gemini/tmp/pipeline/07-docs-report.md` exists. Report docs updated.
+
+---
+
+## Final Summary
+After all 7 steps complete, provide a consolidated summary:
+
+```
+## Pipeline Summary: [Feature Name]
+
+### Files Changed
+- Created: [count]
+- Modified: [count]
+
+### Quality Gates
+| Step | Status | Key Metric |
+|------|--------|------------|
+| 1. Architecture | ✅/❌ | [plan completeness] |
+| 2. Implementation | ✅/❌ | [type-check result] |
+| 3. Accessibility | ✅/❌ | [findings: N fixed, N remaining] |
+| 4. Unit Tests | ✅/❌ | [N passed, N failed] |
+| 5. E2E Tests | ✅/❌ | [N passed, N failed] |
+| 6. Code Review | ✅/❌ | [verdict] |
+| 7. Documentation | ✅/❌ | [files updated] |
+
+### Review Verdict
+[APPROVE / APPROVE WITH COMMENTS / REQUEST CHANGES]
+
+### Follow-ups
+- [any items for future work]
+```
+"""

@@ -1,0 +1,16 @@
+description = "Step 4: Unit testing — write Vitest component tests"
+
+prompt = """
+Delegate to @test-engineer to write component tests for recently implemented code.
+
+Prerequisites: `.gemini/tmp/pipeline/02-implementation.md` should exist (run `/develop-code` first).
+If it doesn't exist, write tests for: {{args}}
+
+The test-engineer should:
+1. Read the implementation report to identify target components
+2. Write Vitest tests using Testing Library and accessible queries
+3. Run `npm run test:vitest` and fix failures
+4. Write the report to `.gemini/tmp/pipeline/04-test-report.md`
+
+After testing completes, summarize: tests written, pass/fail counts.
+"""

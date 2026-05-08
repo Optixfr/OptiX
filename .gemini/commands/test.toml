@@ -1,0 +1,16 @@
+description = "Generate a unit test for a given file or function"
+
+prompt = """
+Generate comprehensive unit tests for: {{args}}
+
+Requirements:
+1. Use the project's testing stack (check GEMINI.md for specifics)
+2. Follow the Arrange-Act-Assert pattern
+3. Test the happy path, edge cases, and error scenarios
+4. Use descriptive test names: `it('should [expected behavior] when [condition]')`
+5. Mock external dependencies (HTTP, services, stores)
+6. Prefer accessible queries (getByRole, getByLabelText) over CSS selectors
+7. Include boundary tests for numeric inputs
+
+Output the full test file, ready to save alongside the source file.
+"""

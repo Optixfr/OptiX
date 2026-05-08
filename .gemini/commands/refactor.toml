@@ -1,0 +1,15 @@
+description = "Refactor code for readability, performance, or best practices"
+
+prompt = """
+Refactor the following code: {{args}}
+
+Refactoring guidelines:
+1. **Preserve behavior:** this is a refactor, not a feature change
+2. **Apply SOLID principles** where relevant
+3. **Reduce complexity:** simplify conditionals, extract helpers, remove duplication
+4. **Improve naming:** make the code self-documenting
+5. **Leverage framework idioms:** use framework-native patterns (signals, inject, etc.)
+6. **Show before/after** with a brief explanation of each change
+
+Produce a minimal diff — only touch what needs improving.
+"""

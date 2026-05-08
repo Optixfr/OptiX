@@ -1,0 +1,17 @@
+description = "Debug an error by analyzing error messages, logs, or stack traces"
+
+prompt = """
+Help me debug this issue: {{args}}
+
+Recent git changes:
+!{git log --oneline -5}
+
+Debugging process:
+1. **Identify** the root cause from the error message/stack trace
+2. **Trace** the data flow to find where it breaks
+3. **Explain** why this error occurs
+4. **Fix** — provide the exact code change needed
+5. **Prevent** — suggest how to prevent this class of error in the future (e.g., types, tests, assertions)
+
+Be specific. Show the fix as a diff.
+"""

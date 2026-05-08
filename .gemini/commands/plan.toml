@@ -1,0 +1,32 @@
+description = "Plan a feature with architecture design before implementation"
+
+prompt = """
+I want to implement the following feature: {{args}}
+
+Before writing any code, create a detailed implementation plan:
+
+1. **Requirements Analysis**
+   - What exactly needs to be built?
+   - What are the acceptance criteria?
+
+2. **Architecture Design**
+   - Which components/services/stores need to be created or modified?
+   - Data model changes needed
+   - API contracts (if applicable)
+
+3. **File Plan**
+   - List every file that will be created or modified, with a one-line description
+
+4. **Implementation Order**
+   - Ordered steps for implementation (dependencies first)
+   - Each step should be independently testable
+
+5. **Edge Cases & Risks**
+   - What could go wrong?
+   - What edge cases need to be handled?
+
+6. **Testing Strategy**
+   - Key test cases for this feature
+
+Do NOT write any implementation code yet. This is planning only.
+"""

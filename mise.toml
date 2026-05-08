@@ -1,0 +1,22 @@
+[tools]
+node = "lts"
+
+[tasks.install]
+run = "npm install"
+description = "Install project dependencies"
+
+[tasks.start]
+run = "npm start"
+description = "Start the Angular development server"
+
+[tasks.build]
+run = "npm run build"
+description = "Build the project for production"
+
+[tasks.test]
+run = "npm test"
+description = "Run unit tests"
+
+[tasks.lint]
+run = "npm run lint"
+description = "Run linter"

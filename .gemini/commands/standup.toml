@@ -1,0 +1,22 @@
+description = "Quick daily standup: summarize recent changes and status"
+
+prompt = """
+Generate my daily standup update based on recent git activity.
+
+Recent commits:
+!{git log --oneline --since="yesterday" --author="ghelg"}
+
+Files changed today:
+!{git diff --stat HEAD~5}
+
+Current branch:
+!{git branch --show-current}
+
+Format as:
+
+**Yesterday:** (what was completed, based on commits)
+**Today:** (infer likely next steps from the branch context and recent changes)
+**Blockers:** (flag any if obvious from the diff, otherwise "None")
+
+Keep it under 5 lines.
+"""

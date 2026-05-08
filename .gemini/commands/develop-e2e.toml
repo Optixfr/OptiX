@@ -1,0 +1,17 @@
+description = "Step 5: E2E testing — write Playwright end-to-end tests"
+
+prompt = """
+Delegate to @e2e-engineer to write Playwright e2e tests for the implemented feature.
+
+Prerequisites: `.gemini/tmp/pipeline/02-implementation.md` should exist (run `/develop-code` first).
+If it doesn't exist, write e2e tests for: {{args}}
+
+The e2e-engineer should:
+1. Read the implementation and plan reports for context
+2. Set up Playwright config if needed
+3. Write e2e tests covering main user flows
+4. Run tests and fix failures
+5. Write the report to `.gemini/tmp/pipeline/05-e2e-report.md`
+
+After testing completes, summarize: tests written, flows covered, pass/fail counts.
+"""

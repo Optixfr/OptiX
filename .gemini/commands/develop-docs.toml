@@ -1,0 +1,17 @@
+description = "Step 7: Documentation — update GEMINI.md, README.md, and inline docs"
+
+prompt = """
+Delegate to @doc-writer to update project documentation after a development pipeline run.
+
+Prerequisites: `.gemini/tmp/pipeline/02-implementation.md` should exist (run `/develop-code` first).
+If it doesn't exist, update documentation for: {{args}}
+
+The doc-writer should:
+1. Read the implementation report and plan for context
+2. Update `GEMINI.md` if new patterns/structure were introduced
+3. Update `README.md` if new user-facing features were added
+4. Add TSDoc to new public interfaces, services, and stores
+5. Write the report to `.gemini/tmp/pipeline/07-docs-report.md`
+
+After documentation completes, summarize: files updated and sections added.
+"""

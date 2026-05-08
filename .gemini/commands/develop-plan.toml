@@ -1,0 +1,13 @@
+description = "Step 1: Architecture & analysis — plan a feature before implementation"
+
+prompt = """
+Delegate to @architect to analyze and plan the following feature: {{args}}
+
+The architect should:
+1. Read GEMINI.md for project conventions
+2. Analyze the existing codebase structure
+3. Produce a detailed implementation plan
+4. Write the plan to `.gemini/tmp/pipeline/01-plan.md`
+
+After the architect completes, summarize the key decisions from the plan.
+"""

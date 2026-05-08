@@ -4,8 +4,9 @@ import { TopBarComponent } from '../../components/top-bar/top-bar.component';
 import { CommonModule } from '@angular/common';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
-import { FormSizeEyesDataService } from '../../services/form-eyes-size/form-size-eyes-data.service';
+import { EyesMeasureStore } from '../../state/eyes-measure.store';
 import { RouterLink } from '@angular/router';
+import { inject } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { EyesCalculationService } from '../../services/calculation/eyes-calculation.service';
 import { Subscription } from 'rxjs';
@@ -77,46 +78,11 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
     },
   };
 
-  private commentaire = ``;
-  private nomClient = `Dupont`;
-  private prenomClient = `Thomas`;
-  private adresse = `Rue de la Paix, 12`;
-  private ville = `Toulouse`;
-  private numSecu = `123456789012345`;
-  private numContrat = `Z123456789012345`;
-  private destinataire = `Louis Dupont`;
-  private dateLieu: string = new Date().toLocaleDateString();
-  private objet = ``;
-  private detailsSoins = ``;
-  private estimation = ``;
-  private signature = ``;
-  private magasin = `OptalyX`;
-  private magasinAdresse = `Route de Paris, 12`;
-  private faitPar = `Jean Dupont`;
-  private lieuFait = `Tournefeuille`;
-  private porteur = `Jean Dupont`;
-  private age = `18 ans`;
-  private raison = `ZED`;
 
-  eyesTear: FormData = {
-    droite: {
-      psc: '',
-      tonus: '',
-      hauteurPrisme: '',
-      gradeLipide: '',
-      chargeLacrimale: '',
-    },
-    gauche: {
-      psc: '',
-      tonus: '',
-      hauteurPrisme: '',
-      gradeLipide: '',
-      chargeLacrimale: '',
-    },
-  };
+
+  private store = inject(EyesMeasureStore);
 
   constructor(
-    private formSizeEyesDataService: FormSizeEyesDataService,
     private formTearEyesDataService: FormTearsEyesDataService,
     private sanitizer: DomSanitizer,
     private eyesCalculationService: EyesCalculationService,
@@ -124,7 +90,10 @@ export class GenerationRapportPageComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    const formDataMeasure = this.formSizeEyesDataService.getFormData();
+    const formDataMeasure = {
+      droite: this.store.droite(),
+      gauche: this.store.gauche()
+    };
     const formDataTear = this.eyesTearService.getFormData();
     this.temp = formDataMeasure.droite.sphere;
 

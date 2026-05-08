@@ -1,0 +1,38 @@
+description = "Generate a PR description from the current branch diff"
+
+prompt = """
+Generate a pull request description based on the current branch changes.
+
+Branch info:
+!{git branch --show-current}
+
+Commits on this branch (vs main):
+!{git log main..HEAD --oneline}
+
+Diff summary:
+!{git diff main --stat}
+
+Full diff:
+!{git diff main}
+
+Format the PR description as:
+
+## Summary
+One paragraph explaining what this PR does and why.
+
+## Changes
+- Bullet list of specific changes grouped by area
+
+## Testing
+- How to test manually
+- What automated tests were added/modified
+
+## Screenshots
+(if UI changes, note where screenshots should be added)
+
+## Checklist
+- [ ] Types pass (`npx tsc --noEmit`)
+- [ ] Tests pass (`npm run test:vitest`)
+- [ ] Formatted (`npx prettier --check .`)
+- [ ] No console.log or debug artifacts
+"""

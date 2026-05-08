@@ -1,30 +1,18 @@
-import { Component, QueryList, ViewChildren } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormEyeSizeComponent } from '../../components/form-eye-size/form-eye-size.component';
-import { Router, RouterLink } from '@angular/router';
-import { FormSizeEyesDataService } from '../../services/form-eyes-size/form-size-eyes-data.service';
+import { RouterLink } from '@angular/router';
+import { EyesMeasureStore } from '../../state/eyes-measure.store';
 
 @Component({
-    selector: 'app-form-size-eyes-page',
-    imports: [
-        FormEyeSizeComponent,
-        RouterLink,
-    ],
-    templateUrl: './form-size-eyes-page.component.html'
+  selector: 'app-form-size-eyes-page',
+  standalone: true,
+  imports: [
+    FormEyeSizeComponent,
+    RouterLink,
+  ],
+  templateUrl: './form-size-eyes-page.component.html',
+  providers: [EyesMeasureStore] // Providing store here assumes page-level scope, or remove if root provided
 })
 export class FormSizeEyesPageComponent {
-  isDuplicatedForm = false;
-  
-  @ViewChildren(FormEyeSizeComponent) forms!: QueryList<FormEyeSizeComponent>; 
-
-  constructor(private formDataService: FormSizeEyesDataService, private router: Router) {}
-
-  submitForms() {
-    const formData = this.forms.map((form) => form.getFormData()); 
-    this.formDataService.setFormData(formData);
-  } 
-  
-  addSideForm(): void {
-    this.isDuplicatedForm = true;
-    this.formDataService.duplicateRightForm();
-  }
+  readonly store = inject(EyesMeasureStore);
 }

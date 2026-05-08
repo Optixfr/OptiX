@@ -1,0 +1,16 @@
+description = "Step 3: Accessibility audit — check and fix WCAG 2.2 compliance"
+
+prompt = """
+Delegate to @a11y-auditor to audit accessibility on the recently implemented files.
+
+Prerequisites: `.gemini/tmp/pipeline/02-implementation.md` should exist (run `/develop-code` first).
+If it doesn't exist, audit the files specified: {{args}}
+
+The a11y-auditor should:
+1. Read the implementation report to identify target files
+2. Audit all new/modified templates and components
+3. Auto-fix safe issues directly
+4. Write the report to `.gemini/tmp/pipeline/03-a11y-report.md`
+
+After the audit completes, summarize: findings count, auto-fixed count, and remaining issues.
+"""

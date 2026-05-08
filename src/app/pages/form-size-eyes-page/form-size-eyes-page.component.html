@@ -1,11 +1,19 @@
 <div class="flex-col justify-center w-full h-full">
     <div class="grid grid-cols-2 gap-5 pl-8 pr-8">
       <app-form-eye-size
-        [nomFormulaire]="isDuplicatedForm ? 'Biométrie Oeil Droit' : 'Biométrie Oeil Droit = Biométrie Oeil Gauche'"></app-form-eye-size>
-      @if (isDuplicatedForm) {
-      <app-form-eye-size [nomFormulaire]="'Biométrie Oeil Gauche'"></app-form-eye-size>
+        [measure]="store.droite()"
+        (measureChange)="store.updateRightEye($event)"
+        [nomFormulaire]="store.isDuplicated() ? 'Biométrie Oeil Droit' : 'Biométrie Oeil Droit = Biométrie Oeil Gauche'">
+      </app-form-eye-size>
+      
+      @if (store.isDuplicated()) {
+      <app-form-eye-size 
+        [measure]="store.gauche()"
+        (measureChange)="store.updateLeftEye($event)"
+        [nomFormulaire]="'Biométrie Oeil Gauche'">
+      </app-form-eye-size>
       } @else {
-      <button mat-button (click)="addSideForm()"
+      <button (click)="store.duplicateRightForm()"
         class="flex justify-center self-center items-center p-[5px] bg-transparent border-none cursor-pointer w-full h-full">
         <img class="self-center" src="assets/additem.svg" alt="Duplicate the form">
       </button>
@@ -14,7 +22,6 @@
     <div class="flex justify-center mb-5 mt-4">
       <button
         class="w-[246px] h-[44px] bg-accent rounded-[16px] drop-shadow-xl"
-        (click)="submitForms()"
         routerLink="/tears">
         Evaluer les critères
       </button>

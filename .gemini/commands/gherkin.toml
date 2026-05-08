@@ -1,0 +1,16 @@
+description = "Convert a Chrome DevTools recording to Gherkin (.feature) + Playwright step definitions"
+
+prompt = """
+Run the chrome-to-gherkin scaffold converter on the given recording file.
+
+Usage: node ~/.gemini/scripts/chrome-to-gherkin.mjs {{args}}
+
+This is a ONE-WAY scaffold tool:
+1. Run the converter on the Chrome DevTools recording JSON
+2. Review and polish the generated .feature file and step definitions
+3. DELETE the original recording JSON
+4. The .feature file is now the SINGLE source of truth
+
+If no arguments provided, run with --help.
+If the user has a recording open or pasted, save it to a temp file first, then convert.
+"""

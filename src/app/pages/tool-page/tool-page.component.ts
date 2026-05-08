@@ -5,6 +5,7 @@ import { ToolCardComponent } from "../../components/tool-card/tool-card.componen
 
 @Component({
   selector: 'app-tool-page',
+  standalone: true,
   imports: [LateralNavbarComponent, TopBarComponent, ToolCardComponent],
   templateUrl: './tool-page.component.html',
 })

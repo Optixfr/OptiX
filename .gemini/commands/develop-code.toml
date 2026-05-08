@@ -1,0 +1,15 @@
+description = "Step 2: Implementation — code the feature from the architect's plan"
+
+prompt = """
+Delegate to @coder to implement the feature based on the existing plan.
+
+Prerequisites: `.gemini/tmp/pipeline/01-plan.md` must exist (run `/develop-plan` first).
+
+The coder should:
+1. Read the plan from `.gemini/tmp/pipeline/01-plan.md`
+2. Implement every file in the File Manifest
+3. Run type-checking and formatting
+4. Write the report to `.gemini/tmp/pipeline/02-implementation.md`
+
+After the coder completes, summarize files created/modified and type-check results.
+"""

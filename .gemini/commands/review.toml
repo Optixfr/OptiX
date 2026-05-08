@@ -1,0 +1,20 @@
+description = "Review code for bugs, security issues, and best practices"
+
+prompt = """
+Perform a thorough code review of the following file or diff: {{args}}
+
+Review checklist:
+1. **Bugs:** logic errors, off-by-one, null/undefined hazards, race conditions
+2. **Security:** injection risks, secret exposure, unsafe APIs, XSS/CSRF vectors
+3. **Type safety:** missing types, `any` usage, unchecked casts
+4. **Performance:** unnecessary re-renders, missing OnPush, N+1 queries, memory leaks
+5. **Readability:** naming clarity, dead code, overly complex logic
+6. **Testing:** suggest missing test cases
+
+Format your review as:
+- 🔴 **Critical** — must fix before merge
+- 🟡 **Warning** — should fix, risk accepted if not
+- 🟢 **Suggestion** — nice-to-have improvement
+
+Be specific: reference line numbers and suggest concrete fixes.
+"""

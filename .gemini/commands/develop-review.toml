@@ -1,0 +1,16 @@
+description = "Step 6: Code review — final review of all pipeline changes"
+
+prompt = """
+Delegate to @code-reviewer to perform a final review of all changes.
+
+Prerequisites: The development pipeline should have run (code exists to review).
+
+The code-reviewer should:
+1. Run `git diff --stat` to see all changes
+2. Read all pipeline reports from `.gemini/tmp/pipeline/`
+3. Review every changed file against the checklist
+4. Run `npx tsc --noEmit` and `npm run test:vitest`
+5. Write the review to `.gemini/tmp/pipeline/06-review.md`
+
+After the review completes, summarize: verdict, critical findings count, and recommended follow-ups.
+"""

@@ -1,0 +1,18 @@
+description = "Generate a conventional commit message from staged changes"
+
+prompt = """
+Analyze the current staged git changes and generate a Conventional Commit message.
+
+Staged diff:
+!{git diff --staged}
+
+Rules:
+1. Use Conventional Commits format: `type(scope): description`
+2. Types: feat, fix, refactor, docs, test, chore, perf, ci, style, build
+3. Scope should be the affected module/feature (e.g., dashboard, auth, shared)
+4. Description: imperative mood, lowercase, no period, max 72 chars
+5. Add a body if the change is non-trivial (what & why, not how)
+6. Add BREAKING CHANGE footer if applicable
+
+Output ONLY the commit message, ready to copy-paste.
+"""

@@ -1,0 +1,14 @@
+description = "Explain how a piece of code or file works"
+
+prompt = """
+Explain how this code/file works: {{args}}
+
+Structure your explanation as:
+1. **Purpose:** one-sentence summary of what it does
+2. **How it works:** step-by-step walkthrough of the logic
+3. **Key dependencies:** what it imports/relies on
+4. **Data flow:** how data moves through the code
+5. **Edge cases:** potential issues or assumptions made
+
+Keep it concise. Use code snippets to reference specific parts.
+"""

@@ -1,0 +1,185 @@
+{
+  // ── GENERAL ──────────────────────────────────────────────────────────────
+  "general": {
+    // Auto-approve file edits but still ask before running shell commands.
+    // Safer than full YOLO, less friction than prompting on every edit.
+    "defaultApprovalMode": "auto_edit",
+
+    "plan": {
+      // Keep Plan Mode on — agents plan before touching anything.
+      "enabled": true,
+
+      // Use Pro model for the planning phase, Flash for execution.
+      // Saves quota without sacrificing reasoning quality on complex tasks.
+      "modelRouting": true,
+
+      // Store plan artifacts in the project instead of a temp folder.
+      // Makes plans reviewable and committable alongside your code.
+      "directory": ".gemini/plans"
+    },
+
+    // Group agent activity into named "chapters" with structured progress
+    // updates instead of a wall of text. Much easier to follow long runs.
+    "topicUpdateNarration": true,
+
+    // Retry up to 10 times on transient API errors before giving up.
+    "maxAttempts": 10
+  },
+
+  // ── MODEL ─────────────────────────────────────────────────────────────────
+  "model": {
+    // No cap on conversation turns — agents can run as long as they need.
+    "maxSessionTurns": -1,
+
+    // Start compressing context at 40% usage instead of the default 50%.
+    // Agents generate long tool chains quickly; compressing earlier avoids
+    // hitting the limit mid-task.
+    "compressionThreshold": 0.4,
+
+    // Keep loop detection on — if an agent repeats itself, stop it.
+    "disableLoopDetection": false,
+
+    // Don't let the model invite itself back into the conversation after
+    // finishing a task. Prevents agents from rambling after completion.
+    "skipNextSpeakerCheck": true
+  },
+
+  // ── EXPERIMENTAL ──────────────────────────────────────────────────────────
+  "experimental": {
+    // Route memory across 4 tiers (team GEMINI.md → project MEMORY.md →
+    // global ~/.gemini/GEMINI.md) instead of using the legacy save_memory
+    // tool. Much better structure for multi-agent projects.
+    "memoryV2": true,
+
+    // After sessions, automatically extract useful facts and skills into
+    // .patch files in .inbox/ for you to review. Nothing is applied until
+    // you approve it via `/memory inbox`.
+    "autoMemory": true,
+
+    // Enable smarter context lifecycle management between agent turns.
+    "contextManagement": true,
+
+    // Enable the generalist agent that routes tasks to your specialized
+    // agents instead of trying to handle everything in one context.
+    "generalistProfile": true,
+
+    // Allow multiple agents to work on separate git branches in parallel
+    // using git worktrees — no branch conflicts between concurrent sessions.
+    "worktrees": true,
+
+    // Let you type hints to a running agent without stopping it.
+    // The hint is injected at the next turn boundary. See model-steering docs.
+    "modelSteering": true,
+
+    // Fetch web URLs directly without routing through LLM summarization.
+    // Faster and cheaper when agents need raw content (JSON APIs, source, etc.)
+    "directWebFetch": true
+  },
+
+  // ── CONTEXT ───────────────────────────────────────────────────────────────
+  "context": {
+    // Search up to 300 directories for GEMINI.md memory files.
+    // Raise this if your monorepo is deeply nested.
+    "discoveryMaxDirs": 300,
+
+    // When running `/memory reload`, also scan directories listed in
+    // include paths — not just the current working directory.
+    "loadMemoryFromIncludeDirectories": true,
+
+    "fileFiltering": {
+      // Honor .gitignore so agents don't read build artifacts or secrets.
+      "respectGitIgnore": true,
+
+      // Honor .geminiignore for project-specific exclusions.
+      "respectGeminiIgnore": true,
+
+      // Allow fuzzy matching when agents search for files via @ references.
+      "enableFuzzySearch": true
+    }
+  },
+
+  // ── SECURITY ──────────────────────────────────────────────────────────────
+  "security": {
+    // Sandbox each tool individually instead of the whole CLI process.
+    // Lets agents work freely while isolating risky tools (shell, etc.)
+    "toolSandboxing": true,
+
+    // Show "Allow for all future sessions" in approval dialogs so you can
+    // permanently whitelist safe tool calls you've already reviewed.
+    "enablePermanentToolApproval": true,
+
+    // In trusted workspaces, make permanent approval the default choice
+    // for low-risk tools — fewer clicks over time.
+    "autoAddToPolicyByDefault": true,
+
+    // Enable a second LLM that dynamically evaluates each tool call against
+    // your current prompt to catch unintended actions.
+    "enableConseca": true,
+
+    // Redact env vars from tool inputs/outputs so secrets don't leak into
+    // logs or model context.
+    "environmentVariableRedaction": {
+      "enabled": true
+    }
+  },
+
+  // ── TOOLS ─────────────────────────────────────────────────────────────────
+  "tools": {
+    // Restrict sandbox file access to these paths only.
+    // Adjust per project — don't leave this as a wide-open root path.
+    "sandboxAllowedPaths": ["./src", "./tests", "./scripts"],
+
+    // Prevent sandboxed tools from making network calls.
+    // Enable only if your agents explicitly need outbound access.
+    "sandboxNetworkAccess": false,
+
+    // Truncate tool output shown to the model at 20k chars.
+    // Prevents one noisy shell command from flooding the context window.
+    "truncateToolOutputThreshold": 20000,
+
+    // Allow the model to self-correct failed file edits instead of
+    // immediately erroring. Critical for agents doing complex refactors.
+    "disableLLMCorrection": false
+  },
+
+  // ── SKILLS ────────────────────────────────────────────────────────────────
+  "skills": {
+    // Keep Agent Skills on so your custom agents are available as skills.
+    "enabled": true
+  },
+
+  // ── HOOKS ─────────────────────────────────────────────────────────────────
+  "hooksConfig": {
+    // Enable the hooks system so scripts fire on lifecycle events
+    // (e.g. post-edit, post-tool-call). Wire agents into CI or logging here.
+    "enabled": true,
+
+    // Show a visual indicator in the UI when a hook is running.
+    "notifications": true
+  },
+
+  // ── UI ────────────────────────────────────────────────────────────────────
+  "ui": {
+    // Show which model handled each turn — useful when routing between
+    // Pro and Flash to confirm the right model is being used.
+    "showModelInfoInChat": true,
+
+    // Collapse tool output (file reads, directory listings) into a compact
+    // format so long agent runs stay readable.
+    "compactToolOutput": true,
+
+    // Show the model's internal reasoning inline. Set to "off" if you
+    // only care about the output and want less noise.
+    "inlineThinkingMode": "full",
+
+    // Show the agent's current status in the terminal tab title.
+    // Useful when running multiple terminal sessions in parallel.
+    "showStatusInTitle": true,
+
+    "footer": {
+      // Keep the context window percentage visible so you can catch a
+      // session approaching its limit before compression kicks in.
+      "hideContextPercentage": false
+    }
+  }
+}

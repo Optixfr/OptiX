@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FormTearsEyesDataService } from '../form-tear-size/form-tears-eyes-data.service';
-import { FormSizeEyesDataService } from '../form-eyes-size/form-size-eyes-data.service';
+import { EyesMeasureStore } from '../../state/eyes-measure.store';
 import { EyesTear } from '../../models/eyes-tear.model';
 import { EyesCalculationService } from '../calculation/eyes-calculation.service';
 
@@ -60,15 +60,16 @@ export class PdfGenerationService {
   dataSubscription: any;
 
   private doc: jsPDF = new jsPDF();
+  private eyesMeasureStore = inject(EyesMeasureStore);
 
   constructor(
     private sanitizer: DomSanitizer,
-    private formSizeEyesDataService: FormSizeEyesDataService,
+
     private formTearEyesDataService: FormTearsEyesDataService,
     private eyesCalculationService: EyesCalculationService,
     private eyesTearService: FormTearsEyesDataService
   ) {
-    const formDataMeasure = this.formSizeEyesDataService.getFormData();
+    const formDataMeasure = { droite: this.eyesMeasureStore.droite(), gauche: this.eyesMeasureStore.gauche() };
     const formDataTear = this.eyesTearService.getFormData();
     this.commentaire = this.eyesTearService.getCommentaire();
 

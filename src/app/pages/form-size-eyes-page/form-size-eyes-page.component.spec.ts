@@ -13,9 +13,9 @@ describe('FormSizeEyesPageComponent', () => {
       droite: signal({ sphere: '0' }),
       gauche: signal({ sphere: '0' }),
       isDuplicated: signal(false),
-      updateRightEye: jasmine.createSpy('updateRightEye'),
-      updateLeftEye: jasmine.createSpy('updateLeftEye'),
-      duplicateRightForm: jasmine.createSpy('duplicateRightForm'),
+      updateRightEye: vi.fn(),
+      updateLeftEye: vi.fn(),
+      duplicateRightForm: vi.fn(),
     };
 
     await TestBed.configureTestingModule({

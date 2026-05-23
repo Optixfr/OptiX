@@ -1,0 +1,11 @@
+{
+  "name": "optix",
+  "version": "0.1.0",
+  "type": "module",
+  "dependencies": {
+    "@dagger.io/dagger": "latest"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

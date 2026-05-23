@@ -1,0 +1,5 @@
+{
+  "name": "optix",
+  "sdk": "typescript",
+  "source": "dagger"
+}

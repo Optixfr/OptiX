@@ -1,0 +1,53 @@
+name: Dagger CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    name: Run Validation (Lint, Test, Build)
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🚀 Run Dagger Pipeline
+        uses: dagger/dagger-for-github@v7
+        with:
+          verb: call
+          args: run-all --source=.
+
+  # deploy:
+  #   name: Containerized Deployment via Dagger
+  #   needs: validate
+  #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: 📥 Checkout Repository
+  #       uses: actions/checkout@v4
+  #
+  #     - name: 🚀 Deploy App via Dagger
+  #       uses: dagger/dagger-for-github@v7
+  #       env:
+  #         # Wire GitHub Secrets into the runner environment
+  #         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+  #         SERVER_IP: ${{ secrets.SERVER_IP }}
+  #         SERVER_USER: ${{ secrets.SERVER_USER }}
+  #         DEPLOY_PATH: "/var/www/optix"
+  #       with:
+  #         verb: call
+  #         # Chaining build and deploy functions in a single elegant Dagger call!
+  #         # Passes the output directory from build directly into the deploy function.
+  #         # Securely binds the SSH key secret from the runner environment using env:// prefix.
+  #         args: >-
+  #           deploy 
+  #           --build-dir=build(source: ".") 
+  #           --ssh-key=env://SSH_PRIVATE_KEY 
+  #           --host="${{ env.SERVER_IP }}" 
+  #           --user="${{ env.SERVER_USER }}" 
+  #           --deploy-path="${{ env.DEPLOY_PATH }}"

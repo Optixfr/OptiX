@@ -22,7 +22,7 @@
         step="0.25"
         id="sphere"
         name="sphere"
-        [(ngModel)]="measure().sphere"
+        [(ngModel)]="localMeasure.sphere"
         (ngModelChange)="onMeasureChange()"
         required
       />
@@ -36,19 +36,19 @@
         step="0.25"
         id="cylindre"
         name="cylindre"
-        [(ngModel)]="measure().cylindre"
+        [(ngModel)]="localMeasure.cylindre"
         (ngModelChange)="onMeasureChange()"
         required
       />
     </div>
 
-    <!-- Axe (optionnel) -->
+    <!-- Axe -->
     <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
       <label for="axe">Axe</label>
-      <input class="border border-[#000000] border-opacity-35 w-full rounded-lg p-2" type="number" id="axe" name="axe" [(ngModel)]="measure().axe" (ngModelChange)="onMeasureChange()" required />
+      <input class="border border-[#000000] border-opacity-35 w-full rounded-lg p-2" type="number" id="axe" name="axe" [(ngModel)]="localMeasure.axe" (ngModelChange)="onMeasureChange()" required />
     </div>
 
-    <!-- Diamètre (optionnel) -->
+    <!-- DVO -->
     <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
       <label for="dvo">DVO</label>
       <input class="border border-[#000000] border-opacity-35 w-full rounded-lg p-2"
@@ -56,43 +56,43 @@
         step="0.5"
         id="dvo"
         name="dvo"
-        [(ngModel)]="measure().dvo"
+        [(ngModel)]="localMeasure.dvo"
         (ngModelChange)="onMeasureChange()"
         required
       />
     </div>
 
-    <!-- DHIV (optionnel) -->
+    <!-- DHIV -->
     <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
       <label for="dhiv">DHIV</label>
-      <input class="border border-[#000000] border-opacity-35 w-full rounded-lg p-2" type="number" id="dhiv" name="dhiv" [(ngModel)]="measure().dhiv" (ngModelChange)="onMeasureChange()" required/>
+      <input class="border border-[#000000] border-opacity-35 w-full rounded-lg p-2" type="number" id="dhiv" name="dhiv" [(ngModel)]="localMeasure.dhiv" (ngModelChange)="onMeasureChange()" required/>
     </div>
 
-    <!-- K1 (optionnel) -->
+    <!-- K1 -->
     <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
       <label for="k1">K1</label>
-      <input class="border border-[#000000] border-opacity-35 w-full rounded-lg p-2" type="number" step="0.01" id="k1" name="k1" [(ngModel)]="measure().k1" (ngModelChange)="onMeasureChange()" required/>
+      <input class="border border-[#000000] border-opacity-35 w-full rounded-lg p-2" type="number" step="0.01" id="k1" name="k1" [(ngModel)]="localMeasure.k1" (ngModelChange)="onMeasureChange()" required/>
     </div>
 
-    <!-- X (optionnel) -->
+    <!-- X -->
     <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
       <label for="x">Axe</label>
-      <input class="border border-[#000000] border-opacity-35 w-full rounded-lg p-2" type="number" id="x" name="x" [(ngModel)]="measure().x" (ngModelChange)="onMeasureChange()" required/>
+      <input class="border border-[#000000] border-opacity-35 w-full rounded-lg p-2" type="number" id="x" name="x" [(ngModel)]="localMeasure.x" (ngModelChange)="onMeasureChange()" required/>
     </div>
 
-    <!-- K2 (optionnel) -->
+    <!-- K2 -->
     <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
       <label for="k2">K2</label>
-      <input class="border border-[#000000] border-opacity-35 w-full rounded-lg p-2" type="number" step="0.01" id="k2" name="k2" [(ngModel)]="measure().k2" (ngModelChange)="onMeasureChange()" required/>
+      <input class="border border-[#000000] border-opacity-35 w-full rounded-lg p-2" type="number" step="0.01" id="k2" name="k2" [(ngModel)]="localMeasure.k2" (ngModelChange)="onMeasureChange()" required/>
     </div>
 
-    <!-- Y (optionnel) -->
+    <!-- Y -->
     <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
       <label for="y">Axe</label>
-      <input class="border border-[#000000] border-opacity-35 w-full rounded-lg p-2" type="number" id="y" name="y" [(ngModel)]="measure().y" (ngModelChange)="onMeasureChange()" required/>
+      <input class="border border-[#000000] border-opacity-35 w-full rounded-lg p-2" type="number" id="y" name="y" [(ngModel)]="localMeasure.y" (ngModelChange)="onMeasureChange()" required/>
     </div>
 
-    <!-- Excentricité (optionnel) -->
+    <!-- Excentricité -->
     <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
       <label for="excentricite">Excentricité</label>
       <input class="border border-[#000000] border-opacity-35 w-full rounded-lg p-2"
@@ -100,7 +100,7 @@
         step="0.05"
         id="excentricite"
         name="excentricite"
-        [(ngModel)]="measure().excentricite"
+        [(ngModel)]="localMeasure.excentricite"
         (ngModelChange)="onMeasureChange()"
         required
       />

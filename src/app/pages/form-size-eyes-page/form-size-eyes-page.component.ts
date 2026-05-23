@@ -10,8 +10,7 @@ import { EyesMeasureStore } from '../../state/eyes-measure.store';
     FormEyeSizeComponent,
     RouterLink,
   ],
-  templateUrl: './form-size-eyes-page.component.html',
-  providers: [EyesMeasureStore] // Providing store here assumes page-level scope, or remove if root provided
+  templateUrl: './form-size-eyes-page.component.html'
 })
 export class FormSizeEyesPageComponent {
   readonly store = inject(EyesMeasureStore);

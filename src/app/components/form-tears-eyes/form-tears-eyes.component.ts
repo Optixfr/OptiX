@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, inject, input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { EyesTear } from '../../models/eyes-tear.model';
 import { FormTearsEyesDataService } from '../../services/form-tear-size/form-tears-eyes-data.service';
@@ -6,34 +6,27 @@ import { HttpClientModule } from '@angular/common/http';
 
 @Component({
     selector: 'app-form-tears-eyes',
+    standalone: true,
     imports: [FormsModule, HttpClientModule],
     templateUrl: './form-tears-eyes.component.html'
 })
-
 export class FormTearsEyesComponent implements OnInit {
-  @Input() nomFormulaire = '';
+  readonly nomFormulaire = input.required<string>();
+  private formSizeEyesDataService = inject(FormTearsEyesDataService);
 
   eyesTear!: EyesTear;
-
-  constructor(
-    @Inject(FormTearsEyesDataService)
-    private formSizeEyesDataService: FormTearsEyesDataService
-  ) {}
+  submitted = false;
 
   ngOnInit() {
-    if (
-      this.nomFormulaire.includes('Droit') &&
-      this.nomFormulaire.includes('Gauche')
-    ) {
+    const formName = this.nomFormulaire();
+    if (formName.includes('Droit') && formName.includes('Gauche')) {
       this.eyesTear = this.formSizeEyesDataService.getFormData().droite;
-    } else if (this.nomFormulaire.includes('Gauche')) {
+    } else if (formName.includes('Gauche')) {
       this.eyesTear = this.formSizeEyesDataService.getFormData().gauche;
     } else {
       this.eyesTear = this.formSizeEyesDataService.getFormData().droite;
     }
   }
-
-  submitted = false;
 
   getFormData(): EyesTear {
     return this.eyesTear;

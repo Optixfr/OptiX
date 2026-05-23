@@ -6,7 +6,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class EyesCalculationService {
-  private apiUrl = 'https://apioptix.jeremypatapy.fr/api/calcul';
+  private get apiBaseUrl(): string {
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      return 'http://localhost:3000';
+    }
+    return 'https://apioptix.jeremypatapy.fr';
+  }
 
   constructor(private http: HttpClient) {}
 
@@ -15,6 +20,16 @@ export class EyesCalculationService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-    return this.http.post<any>(this.apiUrl, data, { headers });
+    return this.http.post<any>(`${this.apiBaseUrl}/api/calcul`, data, { headers });
+  }
+
+  fetchCalculPDF(data: any): Observable<Blob> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this.http.post(`${this.apiBaseUrl}/api/calcul/pdf`, data, {
+      headers,
+      responseType: 'blob'
+    });
   }
 }

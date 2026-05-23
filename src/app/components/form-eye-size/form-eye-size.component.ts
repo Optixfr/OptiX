@@ -1,7 +1,6 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, effect } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { EyeMeasure } from '../../models/eyes-measure.model';
-
 
 @Component({
   selector: 'app-form-eye-size',
@@ -14,13 +13,33 @@ export class FormEyeSizeComponent {
   readonly measure = input.required<EyeMeasure>();
   readonly measureChange = output<EyeMeasure>();
 
-  onMeasureChange() {
-    this.measureChange.emit(this.measure());
+  // A local mutable copy to bind in ngModel without mutating the parent signal directly
+  localMeasure: EyeMeasure = {
+    sphere: '0',
+    cylindre: '0',
+    axe: '0',
+    dhiv: '0',
+    dvo: '0',
+    k1: '0',
+    x: '0',
+    k2: '0',
+    y: '0',
+    excentricite: '0'
+  };
+
+  constructor() {
+    // Keep local copy in sync when input signal changes
+    effect(() => {
+      this.localMeasure = { ...this.measure() };
+    });
   }
 
-  // Temporary helper methods for testing, kept but updated to emit changes
+  onMeasureChange() {
+    this.measureChange.emit({ ...this.localMeasure });
+  }
+
   fillTest2() {
-    const formDataTest2: EyeMeasure = {
+    this.localMeasure = {
       sphere: '5',
       cylindre: '-1.25',
       axe: '100',
@@ -31,12 +50,12 @@ export class FormEyeSizeComponent {
       k2: '7.8',
       y: '10',
       excentricite: '0.65',
-    }
-    this.measureChange.emit(formDataTest2);
+    };
+    this.onMeasureChange();
   }
 
   fillTest1() {
-    const formDataTest1: EyeMeasure = {
+    this.localMeasure = {
       sphere: '-8',
       cylindre: '-3',
       axe: '10',
@@ -47,8 +66,7 @@ export class FormEyeSizeComponent {
       k2: '7.3',
       y: '100',
       excentricite: '0.3',
-    }
-    this.measureChange.emit(formDataTest1);
+    };
+    this.onMeasureChange();
   }
 }
-

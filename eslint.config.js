@@ -30,6 +30,10 @@ module.exports = tseslint.config(
           style: "kebab-case",
         },
       ],
+      // Angular 22 makes OnPush the implicit default; the v22 migration stamps
+      // components with ChangeDetectionStrategy.Eager to preserve prior behavior.
+      // We intentionally keep Eager, so this rule is disabled to avoid flagging it.
+      "@angular-eslint/prefer-on-push-component-change-detection": "off",
     },
   },
   {

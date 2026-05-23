@@ -1,5 +1,5 @@
-<div class="flex-col justify-center w-full h-full">
-    <div class="grid grid-cols-2 gap-5 pl-8 pr-8">
+<div class="flex-col justify-center w-full h-full p-4">
+    <div class="grid grid-cols-2 gap-5">
       <app-form-eye-size
         [measure]="store.droite()"
         (measureChange)="store.updateRightEye($event)"
@@ -13,17 +13,21 @@
         [nomFormulaire]="'Biométrie Oeil Gauche'">
       </app-form-eye-size>
       } @else {
-      <button (click)="store.duplicateRightForm()"
-        class="flex justify-center self-center items-center p-[5px] bg-transparent border-none cursor-pointer w-full h-full">
-        <img class="self-center" src="assets/additem.svg" alt="Duplicate the form">
+      <button mat-stroked-button (click)="store.duplicateRightForm()"
+        style="height: 100%; min-height: 200px; display: flex; flex-direction: column; justify-content: center; align-items: center; border-radius: 12px; background-color: #ffffff; border: 2px dashed #ccc;">
+        <img style="width: 48px; height: 48px; margin-bottom: 12px;" src="assets/additem.svg" alt="Duplicate the form">
+        <span>Ajouter l'Oeil Gauche</span>
       </button>
       }
     </div>
-    <div class="flex justify-center mb-5 mt-4">
+    
+    <div class="flex justify-center mb-5 mt-4" style="margin-top: 24px; text-align: center;">
       <button
-        class="w-[246px] h-[44px] bg-accent rounded-[16px] drop-shadow-xl"
+        mat-raised-button
+        color="primary"
+        style="width: 260px; height: 48px; border-radius: 24px; font-size: 16px;"
         routerLink="/tears">
-        Evaluer les critères
+        Évaluer les critères
       </button>
     </div>    
 </div>

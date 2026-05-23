@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { NavbarService } from '../../services/navbar-service/navbar-service.service';
 
@@ -6,6 +6,7 @@ import { NavbarService } from '../../services/navbar-service/navbar-service.serv
 @Component({
     selector: 'app-lateral-navbar',
     imports: [RouterLink, RouterModule],
+    changeDetection: ChangeDetectionStrategy.Eager,
     templateUrl: './lateral-navbar.component.html'
 })
 export class LateralNavbarComponent implements OnInit {

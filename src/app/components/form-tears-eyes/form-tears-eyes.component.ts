@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit } from '@angular/core';
+import { Component, inject, input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { EyesTear } from '../../models/eyes-tear.model';
 import { FormTearsEyesDataService } from '../../services/form-tear-size/form-tears-eyes-data.service';
@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
     selector: 'app-form-tears-eyes',
     standalone: true,
     imports: [FormsModule, HttpClientModule],
+    changeDetection: ChangeDetectionStrategy.Eager,
     templateUrl: './form-tears-eyes.component.html'
 })
 export class FormTearsEyesComponent implements OnInit {

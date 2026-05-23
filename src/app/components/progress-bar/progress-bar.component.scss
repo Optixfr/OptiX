@@ -1,0 +1,48 @@
+:host {
+  display: block;
+  width: 480px;
+  max-width: 100%;
+}
+
+.stepper-container {
+  width: 100%;
+}
+
+// Hide the content pane of the stepper since it is a pure navigation/progress indicator
+::ng-deep {
+  .mat-horizontal-stepper-content-container {
+    display: none !important;
+  }
+
+  .mat-horizontal-stepper-header-container {
+    border-bottom: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+  }
+
+  .mat-step-header {
+    height: 48px !important;
+    padding: 0 16px !important;
+    border-radius: 24px;
+    transition: background-color 0.2s ease-in-out;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.04) !important;
+    }
+
+    // Active/selected step styles
+    &[aria-selected="true"] {
+      .mat-step-label {
+        font-weight: 700 !important;
+        color: var(--mat-sys-primary) !important;
+      }
+    }
+  }
+
+  // Horizontal connection line between step icons
+  .mat-stepper-horizontal-line {
+    border-top-width: 2px !important;
+    border-top-color: #cbd5e1 !important;
+    margin: 0 -8px !important;
+  }
+}

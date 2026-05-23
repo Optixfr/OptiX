@@ -1,4 +1,4 @@
-import { Component, QueryList, ViewChildren } from '@angular/core';
+import { Component, QueryList, ViewChildren, ChangeDetectionStrategy } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'; // Importer HttpClientModule
 import { EyesCalculationService } from '../../services/calculation/eyes-calculation.service';
 import { FormTearsEyesComponent } from '../../components/form-tears-eyes/form-tears-eyes.component';
@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
     selector: 'app-form-tears-eyes-page',
     imports: [HttpClientModule, FormTearsEyesComponent, FormsModule, RouterLink], // Importer HttpClientModule ici
     providers: [EyesCalculationService],
+    changeDetection: ChangeDetectionStrategy.Eager,
     templateUrl: './form-tears-eyes-page.component.html'
 })
 

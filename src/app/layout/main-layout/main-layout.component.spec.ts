@@ -1,23 +1,29 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { render, screen } from '@testing-library/angular';
+import { provideRouter } from '@angular/router';
 import { MainLayoutComponent } from './main-layout.component';
 
 describe('MainLayoutComponent', () => {
-  let component: MainLayoutComponent;
-  let fixture: ComponentFixture<MainLayoutComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [MainLayoutComponent]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(MainLayoutComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  it('renders the lateral navbar', async () => {
+    await render(MainLayoutComponent, {
+      providers: [provideRouter([])],
+    });
+    // Navbar renders the menu SVG (from top-bar)
+    expect(screen.getByAltText('menu')).toBeTruthy();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('renders the top bar', async () => {
+    await render(MainLayoutComponent, {
+      providers: [provideRouter([])],
+    });
+    expect(screen.getByTitle('Toggle sidebar')).toBeTruthy();
+  });
+
+  it('renders the router outlet slot', async () => {
+    await render(MainLayoutComponent, {
+      providers: [provideRouter([])],
+    });
+    // The shell element should exist in the DOM
+    expect(document.querySelector('router-outlet')).toBeTruthy();
   });
 });

@@ -1,0 +1,105 @@
+// ─── Angular Material M3 Theme ────────────────────────────────────────────────
+// @use MUST be first — SCSS rule
+@use '@angular/material' as mat;
+
+// ─── Tailwind ─────────────────────────────────────────────────────────────────
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// ─── M3 Theme Definition ──────────────────────────────────────────────────────
+// Azure = professional blue-gray; Cyan = teal accent — fits an optical/medical app
+$optix-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary:    mat.$azure-palette,
+    tertiary:   mat.$cyan-palette,
+  ),
+  typography: (
+    brand-family: 'Roboto, "Helvetica Neue", sans-serif',
+    plain-family: 'Roboto, "Helvetica Neue", sans-serif',
+    bold-weight:  700,
+    medium-weight: 500,
+    regular-weight: 400,
+  ),
+  density: (
+    scale: 0,
+  ),
+));
+
+// Apply theme to all Material components
+:root {
+  @include mat.all-component-themes($optix-theme);
+  @include mat.color-variants-backwards-compatibility($optix-theme);
+}
+
+// ─── Base Overrides ───────────────────────────────────────────────────────────
+@layer base {
+  html, body {
+    @apply h-full w-full bg-slate-50 font-sans;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    @apply no-underline text-inherit;
+  }
+
+  button {
+    background: none;
+    border: none;
+    font: inherit;
+    color: inherit;
+  }
+}
+
+// ─── Component Layer ──────────────────────────────────────────────────────────
+@layer components {
+
+  // Sidebar — uses a custom brand color independent of the M3 palette
+  .sidebar {
+    @apply flex flex-col flex-shrink-0 h-screen text-white
+           overflow-hidden transition-all duration-300;
+    background: linear-gradient(160deg, #1a3a4a 0%, #29525f 100%);
+    border-radius: 0 12px 12px 0;
+    padding: 20px 16px;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.15);
+
+    &--extended { width: 288px; }
+    &--collapsed { width: 80px; }
+  }
+
+  .nav-link {
+    @apply flex items-center rounded-xl font-medium
+           cursor-pointer transition-all duration-200 p-3 gap-4;
+    color: rgba(255, 255, 255, 0.8);
+
+    &:hover, &:focus-visible {
+      background-color: rgba(255, 255, 255, 0.12);
+      color: white;
+      @apply outline-none;
+    }
+
+    &.active {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: white;
+      @apply font-semibold;
+    }
+  }
+
+  // Top bar
+  app-top-bar > div {
+    @apply flex flex-row items-center justify-between bg-white px-8;
+    height: 64px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  // Cards
+  .optix-card {
+    @apply bg-white rounded-2xl p-6 transition-shadow duration-200;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+
+    &:hover {
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    }
+  }
+}

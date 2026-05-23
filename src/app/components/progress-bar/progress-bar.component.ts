@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { MatStepperModule } from '@angular/material/stepper';
 import { ProgressBarService } from '../../services/progress-bar/progress-bar-service.service';
 
 @Component({
     selector: 'app-progress-bar',
-    imports: [],
-    templateUrl: './progress-bar.component.html'
+    standalone: true,
+    imports: [MatStepperModule],
+    templateUrl: './progress-bar.component.html',
+    styleUrls: ['./progress-bar.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-
-export class ProgressBarComponent implements OnInit {
+export class ProgressBarComponent {
   constructor(public stepService: ProgressBarService) {}
 
-  ngOnInit(): void {
-    // Le service gère l'état, il n'y a rien à faire ici
+  onSelectionChange(event: any) {
+    const stepIndex = event.selectedIndex + 1;
+    this.stepService.setStep(stepIndex);
   }
 }

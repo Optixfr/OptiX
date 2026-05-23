@@ -1,28 +1,47 @@
-<div class="flex flex-col justify-center">
-  <div class="grid grid-cols-[1fr_1fr] justify-center h-full w-full p-4 gap-4">
-    <div class="flex justify-center align-middle w-full h-full">
-      <div class="bg-white w-full rounded-xl p-4 border border-opacity-35 border-[#000000] border-opacity-35-accent drop-shadow-xl">
-        <h2 class="text-xl text-wrap mb-16">Lentille suggérée</h2>
-        <div class="flex flex-row gap-5 justify-center">
+<div class="flex flex-col justify-center p-4">
+  <div class="grid grid-cols-2 gap-5 justify-center w-full">
+    <mat-card class="optix-card" style="margin: 0; min-height: 500px; display: flex; flex-direction: column;">
+      <mat-card-header style="margin-bottom: 16px;">
+        <h2 class="mat-h2" style="margin: 0; font-weight: 500; color: #37474f;">Lentille suggérée</h2>
+      </mat-card-header>
+      <mat-card-content style="display: flex; flex-direction: column; justify-content: center; align-items: center; flex: 1;">
+        <div class="flex flex-row justify-center">
           @if(temp === "5") {
-            <img class="align-middle justify-center self-center items-center" src="assets/test1.png" alt="">
+            <img style="max-height: 350px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);" src="assets/test1.png" alt="Test 1 Suggestions">
           } @else {
-            <img class="align-middle justify-center self-center items-center" src="assets/test2.png" alt="">
+            <img style="max-height: 350px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);" src="assets/test2.png" alt="Test 2 Suggestions">
           }
         </div>
-      </div>
-    </div>
-    @if (pdfUrl) {
-      <div class="pdf-preview">
-        <iframe [src]="pdfUrl" style="border: none;" width="100%" height="500px"></iframe>
-      </div>
+      </mat-card-content>
+    </mat-card>
+
+    @if (store.loading()) {
+      <mat-card class="optix-card" style="margin: 0; min-height: 500px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <mat-progress-bar mode="indeterminate" color="primary" style="margin-bottom: 24px; max-width: 300px;"></mat-progress-bar>
+        <p class="mat-body-1" style="color: #666;">Génération du rapport PDF en cours...</p>
+      </mat-card>
+    } @else if (store.pdfUrl()) {
+      <mat-card class="optix-card" style="margin: 0; padding: 0; min-height: 500px; overflow: hidden; border-radius: 12px;">
+        <iframe [src]="store.pdfUrl()!" style="border: none; width: 100%; height: 100%; min-height: 500px;"></iframe>
+      </mat-card>
+    } @else if (store.error()) {
+      <mat-card class="optix-card" style="margin: 0; min-height: 500px; display: flex; flex-direction: column; justify-content: center; align-items: center; border: 1px solid #fcc; background-color: #fff8f8;">
+        <p class="mat-body-1" style="color: #c00; font-weight: 500;">{{ store.error() }}</p>
+      </mat-card>
     }
   </div>
 </div>
-<div class="flex flex-row gap-5 justify-center mb-5">
-  <button class="w-[246px] h-[44px] bg-accent rounded-[16px] mx-auto mb-5 drop-shadow-xl"
-  (click)="downloadPDF()">Télécharger</button>
-  <button class="w-[246px] h-[44px] bg-accent rounded-[16px] mx-auto mb-5 drop-shadow-xl"
-  routerLink="/accueil">Valider</button>
-</div>
 
+<div class="flex flex-row gap-5 justify-center mb-5" style="margin-top: 24px; text-align: center;">
+  <button mat-raised-button color="tertiary"
+    style="width: 260px; height: 48px; border-radius: 24px; font-size: 16px;"
+    [disabled]="store.loading() || !store.pdfUrl()"
+    (click)="downloadPDF()">
+    Télécharger le Rapport
+  </button>
+  <button mat-raised-button color="primary"
+    style="width: 260px; height: 48px; border-radius: 24px; font-size: 16px;"
+    routerLink="/accueil">
+    Valider l'Adaptation
+  </button>
+</div>

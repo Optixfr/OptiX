@@ -1,12 +1,23 @@
 import { Component, input, output, effect } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 import { EyeMeasure } from '../../models/eyes-measure.model';
 
 @Component({
   selector: 'app-form-eye-size',
   standalone: true,
-  imports: [FormsModule],
-  templateUrl: './form-eye-size.component.html'
+  imports: [
+    FormsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
+  ],
+  templateUrl: './form-eye-size.component.html',
+  styleUrls: ['./form-eye-size.component.scss']
 })
 export class FormEyeSizeComponent {
   readonly nomFormulaire = input.required<string>();

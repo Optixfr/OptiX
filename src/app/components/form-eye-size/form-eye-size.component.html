@@ -1,109 +1,75 @@
-<div class="bg-white rounded-xl p-4 border-black border-opacity-35 border border-opacity-35-accent drop-shadow-xl">
-  <h2 class="text-xl text-wrap mb-16">{{ nomFormulaire() }} 
-    <div class="flex flex-row gap-5 ">
-      <button class="bg-primary rounded-3xl h-6 px-3 text-xs leading-none flex items-center justify-center" type="button" (click)="fillTest1()">
-        Demo 1
-      </button>
-      <button class="bg-accent rounded-3xl h-6 px-3 text-xs leading-none flex items-center justify-center" type="button" (click)="fillTest2()">
-        Demo 2
-      </button>
+<mat-card class="optix-card">
+  <mat-card-header>
+    <div class="card-title-container">
+      <h2 class="mat-h2" style="margin: 0;">{{ nomFormulaire() }}</h2>
+      <div class="demo-buttons">
+        <button mat-stroked-button color="primary" type="button" (click)="fillTest1()">Demo 1</button>
+        <button mat-stroked-button color="tertiary" type="button" (click)="fillTest2()">Demo 2</button>
+      </div>
     </div>
-  </h2>
-  <form 
-    (ngSubmit)="onMeasureChange()"
-    #eyeMeasureForm="ngForm"
-    class="flex flex-col justify-around gap-2"
-  >
-    <!-- Sphere -->
-    <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
-      <label for="sphere">Sphere</label>
-      <input class="border border-[#000000] border-opacity-35  w-full rounded-lg p-2" placeholder="Type here..."
-        type="number"
-        step="0.25"
-        id="sphere"
-        name="sphere"
-        [(ngModel)]="localMeasure.sphere"
-        (ngModelChange)="onMeasureChange()"
-        required
-      />
-    </div>
+  </mat-card-header>
+  
+  <mat-card-content>
+    <form (ngSubmit)="onMeasureChange()" #eyeMeasureForm="ngForm" class="form-grid">
+      <!-- Sphere -->
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Sphere</mat-label>
+        <input matInput type="number" step="0.25" placeholder="0.00" name="sphere" [(ngModel)]="localMeasure.sphere" (ngModelChange)="onMeasureChange()" required>
+      </mat-form-field>
 
-    <!-- Cylindre -->
-    <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
-      <label for="cylindre">Cylindre</label>
-      <input class="border border-[#000000] border-opacity-35 w-full rounded-lg p-2"
-        type="number"
-        step="0.25"
-        id="cylindre"
-        name="cylindre"
-        [(ngModel)]="localMeasure.cylindre"
-        (ngModelChange)="onMeasureChange()"
-        required
-      />
-    </div>
+      <!-- Cylindre -->
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Cylindre</mat-label>
+        <input matInput type="number" step="0.25" placeholder="0.00" name="cylindre" [(ngModel)]="localMeasure.cylindre" (ngModelChange)="onMeasureChange()" required>
+      </mat-form-field>
 
-    <!-- Axe -->
-    <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
-      <label for="axe">Axe</label>
-      <input class="border border-[#000000] border-opacity-35 w-full rounded-lg p-2" type="number" id="axe" name="axe" [(ngModel)]="localMeasure.axe" (ngModelChange)="onMeasureChange()" required />
-    </div>
+      <!-- Axe -->
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Axe</mat-label>
+        <input matInput type="number" placeholder="0" name="axe" [(ngModel)]="localMeasure.axe" (ngModelChange)="onMeasureChange()" required>
+      </mat-form-field>
 
-    <!-- DVO -->
-    <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
-      <label for="dvo">DVO</label>
-      <input class="border border-[#000000] border-opacity-35 w-full rounded-lg p-2"
-        type="number"
-        step="0.5"
-        id="dvo"
-        name="dvo"
-        [(ngModel)]="localMeasure.dvo"
-        (ngModelChange)="onMeasureChange()"
-        required
-      />
-    </div>
+      <!-- DVO -->
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>DVO</mat-label>
+        <input matInput type="number" step="0.5" placeholder="0" name="dvo" [(ngModel)]="localMeasure.dvo" (ngModelChange)="onMeasureChange()" required>
+      </mat-form-field>
 
-    <!-- DHIV -->
-    <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
-      <label for="dhiv">DHIV</label>
-      <input class="border border-[#000000] border-opacity-35 w-full rounded-lg p-2" type="number" id="dhiv" name="dhiv" [(ngModel)]="localMeasure.dhiv" (ngModelChange)="onMeasureChange()" required/>
-    </div>
+      <!-- DHIV -->
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>DHIV</mat-label>
+        <input matInput type="number" placeholder="0" name="dhiv" [(ngModel)]="localMeasure.dhiv" (ngModelChange)="onMeasureChange()" required>
+      </mat-form-field>
 
-    <!-- K1 -->
-    <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
-      <label for="k1">K1</label>
-      <input class="border border-[#000000] border-opacity-35 w-full rounded-lg p-2" type="number" step="0.01" id="k1" name="k1" [(ngModel)]="localMeasure.k1" (ngModelChange)="onMeasureChange()" required/>
-    </div>
+      <!-- K1 -->
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>K1</mat-label>
+        <input matInput type="number" step="0.01" placeholder="0.00" name="k1" [(ngModel)]="localMeasure.k1" (ngModelChange)="onMeasureChange()" required>
+      </mat-form-field>
 
-    <!-- X -->
-    <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
-      <label for="x">Axe</label>
-      <input class="border border-[#000000] border-opacity-35 w-full rounded-lg p-2" type="number" id="x" name="x" [(ngModel)]="localMeasure.x" (ngModelChange)="onMeasureChange()" required/>
-    </div>
+      <!-- X (Axe match) -->
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>K1 Axe</mat-label>
+        <input matInput type="number" placeholder="0" name="x" [(ngModel)]="localMeasure.x" (ngModelChange)="onMeasureChange()" required>
+      </mat-form-field>
 
-    <!-- K2 -->
-    <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
-      <label for="k2">K2</label>
-      <input class="border border-[#000000] border-opacity-35 w-full rounded-lg p-2" type="number" step="0.01" id="k2" name="k2" [(ngModel)]="localMeasure.k2" (ngModelChange)="onMeasureChange()" required/>
-    </div>
+      <!-- K2 -->
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>K2</mat-label>
+        <input matInput type="number" step="0.01" placeholder="0.00" name="k2" [(ngModel)]="localMeasure.k2" (ngModelChange)="onMeasureChange()" required>
+      </mat-form-field>
 
-    <!-- Y -->
-    <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
-      <label for="y">Axe</label>
-      <input class="border border-[#000000] border-opacity-35 w-full rounded-lg p-2" type="number" id="y" name="y" [(ngModel)]="localMeasure.y" (ngModelChange)="onMeasureChange()" required/>
-    </div>
+      <!-- Y (Axe match) -->
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>K2 Axe</mat-label>
+        <input matInput type="number" placeholder="0" name="y" [(ngModel)]="localMeasure.y" (ngModelChange)="onMeasureChange()" required>
+      </mat-form-field>
 
-    <!-- Excentricité -->
-    <div class="grid grid-cols-[1fr_4fr] items-center gap-5">
-      <label for="excentricite">Excentricité</label>
-      <input class="border border-[#000000] border-opacity-35 w-full rounded-lg p-2"
-        type="number"
-        step="0.05"
-        id="excentricite"
-        name="excentricite"
-        [(ngModel)]="localMeasure.excentricite"
-        (ngModelChange)="onMeasureChange()"
-        required
-      />
-    </div> 
-  </form>
-</div>
+      <!-- Excentricité -->
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Excentricité</mat-label>
+        <input matInput type="number" step="0.05" placeholder="0.00" name="excentricite" [(ngModel)]="localMeasure.excentricite" (ngModelChange)="onMeasureChange()" required>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+</mat-card>

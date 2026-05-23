@@ -1,53 +1,7 @@
-<nav class="w-full h-full">
-    <div class="flex items-center justify-center w-full">
-
-        <div class="flex flex-col items-center">
-            @if(this.stepService.activeStep === 1) {
-                <div class="w-20 h-10 text-sm flex items-center justify-center rounded-full font-bold text-white bg-primary">
-                    Etape 1
-                </div>
-            } @else {
-                <a href="OptiX/accueil">
-                    <div class="w-20 h-10 text-sm flex items-center justify-center rounded-full font-bold border-2 border-primary text-primary">
-                        Etape 1
-                    </div>
-                </a>
-            }
-        </div>
-
-        <div class="w-12 h-1 bg-primary rounded-md"></div>
-
-        <div class="flex flex-col items-center">
-            @if(this.stepService.activeStep === 2) {
-                <div class="w-20 h-10 text-sm flex items-center justify-center rounded-full font-bold text-white bg-primary">
-                    Etape 2
-                </div>
-            } @else {
-                <a href="OptiX/tears">
-                    <div class="w-20 h-10 text-sm flex items-center justify-center rounded-full font-bold border-2 border-primary text-primary">
-                        Etape 2
-                    </div>
-                </a>
-            }
-        </div>
-
-        <div class="w-12 h-1 bg-gray-300 rounded-md bg-primary"></div>
-
-        <div class="flex flex-col items-center">
-            @if(this.stepService.activeStep === 3) {
-                <div class="w-20 h-10 text-sm flex items-center justify-center rounded-full font-bold text-white bg-primary">
-                    Etape 3
-                </div>
-            } @else {
-                <a href="OptiX/report-generation">
-                    <div class="w-20 h-10 text-sm flex items-center justify-center rounded-full font-bold border-2 border-primary text-primary">
-                        Etape 3
-                    </div>
-                </a>
-            }
-        </div>
-    </div>
-    <div>
-        
-    </div>
-</nav>
+<div class="stepper-container">
+  <mat-stepper [selectedIndex]="stepService.activeStep() - 1" [linear]="false" (selectionChange)="onSelectionChange($event)">
+    <mat-step label="Etape 1"></mat-step>
+    <mat-step label="Etape 2"></mat-step>
+    <mat-step label="Etape 3"></mat-step>
+  </mat-stepper>
+</div>

@@ -1,10 +1,9 @@
-<div class="flex flex-row bg-background max-h-screen overflow-hidden">
+<div class="flex flex-row h-screen overflow-hidden bg-background">
     <app-lateral-navbar></app-lateral-navbar>
-    <div class="bg-background w-full">
-        <div class="mb-4">
-            <app-top-bar></app-top-bar>
-        </div>
-        <router-outlet></router-outlet>
+    <div class="flex flex-col flex-1 overflow-hidden">
+        <app-top-bar></app-top-bar>
+        <main class="flex-1 overflow-auto p-6 bg-background">
+            <router-outlet></router-outlet>
+        </main>
     </div>
 </div>
-  

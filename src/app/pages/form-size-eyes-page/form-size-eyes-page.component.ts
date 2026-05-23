@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormEyeSizeComponent } from '../../components/form-eye-size/form-eye-size.component';
 import { RouterLink } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 import { EyesMeasureStore } from '../../state/eyes-measure.store';
 
 @Component({
@@ -9,6 +10,7 @@ import { EyesMeasureStore } from '../../state/eyes-measure.store';
   imports: [
     FormEyeSizeComponent,
     RouterLink,
+    MatButtonModule
   ],
   templateUrl: './form-size-eyes-page.component.html'
 })
